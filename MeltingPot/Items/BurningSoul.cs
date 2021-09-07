@@ -40,9 +40,9 @@ namespace MeltingPot.Items
             "Jeb Labinsky";
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
-        public override ItemTier Tier => ItemTier.Tier1;
+        public override ItemTier Tier => ItemTier.Lunar;
 
-        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("BurningSoul.prefab");
+        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("BurningSoulRedux.prefab");
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("BurningSoul_Icon.png");
 
         public static GameObject ItemBodyModelPrefab;
@@ -67,6 +67,7 @@ namespace MeltingPot.Items
             ItemBodyModelPrefab.AddComponent<RoR2.ItemDisplay>();
             ItemBodyModelPrefab.GetComponent<RoR2.ItemDisplay>().rendererInfos = ItemHelpers.ItemDisplaySetup(ItemBodyModelPrefab);
 
+            Vector3 generalScale = new Vector3(1f, 1f, 1f);
             ItemDisplayRuleDict rules = new ItemDisplayRuleDict();
             rules.Add("mdlCommandoDualies", new RoR2.ItemDisplayRule[]
             {
@@ -74,10 +75,10 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "Pelvis",
-                    localPos = new Vector3(-0.16759F, -0.07591F, 0.06936F),
-                    localAngles = new Vector3(343.2889F, 299.2036F, 176.8172F),
-                    localScale = new Vector3(0.05F, 0.05F, 0.05F)
+                    childName = "Head",
+                    localPos = new Vector3(0.00108F, 0.23116F, 0.03563F),
+                    localAngles = new Vector3(348.7211F, 359.9553F, 0.02765F),
+                    localScale = new Vector3(0.2F, 0.2F, 0.2F)
                 }
             });
             rules.Add("mdlHuntress", new RoR2.ItemDisplayRule[]
@@ -86,10 +87,10 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "Pelvis",
-                    localPos = new Vector3(-0.14431F, -0.06466F, -0.03696F),
-                    localAngles = new Vector3(355.1616F, 81.55997F, 180F),
-                    localScale = new Vector3(0.05F, 0.05F, 0.05F)
+                    childName = "Head",
+                    localPos = new Vector3(0.00115F, 0.22517F, 0.03147F),
+                    localAngles = new Vector3(341.3349F, 359.916F, 0.04797F),
+                    localScale = new Vector3(0.2F, 0.2F, 0.2F)
                 }
             });
             rules.Add("mdlToolbot", new RoR2.ItemDisplayRule[]
@@ -98,10 +99,10 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "ThighR",
-                    localPos = new Vector3(0.08787F, 0.07478F, 1.04472F),
-                    localAngles = new Vector3(354.9749F, 182.8028F, 237.0256F),
-                    localScale = new Vector3(0.5F, 0.5F, 0.5F)
+                    childName = "Head",
+                    localPos = new Vector3(0.03597F, 2.49258F, 1.46246F),
+                    localAngles = new Vector3(58.21444F, 359.9872F, 0.12899F),
+                    localScale = new Vector3(1.3F, 1.3F, 1.3F)
                 }
             });
             rules.Add("mdlEngi", new RoR2.ItemDisplayRule[]
@@ -110,10 +111,10 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "Pelvis",
-                    localPos = new Vector3(-0.20102F, 0.09445F, 0.16025F),
-                    localAngles = new Vector3(15.50638F, 144.8099F, 180.4037F),
-                    localScale = new Vector3(0.05F, 0.05F, 0.05F)
+                    childName = "HeadCenter",
+                    localPos = new Vector3(0F, 0.5F,0F),
+                    localAngles = new Vector3(0F, 0F, 0F),
+                    localScale = generalScale
                 }
             });
             rules.Add("mdlMage", new RoR2.ItemDisplayRule[]
@@ -122,10 +123,10 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "Pelvis",
-                    localPos = new Vector3(-0.17241F, -0.0089F, 0.02642F),
-                    localAngles = new Vector3(5.28933F, 111.5028F, 190.532F),
-                    localScale = new Vector3(0.05F, 0.05F, 0.05F)
+                    childName = "Head",
+                    localPos = new Vector3(-0.7326F, 0.50043F, -0.41105F),
+                    localAngles = new Vector3(0F, 0F, 0F),
+                    localScale = new Vector3(0.2F, 0.2F, 0.2F)
                 }
             });
             rules.Add("mdlMerc", new RoR2.ItemDisplayRule[]
@@ -134,10 +135,10 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "Pelvis",
-                    localPos = new Vector3(0.16832F, 0.04282F, 0.06368F),
-                    localAngles = new Vector3(355.8307F, 42.81982F, 185.1587F),
-                    localScale = new Vector3(0.05F, 0.05F, 0.05F)
+                    childName = "Head",
+                    localPos = new Vector3(0.00092F, 0.28475F, 0.01279F),
+                    localAngles = new Vector3(0F, 0F, 0F),
+                    localScale = new Vector3(0.2F, 0.2F, 0.2F)
                 }
             });
             rules.Add("mdlTreebot", new RoR2.ItemDisplayRule[]
@@ -147,9 +148,9 @@ namespace MeltingPot.Items
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
                     childName = "FlowerBase",
-                    localPos = new Vector3(-0.6845F, -0.60707F, -0.05308F),
-                    localAngles = new Vector3(349.4037F, 73.89225F, 346.442F),
-                    localScale = new Vector3(0.1F, 0.1F, 0.1F)
+                    localPos = new Vector3(0F, 0.5F,0F),
+                    localAngles = new Vector3(0F, 0F, 0F),
+                    localScale = generalScale
                 }
             });
             rules.Add("mdlLoader", new RoR2.ItemDisplayRule[]
@@ -158,10 +159,10 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "Pelvis",
-                    localPos = new Vector3(-0.2442F, 0.04122F, 0.01506F),
-                    localAngles = new Vector3(22.73106F, 289.1799F, 159.5365F),
-                    localScale = new Vector3(0.05F, 0.05F, 0.05F)
+                    childName = "Chest",
+                    localPos = new Vector3(0.001F, 0.19032F, -0.39663F),
+                    localAngles = new Vector3(323.2881F, 0.09313F, 359.7203F),
+                    localScale = new Vector3(0.2F, 0.2F, 0.2F)
                 }
             });
             rules.Add("mdlCroco", new RoR2.ItemDisplayRule[]
@@ -170,10 +171,10 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "Hip",
-                    localPos = new Vector3(-2.2536F, 1.10779F, 0.45293F),
-                    localAngles = new Vector3(1.77184F, 278.9485F, 190.4101F),
-                    localScale = new Vector3(0.5F, 0.5F, 0.5F)
+                    childName = "Chest",
+                    localPos = new Vector3(-0.07026F, 1.16075F, -2.07301F),
+                    localAngles = new Vector3(275.6001F, 353.5875F, 6.07229F),
+                    localScale = new Vector3(0.76731F, 0.76731F, 0.76731F)
                 }
             });
             rules.Add("mdlCaptain", new RoR2.ItemDisplayRule[]
@@ -182,10 +183,10 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "Pelvis",
-                    localPos = new Vector3(-0.21004F, -0.09095F, -0.09165F),
-                    localAngles = new Vector3(0F, 60.43688F, 180F),
-                    localScale = new Vector3(0.05F, 0.05F, 0.05F)
+                    childName = "Chest",
+                    localPos = new Vector3(-1.15025F, 0.40931F, -0.35049F),
+                    localAngles = new Vector3(0F, 0F, 0F),
+                    localScale = new Vector3(0.10606F, 0.10606F, 0.10606F)
                 }
             });
             rules.Add("mdlBandit2", new RoR2.ItemDisplayRule[]
@@ -194,10 +195,10 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "Pelvis",
-                    localPos = new Vector3(0.17925F, -0.02363F, -0.11047F),
-                    localAngles = new Vector3(359.353F, 299.9855F, 169.6378F),
-                    localScale = new Vector3(0.05F, 0.05F, 0.05F)
+                    childName = "MuzzleShotgun",
+                    localPos = new Vector3(-0.08031F, -0.00362F, -0.55244F),
+                    localAngles = new Vector3(359.9369F, 0.46435F, 93.25298F),
+                    localScale = new Vector3(0.02685F, 0.02685F, 0.02705F)
                 }
             });
             return rules;

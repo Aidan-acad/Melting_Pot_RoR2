@@ -54,6 +54,7 @@ namespace MeltingPot
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MeltingPot.Assets.burningsoulbundle"))
             {
                 MainAssets = AssetBundle.LoadFromStream(stream);
+                ModLogger.LogInfo("----Assets loaded----");
             }
             ShaderConversion(MainAssets);
 
