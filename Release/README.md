@@ -5,5 +5,6 @@ A mixed bag.
 ## Changelog
 
 Model and change to lunar rarity performed.
-**0.0.3**
+Rewrote Lore and fixed positioning on REX and Engi
+**0.0.4**
 

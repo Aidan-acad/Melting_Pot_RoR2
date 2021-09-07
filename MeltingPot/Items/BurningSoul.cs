@@ -24,20 +24,9 @@ namespace MeltingPot.Items
 
         public override string ItemFullDescription => $"Increases <style=cIsHealing>health regen by 100%</style>. Once over <style=cIsHealth>1000 health</style>, burn enemies for <style=cIsDamage>4%</style><style=cStack>(+1.5% per stack)</style> of your <style=cIsHealth>Maximum Health</style> <style=cDeath>BUT</style> all attacks cost <style=cIsHealth>1%</style><style=cStack>(+0.5% per stack)</style> of your current health.";
 
-        public override string ItemLore => "[Attached to this box is a strange note covered in letters cut from various sources.]\n\n" +
-            "Hello there!\n\n" +
-
-            "If you're reading this, then the mail service has done their job in sending this parcel to the right person. I just want you to know the following: Screw you! " +
-            "Not only did you steal my job, you took almost all my possessions from me before fleeing to some deep sector of space and now I'm giving you what you forgot to take!\n\n" +
-
-            "That's right, open up the package! See that? You probably did shortly before it went off, but now I imagine you're not reading this anymore if my device worked. If you're not the person I sent this to, and " +
-            "you're only finding the note next to some poor schmuck covered in nails, they got what was coming to them. I've attached the blueprints on how I built this thing in a secret compartment inside the bottom " +
-            "of the box.\n\n" +
-
-            "Bury the body, take the design, and stay quiet about this. It can be our little secret.\n\n" +
-
-            "Sincerely,\n" +
-            "Jeb Labinsky";
+        public override string ItemLore => "[A whispering scream emanates from the bowl]\n\n" +
+            "Best not to peer too closely into the fire, lest its tongues choose to taste blood";
+            
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
         public override ItemTier Tier => ItemTier.Lunar;
@@ -111,10 +100,22 @@ namespace MeltingPot.Items
                 {
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
-                    childName = "HeadCenter",
-                    localPos = new Vector3(0F, 0.5F,0F),
-                    localAngles = new Vector3(0F, 0F, 0F),
-                    localScale = generalScale
+                    childName = "MuzzleLeft",
+                    localPos = new Vector3(0.02968F, -0.5256F, -0.22816F),
+                    localAngles = new Vector3(5.10691F, 179.9999F, 179.9995F),
+                    localScale = new Vector3(0.03714F, 0.03714F, 0.03714F)
+                }
+            });
+            rules.Add("mdlEngi", new RoR2.ItemDisplayRule[]
+            {
+                new RoR2.ItemDisplayRule
+                {
+                    ruleType = ItemDisplayRuleType.ParentedPrefab,
+                    followerPrefab = ItemBodyModelPrefab,
+                    childName = "MuzzleRight",
+                    localPos = new Vector3(-0.03153F, -0.52563F, -0.22815F),
+                    localAngles = new Vector3(5.10691F, 179.9999F, 179.9995F),
+                    localScale = new Vector3(0.03714F, 0.03714F, 0.03714F)
                 }
             });
             rules.Add("mdlMage", new RoR2.ItemDisplayRule[]
@@ -148,9 +149,9 @@ namespace MeltingPot.Items
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
                     childName = "FlowerBase",
-                    localPos = new Vector3(0F, 0.5F,0F),
+                    localPos = new Vector3(0.1698F, 1.77142F, -0.00851F),
                     localAngles = new Vector3(0F, 0F, 0F),
-                    localScale = generalScale
+                    localScale = new Vector3(0.2378F, 0.2378F, 0.2378F)
                 }
             });
             rules.Add("mdlLoader", new RoR2.ItemDisplayRule[]
