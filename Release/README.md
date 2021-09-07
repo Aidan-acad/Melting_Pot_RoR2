@@ -1,6 +1,6 @@
 # Melting Pot
 
-A mixed bagg.
+A mixed bag.
 
 ## Changelog
 
