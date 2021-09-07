@@ -4,5 +4,6 @@ A mixed bag.
 
 ## Changelog
 
-**0.0.1**
+Model and change to lunar rarity performed.
+**0.0.3**
 
