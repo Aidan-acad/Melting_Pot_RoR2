@@ -13,6 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\burningsoulbundle" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\burningsoulbundle" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>libs\Assembly-CSharp.dll</HintPath>
       <Private>false</Private>

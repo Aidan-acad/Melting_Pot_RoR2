@@ -2,6 +2,7 @@
 #define DEBUGMATERIALS
 
 using MeltingPot.Items;
+using MeltingPot.Utils;
 using BepInEx;
 using R2API;
 using R2API.Networking;
@@ -50,7 +51,13 @@ namespace MeltingPot
 #endif
 
             ModLogger = this.Logger;
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MeltingPot.Assets.burningsoulbundle"))
+            {
+                MainAssets = AssetBundle.LoadFromStream(stream);
+            }
+            ShaderConversion(MainAssets);
 
+            AttachControllerFinderToObjects(MainAssets);
             //Item Initialization
             var ItemTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ItemBase)));
 
@@ -103,6 +110,26 @@ namespace MeltingPot
                 if (replacementShader) { material.shader = replacementShader; }
 
             }
+        }
+
+        public static void AttachControllerFinderToObjects(AssetBundle assetbundle)
+        {
+            if (!assetbundle) { return; }
+
+            var gameObjects = assetbundle.LoadAllAssets<GameObject>();
+
+            foreach (GameObject gameObject in gameObjects)
+            {
+                var foundRenderers = gameObject.GetComponentsInChildren<Renderer>().Where(x => x.sharedMaterial && x.sharedMaterial.shader.name.StartsWith("Hopoo Games"));
+
+                foreach (Renderer renderer in foundRenderers)
+                {
+                    var controller = renderer.gameObject.AddComponent<MaterialControllerComponents.HGControllerFinder>();
+                    controller.Renderer = renderer;
+                }
+            }
+
+            gameObjects = null;
         }
     }
 }

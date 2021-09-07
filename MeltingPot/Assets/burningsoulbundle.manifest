@@ -1,0 +1,36 @@
+ManifestFileVersion: 0
+CRC: 2444469065
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c5a6ccc97bb3f9869bc36ad4bc620c41
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: cb5cff3a1350143ce413b676b0fb473f
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/Import/burning_soul/materials/Fire.mat
+- Assets/Import/burning_soul/materials/Metal_strip.mat
+- Assets/Import/burning_soul/meshes/BurningSoulFlames.obj
+- Assets/Import/burning_soul/meshes/BurningSoulBowl.fbx
+- Assets/Import/burning_soul_icon/BurningSoul_Icon.png
+- Assets/Import/burning_soul/materials/Clay_Pot.mat
+- Assets/Import/burning_soul/BurningSoul.prefab
+Dependencies: []

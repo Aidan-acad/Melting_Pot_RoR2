@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using MeltingPot.Utils;
 using static R2API.RecalculateStatsAPI;
 using BepInEx;
+using static MeltingPot.MeltingPotPlugin;
 
 namespace MeltingPot.Items
     {
@@ -41,9 +42,8 @@ namespace MeltingPot.Items
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
         public override ItemTier Tier => ItemTier.Tier1;
 
-        public override GameObject ItemModel => Resources.Load<GameObject>("Prefabs/PickupModels/PickupMystery");
-
-        public override Sprite ItemIcon => Resources.Load<Sprite>("Textures/MiscIcons/texMysteryIcon");
+        public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("BurningSoul.prefab");
+        public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("BurningSoul_Icon.png");
 
         public static GameObject ItemBodyModelPrefab;
         public static RoR2.BuffDef BurningSoulActiveBuff;
