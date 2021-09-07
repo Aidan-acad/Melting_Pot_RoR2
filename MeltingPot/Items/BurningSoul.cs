@@ -16,6 +16,12 @@ namespace MeltingPot.Items
     {
     public class BurningSoul : ItemBase<BurningSoul>
     {
+        public static BuffDef soulBurnBuff { get; private set; }
+
+        /// <summary>
+        /// The DotIndex of Thallium Poisoning debuff.
+        /// </summary>
+        public static DotController.DotIndex soulBurnDot { get; private set; }
         public override string ItemName => "Burning Soul";
         
         public override string ItemLangTokenName => "BURNING_SOUL";
@@ -229,7 +235,10 @@ namespace MeltingPot.Items
             {
                 if (self.healthComponent.fullHealth > 1000)
                 {
-                    self.AddBuff(BurningSoulActiveBuff);
+                    if (!self.HasBuff(BurningSoulActiveBuff))
+                    {
+                        self.AddBuff(BurningSoulActiveBuff);
+                    }
                     if (instance.heldHealth != self.healthComponent.fullHealth)
                     {
                         instance.heldHealth = self.healthComponent.fullHealth;
@@ -264,6 +273,34 @@ namespace MeltingPot.Items
             BurningSoulActiveBuff.iconSprite = ItemIcon;
 
             BuffAPI.Add(new CustomBuff(BurningSoulActiveBuff));
+
+            soulBurnBuff = ScriptableObject.CreateInstance<BuffDef>();
+            soulBurnBuff.buffColor = Color.cyan;
+            soulBurnBuff.canStack = true;
+            soulBurnBuff.isDebuff = true;
+            soulBurnBuff.name = "MPSOULBURN";
+            soulBurnBuff.iconSprite = MainAssets.LoadAsset<Sprite>("BurningSoul_Icon.png");
+
+            CustomBuff sbCustomBuff = new CustomBuff(soulBurnBuff);
+            BuffAPI.Add(sbCustomBuff);
+
+            DotController.DotDef sbDotDef = new DotController.DotDef
+            {
+                interval = .5f,
+                damageCoefficient = 1,
+                damageColorIndex = DamageColorIndex.DeathMark,
+                associatedBuff = soulBurnBuff
+            };
+            soulBurnDot = DotAPI.RegisterDotDef(sbDotDef, (dotController, dotStack) =>
+            {
+                CharacterBody attackerBody = dotStack.attackerObject.GetComponent<CharacterBody>();
+                if (attackerBody)
+                {
+                    //float damageMultiplier = dmgCoefficient + dmgStack * (GetCount(attackerBody) - 1);
+                    float burnDamage = instance.healthdamage;
+                    dotStack.damage = burnDamage;
+                }
+            });
         }
 
         private bool MeleeDrain(On.RoR2.OverlapAttack.orig_Fire orig, RoR2.OverlapAttack self, List<RoR2.HurtBox> hitResults)
@@ -355,23 +392,30 @@ namespace MeltingPot.Items
                     if (body && victimBody)
                     {
                         var InventoryCount = GetCount(body);
-                        if (InventoryCount > 0)
+                        if (InventoryCount > 0 && body.HasBuff(BurningSoulActiveBuff))
                         {
-                            DamageInfo di = new DamageInfo
+                            var ratio = damageInfo.damage / body.damage;
+                            int stacksToApply = (int)Math.Ceiling(ratio);
+                            for (int i = 0; i < stacksToApply; i++)
                             {
-                                position = victimBody.body.corePosition,
-                                attacker = attacker,
-                                inflictor = attacker,
-                                crit = damageInfo.crit,
-                                damage = damageInfo.damage/body.damage * instance.healthdamage,
-                                damageColorIndex = DamageColorIndex.DeathMark,
-                                damageType = DamageType.DoT,
-                                force = Vector3.zero,
-                                procCoefficient = 0,
-                                procChainMask = default(ProcChainMask)
-                            };
-                            victimBody.TakeDamage(di);
-                        }
+                                DotController.InflictDot(victim, damageInfo.attacker, soulBurnDot, 1f);
+                            }
+                        /*DamageInfo di = new DamageInfo
+                        {
+                            position = victimBody.body.corePosition,
+                            attacker = attacker,
+                            inflictor = attacker,
+                            crit = damageInfo.crit,
+                            damage = damageInfo.damage/body.damage * instance.healthdamage,
+                            damageColorIndex = DamageColorIndex.DeathMark,
+                            damageType = DamageType.DoT,
+                            force = Vector3.zero,
+                            procCoefficient = 0,
+                            procChainMask = default(ProcChainMask)
+                        };
+                        victimBody.TakeDamage(di);*/
+
+                    }
                     }
                 }
                 orig(self, damageInfo, victim);

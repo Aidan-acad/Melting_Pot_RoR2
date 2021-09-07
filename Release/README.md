@@ -6,5 +6,6 @@ A mixed bag.
 
 Model and change to lunar rarity performed.
 Rewrote Lore and fixed positioning on REX and Engi
-**0.0.4**
+Hopefully fixed the issue with nem enforcer not receiving damage
+**0.0.5**
 
