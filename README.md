@@ -1,9 +1,8 @@
-# My first mod
+# Melting Pot
 
-Description.
+A mixed bagg.
 
 ## Changelog
 
-**1.0.0**
+**0.0.1**
 
-* Release of my first mod.
