@@ -20,7 +20,7 @@ namespace MeltingPot
     [BepInDependency("com.bepis.r2api")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     [R2APISubmoduleDependency(nameof(ItemAPI), nameof(BuffAPI), nameof(LanguageAPI), nameof(ResourcesAPI),
-                              nameof(PrefabAPI), nameof(SoundAPI), nameof(OrbAPI),
+                              nameof(PrefabAPI), nameof(SoundAPI), nameof(OrbAPI), nameof(DotAPI),
                               nameof(NetworkingAPI), nameof(EffectAPI), nameof(DirectorAPI), nameof(ProjectileAPI), nameof(ArtifactAPI), nameof(RecalculateStatsAPI), nameof(UnlockableAPI))]
     public class MeltingPotPlugin : BaseUnityPlugin
     {
@@ -28,7 +28,7 @@ namespace MeltingPot
         public const string ModName = "Melting Pot";
         public const string ModVer = "0.0.1";
 
-        internal static BepInEx.Logging.ManualLogSource ModLogger;
+        public static BepInEx.Logging.ManualLogSource ModLogger;
 
         public static AssetBundle MainAssets;
 
@@ -51,7 +51,7 @@ namespace MeltingPot
 #endif
 
             ModLogger = this.Logger;
-            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MeltingPot.Assets.burningsoulbundle"))
+            using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MeltingPot.Assets.meltingpotassets"))
             {
                 MainAssets = AssetBundle.LoadFromStream(stream);
                 ModLogger.LogInfo("----Assets loaded----");

@@ -1,0 +1,61 @@
+ManifestFileVersion: 0
+CRC: 2960211345
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a207e9cad0376a905a1537910c4df48c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 10def29c998ab6d8bfcfd7beeec5d09d
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Import/burning_soul/materials/Fire.mat
+- Assets/Import/midas_cosh_icon/MidasCoshIcon.PNG
+- Assets/Import/reactive_armour_icon/RA_Charge_Icon.png
+- Assets/Import/midas_cosh/Materials/Light_Oak.mat
+- Assets/Import/burning_soul/materials/Metal_strip.mat
+- Assets/Import/lead_fetters/LeadFetters.prefab
+- Assets/Import/burning_soul/BurningSoulRedux.prefab
+- Assets/Import/lead_fetters/materials/Chain.mat
+- Assets/Import/lead_fetters_icon/LeadFetters_Icon.PNG
+- Assets/Import/lead_fetters/materials/Base_metal.mat
+- Assets/Import/reactive_armour/ReactiveArmour.fbx
+- Assets/Import/midas_cosh_icon/MidasCoshPrevent.png
+- Assets/Import/reactive_armour/ReactiveArmour.prefab
+- Assets/Import/burning_soul_icon/BurningSoul_Icon.png
+- Assets/Import/midas_cosh/Materials/Metal_Shaft.mat
+- Assets/Import/midas_cosh/Materials/Dark_Oak.mat
+- Assets/Import/reactive_armour_icon/RA_Active_Icon.png
+- Assets/Import/burning_soul/materials/Clay_Pot.mat
+- Assets/Import/burning_soul/BurningSoul.fbx
+- Assets/Import/midas_cosh/MidasCosh.fbx
+- Assets/Import/lead_fetters/LeadFetters.fbx
+- Assets/Import/reactive_armour_icon/Reactive_Armour_Icon.PNG
+- Assets/Import/lead_fetters/materials/Brass.mat
+- Assets/Import/midas_cosh/MidasCosh.prefab
+- Assets/Import/midas_cosh_icon/MidasCoshMoneyTime.png
+- Assets/Import/midas_cosh/Materials/Cosh_ring.mat
+Dependencies: []

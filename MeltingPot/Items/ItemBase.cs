@@ -4,6 +4,7 @@ using RoR2;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace MeltingPot.Items
 {
@@ -23,7 +24,7 @@ namespace MeltingPot.Items
         }
     }
 
-    public abstract class ItemBase
+    public abstract class ItemBase : NetworkBehaviour
     {
         public abstract string ItemName { get; }
         public abstract string ItemLangTokenName { get; }

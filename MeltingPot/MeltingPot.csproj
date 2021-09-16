@@ -13,11 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Assets\burningsoulbundle" />
+    <None Remove="Assets\meltingpotassets" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Assets\burningsoulbundle" />
+    <EmbeddedResource Include="Assets\meltingpotassets" />
   </ItemGroup>
 
   <ItemGroup>
