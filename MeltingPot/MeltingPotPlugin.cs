@@ -1,14 +1,9 @@
-﻿#undef DEBUG
-#define DEBUGMATERIALS
-
-using MeltingPot.Items;
+﻿using MeltingPot.Items;
 using MeltingPot.Utils;
 using BepInEx;
 using R2API;
 using R2API.Networking;
 using R2API.Utils;
-using RoR2;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -19,14 +14,13 @@ namespace MeltingPot
     [BepInPlugin(ModGuid, ModName, ModVer)]
     [BepInDependency("com.bepis.r2api")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-    [R2APISubmoduleDependency(nameof(ItemAPI), nameof(BuffAPI), nameof(LanguageAPI), nameof(ResourcesAPI),
-                              nameof(PrefabAPI), nameof(SoundAPI), nameof(OrbAPI), nameof(DotAPI),
-                              nameof(NetworkingAPI), nameof(EffectAPI), nameof(DirectorAPI), nameof(ProjectileAPI), nameof(ArtifactAPI), nameof(RecalculateStatsAPI), nameof(UnlockableAPI))]
+    [R2APISubmoduleDependency(nameof(ItemAPI), nameof(BuffAPI), nameof(LanguageAPI), nameof(ResourcesAPI), nameof(PrefabAPI), nameof(SoundAPI), nameof(OrbAPI),
+        nameof(DotAPI), nameof(NetworkingAPI), nameof(EffectAPI), nameof(DirectorAPI), nameof(ProjectileAPI), nameof(ArtifactAPI), nameof(RecalculateStatsAPI), nameof(UnlockableAPI))]
     public class MeltingPotPlugin : BaseUnityPlugin
     {
         public const string ModGuid = "com.Shasocais.MeltingPot";
         public const string ModName = "Melting Pot";
-        public const string ModVer = "0.0.1";
+        public const string ModVer = "0.0.25";
 
         public static BepInEx.Logging.ManualLogSource ModLogger;
 
@@ -45,10 +39,6 @@ namespace MeltingPot
 
         private void Awake()
         {
-#if DEBUG
-            Logger.LogWarning("DEBUG mode is enabled! Ignore this message if you are actually debugging.");
-            On.RoR2.Networking.GameNetworkManager.OnClientConnect += (self, user, t) => { };
-#endif
 
             ModLogger = this.Logger;
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MeltingPot.Assets.meltingpotassets"))
@@ -70,7 +60,6 @@ namespace MeltingPot
                 if (ValidateItem(item, Items))
                 {
                     item.Init(Config);
-
                     ModLogger.LogInfo("Item: " + item.ItemName + " Initialized!");
                 }
             }

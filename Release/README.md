@@ -14,7 +14,9 @@ Absorb a portion of incoming damage while stationary. Any skill cast while movin
 --Burning Soul--
 Burn enemies for own max health damage, at the cost of current health.
 ## Changelog
-**0.0.22**
+**0.0.25**
+
+Hopefully corrected issue with clients being turbo laggy
 
 --Burning Soul Lunar Item--
 
@@ -27,11 +29,13 @@ Burn enemies for own max health damage, at the cost of current health.
 	Adjusted vfx.
 	Hopefully fixed mp inconsistencies
 	Added RPC command to call dot on server instead of client.
-
+	Changed DoT on self to non-lethal damage, added a 0.01 second cd to self burn application to hopefully stop multi-abilities, looking at you Miner R, from one-shotting the player
+	Rewrote to hopefully sort MP desync
 --Lead Fetters--
 
 	Added tier 1 item lead fetters
 	Lowered fall speed and growth.
+	Fixed issue with enemies in void fields causing errors when checking for character motors.
 	
 --Midas Cosh--
 	
@@ -48,3 +52,4 @@ Burn enemies for own max health damage, at the cost of current health.
 	Added Tier 3 item Reactive Armour
 	Hopefully fixed mp bug
 	Reverted accidental change to tier 1, upped damage resist to 20% base, still working on the mp bug.
+	Rewrote to hopefully sort MP desync

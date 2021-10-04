@@ -1,10 +1,11 @@
 ﻿{
 	"name": "Melting_Pot",
-	"version_number": "0.0.22",
+	"version_number": "0.0.25",
 	"website_url": "https://github.com/Aidan-acad/Melting_Pot_RoR2",
 	"description": "A W.I.P item and character mod",
 	"dependencies": [
 		"bbepis-BepInExPack-5.4.9",
 		"RiskofThunder-HookGenPatcher-1.2.1"
+        	"tristanmcpherson-R2API-3.0.52",
 	]
 }

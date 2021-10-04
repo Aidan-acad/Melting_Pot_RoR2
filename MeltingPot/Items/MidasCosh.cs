@@ -1,15 +1,10 @@
 ﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using MeltingPot.Utils;
-using static R2API.RecalculateStatsAPI;
 using static MeltingPot.MeltingPotPlugin;
-using System.Linq;
 using UnityEngine.Networking;
-using RoR2.Orbs;
 
 namespace MeltingPot.Items
 {
@@ -342,8 +337,8 @@ namespace MeltingPot.Items
                         EffectData effectData = new EffectData
                         {
                             origin = victimBody.corePosition,
-                            genericFloat = 0.5f,
-                            scale = 0.0001f,
+                            genericFloat = 0.005f,
+                            scale = 0.00000001f,
                         };
                         effectData.SetHurtBoxReference(victimBody.mainHurtBox);
                         GameObject effectPrefab = GoldDetonationEffect;

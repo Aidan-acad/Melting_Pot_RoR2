@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using MeltingPot.Utils;
+using R2API.Utils;
 using static R2API.RecalculateStatsAPI;
 using static MeltingPot.MeltingPotPlugin;
 using System.Linq;
@@ -12,6 +13,7 @@ using UnityEngine.Networking;
 
 namespace MeltingPot.Items
     {
+    [R2APISubmoduleDependency(nameof(SoundAPI))]
     public class BurningSoul : ItemBase<BurningSoul>
     {
         public static BuffDef soulBurnBuff { get; private set; }
@@ -20,11 +22,14 @@ namespace MeltingPot.Items
         public static DotController.DotIndex soulBurnDot { get; private set; }
         public static DotController.DotIndex soulBurnSelfDot { get; private set; }
 
-        private static int health_threshold = 1000;
+        private static int health_threshold = 100;
         private static float enemy_burn_percent = 0.04f;
         private static float enemy_burn_percent_growth = 0.015f;
         private static float self_burn_percent = 0.01f;
         private static float self_burn_percent_growth = 0.005f;
+
+        private static float burnTimeOut = 0.01f;
+
         public override string ItemName => "Burning Soul";
         public override string ItemLangTokenName => "BURNING_SOUL";
 
@@ -37,7 +42,7 @@ namespace MeltingPot.Items
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
-        public override ItemTier Tier => ItemTier.Lunar;
+        public override ItemTier Tier => ItemTier.Tier1;
 
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("BurningSoulRedux.prefab");
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("BurningSoul_Icon.png");
@@ -47,12 +52,48 @@ namespace MeltingPot.Items
         public GameObject SoulInflictor = new GameObject("Burning Soul Damage");
         public static GameObject FireEffect;
 
-        private class BurningSoulController : MonoBehaviour
+        private class BurningSoulController : CharacterBody.ItemBehavior
         {
             private float heldHealth = 0;
             private float healthdamage = 0;
             private float selfDamage = 0;
 
+            public void Awake()
+            {
+                this.body = base.gameObject.GetComponent<CharacterBody>();
+            }
+
+            public void FixedUpdate()
+            {
+                timeSinceBurnt += Time.fixedDeltaTime;
+                if (burnt)
+                {
+                    burnt = false;
+                    timeSinceBurnt = 0f;
+                    DotController.InflictDot(base.gameObject, base.gameObject, BurningSoul.soulBurnSelfDot, 1f);
+                }
+                if (this.body.healthComponent.fullCombinedHealth > health_threshold)
+                {
+                    if (!body.HasBuff(BurningSoulActiveBuff))
+                    {
+                        body.AddBuff(BurningSoulActiveBuff);
+                    }
+                    if (getMaxHealth() != body.healthComponent.fullCombinedHealth)
+                    {
+                        setMaxHealth(body.healthComponent.fullCombinedHealth);
+                        setInflictedDmg((float)Math.Ceiling((enemy_burn_percent + (stack - 1) * enemy_burn_percent_growth) * getMaxHealth() / 4));
+                    }
+                    setSelfDmg((float)Math.Floor(body.healthComponent.combinedHealth * (self_burn_percent + self_burn_percent_growth * (stack - 1))));
+                    setSelfBurn(getSelfBurn() + Time.fixedDeltaTime);
+                }
+                else
+                {
+                    if (body.HasBuff(BurningSoulActiveBuff))
+                    {
+                        body.RemoveBuff(BurningSoulActiveBuff);
+                    }
+                }
+            }
             public float getMaxHealth() { return heldHealth; }
             public float getInflictedDmg() { return healthdamage; }
             public float getSelfDmg() { return selfDamage; }
@@ -60,6 +101,21 @@ namespace MeltingPot.Items
             public void setMaxHealth(float input) { heldHealth = input; }
             public void setInflictedDmg(float input) { healthdamage = input; }
             public void setSelfDmg(float input) { selfDamage = input; }
+
+            private float timeSinceBurnt = 0f;
+            public float getSelfBurn() { return timeSinceBurnt; }
+            public void setSelfBurn(float input) { timeSinceBurnt = input; }
+
+            public bool burnt = false;
+            public bool getBurnt() { return burnt; }
+            public void setBurnt(bool input) { burnt = input; }
+
+        }
+
+        private void HandleBurningCtrl(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, global::RoR2.CharacterBody self)
+        {
+            self.AddItemBehavior<BurningSoulController>(base.GetCount(self));
+            orig(self);
         }
 
 
@@ -70,6 +126,7 @@ namespace MeltingPot.Items
             CreateItem();
             CreateBuff();
             Hooks();
+
         }
 
 
@@ -227,7 +284,8 @@ namespace MeltingPot.Items
 
         public override void Hooks()
         {
-            On.RoR2.CharacterBody.FixedUpdate += ApplyBuffAsIndicatorForReady;
+            On.RoR2.CharacterBody.OnInventoryChanged += HandleBurningCtrl;
+            //On.RoR2.CharacterBody.FixedUpdate += ApplyBuffAsIndicatorForReady;
             On.RoR2.GlobalEventManager.OnHitEnemy += FlamingSoul;
             On.RoR2.OverlapAttack.Fire += MeleeDrain;
             On.RoR2.BulletAttack.Fire += RangedDrain;
@@ -245,18 +303,18 @@ namespace MeltingPot.Items
                 BSModLogger.LogInfo($"effect -> {item}");
             }*/
 
-            FireEffect = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosionSolarFlare"), "FireEffect");
+            FireEffect = R2API.PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosionSolarFlare"), "FireEffect");
 
             var mpFireSoundDef = ScriptableObject.CreateInstance<NetworkSoundEventDef>();
             mpFireSoundDef.eventName = "Melting_Pot_Flames";
-            SoundAPI.AddNetworkedSoundEvent(mpFireSoundDef);
+            R2API.SoundAPI.AddNetworkedSoundEvent(mpFireSoundDef);
 
             var fireEffectComponent = FireEffect.GetComponent<EffectComponent>();
             fireEffectComponent.soundName = "Melting_Pot_Flames";
 
             FireEffect.AddComponent<NetworkIdentity>();
 
-            if (FireEffect) { PrefabAPI.RegisterNetworkPrefab(FireEffect); }
+            if (FireEffect) { R2API.PrefabAPI.RegisterNetworkPrefab(FireEffect); }
             EffectAPI.AddEffect(FireEffect);
         }
 
@@ -268,7 +326,7 @@ namespace MeltingPot.Items
             }
         }
 
-        private void ApplyBuffAsIndicatorForReady(On.RoR2.CharacterBody.orig_FixedUpdate orig, RoR2.CharacterBody self)
+        /*private void ApplyBuffAsIndicatorForReady(On.RoR2.CharacterBody.orig_FixedUpdate orig, RoR2.CharacterBody self)
         {
             if (self)
             {
@@ -277,26 +335,7 @@ namespace MeltingPot.Items
                 {
                     var soulCtrl = self.gameObject.GetComponent<BurningSoulController>();
                     if (!soulCtrl) { soulCtrl = self.gameObject.AddComponent<BurningSoulController>(); }
-                    if (self.healthComponent.fullCombinedHealth > health_threshold)
-                    {
-                        if (!self.HasBuff(BurningSoulActiveBuff))
-                        {
-                            self.AddBuff(BurningSoulActiveBuff);
-                        }
-                        if (soulCtrl.getMaxHealth() != self.healthComponent.fullCombinedHealth)
-                        {
-                            soulCtrl.setMaxHealth(self.healthComponent.fullCombinedHealth);
-                            soulCtrl.setInflictedDmg((float)Math.Ceiling((enemy_burn_percent + (InventoryCount - 1) * enemy_burn_percent_growth) * soulCtrl.getMaxHealth() / 4));
-                        }
-                        soulCtrl.setSelfDmg((float)Math.Floor(self.healthComponent.combinedHealth * (self_burn_percent + self_burn_percent_growth * (GetCount(self) - 1))));
-                    }
-                    else
-                    {
-                        if (self.HasBuff(BurningSoulActiveBuff))
-                        {
-                            self.RemoveBuff(BurningSoulActiveBuff);
-                        }
-                    }
+                    
                 }
                 else
                 {
@@ -309,7 +348,7 @@ namespace MeltingPot.Items
                 }
             }
             orig(self);
-        }
+        }*/
 
         private void CreateBuff()
         {
@@ -370,11 +409,12 @@ namespace MeltingPot.Items
             soulBurnSelfDot = DotAPI.RegisterDotDef(sbSelfDotDef, (dotController, dotStack) =>
             {
                 CharacterBody attackerBody = dotStack.attackerObject.GetComponent<CharacterBody>();
-                if (attackerBody && attackerBody.gameObject.GetComponent<BurningSoulController>())
+                if (attackerBody && attackerBody.GetComponent<BurningSoulController>())
                 {
-                    float burnDamage = (float)Math.Ceiling(attackerBody.gameObject.GetComponent<BurningSoulController>().getSelfDmg());
+                    float burnDamage = (float)Math.Ceiling(attackerBody.GetComponent<BurningSoulController>().getSelfDmg());
                     dotStack.damage = burnDamage;
-                    dotStack.damageType = DamageType.BypassArmor;
+                    //dotStack.damageType = DamageType.BypassArmor;
+                    dotStack.damageType = DamageType.NonLethal;
                 }
             });
         }
@@ -397,8 +437,16 @@ namespace MeltingPot.Items
 
                             if (!cooldownHandler.MeleeTracker.ContainsKey(self))
                             {
-                                cooldownHandler.MeleeTracker.Add(self, 0);
-                                DotController.InflictDot(owner, owner, soulBurnSelfDot, 1f);
+
+                                var soulCtrl = body.GetComponent<BurningSoulController>();
+                                if (!soulCtrl) { soulCtrl = body.AddItemBehavior<BurningSoulController>(InventoryCount); }
+                                if (soulCtrl.getSelfBurn() > burnTimeOut)
+                                {
+                                    cooldownHandler.MeleeTracker.Add(self, 0);
+
+                                    BSModLogger.LogInfo($"Melting Pot -Melee- Applying DOT {soulBurnSelfDot}");
+                                    soulCtrl.burnt = true;
+                                }
                             }
                             }
                         }
@@ -421,8 +469,13 @@ namespace MeltingPot.Items
                     {
                         if (body.HasBuff(BurningSoulActiveBuff))
                         {
-                            BSModLogger.LogInfo($"Melting Pot -- Applying DOT {soulBurnSelfDot}");
-                            CmdApplyDot(owner, soulBurnSelfDot, 1f);
+                            var soulCtrl = body.GetComponent<BurningSoulController>();
+                            if (!soulCtrl) { soulCtrl = body.AddItemBehavior<BurningSoulController>(InventoryCount); }
+                            if (soulCtrl.getSelfBurn() > burnTimeOut)
+                            {
+                                BSModLogger.LogInfo($"Melting Pot -Projectile- Applying DOT {soulBurnSelfDot}");
+                                soulCtrl.burnt = true;
+                            }
                             //DotController.InflictDot(owner, owner, soulBurnSelfDot, 1f);
                         }
                     }
@@ -453,43 +506,34 @@ namespace MeltingPot.Items
                 }
             }
         }
+
+
         private void SkillDrain(On.RoR2.GenericSkill.orig_OnExecute orig, global::RoR2.GenericSkill self)
+        {
+            var owner = self.characterBody;
+            if (owner)
             {
-                var owner = self.characterBody;
-                if (owner)
+                var body = owner;
+                if (body)
                 {
-                    var body = owner;
-                    if (body)
+                    var InventoryCount = GetCount(body);
+                    if (InventoryCount > 0)
                     {
-                        var InventoryCount = GetCount(body);
-                        if (InventoryCount > 0)
+                        if (body.HasBuff(BurningSoulActiveBuff))
                         {
-                            if (body.HasBuff(BurningSoulActiveBuff))
+                            var soulCtrl = body.GetComponent<BurningSoulController>();
+                            if (!soulCtrl) { soulCtrl = body.AddItemBehavior<BurningSoulController>(InventoryCount); }
+                            if (soulCtrl.getSelfBurn() > burnTimeOut)
                             {
-                            //DotController.InflictDot(owner.gameObject, owner.gameObject, soulBurnSelfDot, 1f);
-                            CmdApplyDot(owner.gameObject, soulBurnSelfDot, 1f);
-                            /*var soul = body.GetComponent<RoR2.HealthComponent>();
-                            var burn_to_apply = soul.combinedHealth * (0.01 + 0.005 * (InventoryCount - 1));
-                            DamageInfo di = new DamageInfo
-                            {
-                                position = body.corePosition,
-                                attacker = owner.gameObject,
-                                inflictor = BurningSoul.instance.SoulInflictor,
-                                crit = false,
-                                damage = (float)burn_to_apply,
-                                damageColorIndex = DamageColorIndex.Bleed,
-                                damageType = DamageType.NonLethal,
-                                force = Vector3.zero,
-                                procCoefficient = 0,
-                                procChainMask = default(ProcChainMask)
-                            };
-                            soul.TakeDamage(di);*/
-                        }
+                                BSModLogger.LogInfo($"Melting Pot -Skill- Applying DOT {soulBurnSelfDot}");
+                                soulCtrl.burnt = true;
+                            }
                         }
                     }
                 }
-                orig(self);
             }
+            orig(self);
+        }
         private void RangedDrain(On.RoR2.BulletAttack.orig_Fire orig, RoR2.BulletAttack self)
         {
             var owner = self.owner;
@@ -504,25 +548,13 @@ namespace MeltingPot.Items
                     {
                         if (body.HasBuff(BurningSoulActiveBuff))
                         {
-                            BSModLogger.LogInfo($"Melting Pot -- Applying DOT {soulBurnSelfDot}");
-                            CmdApplyDot(owner, soulBurnSelfDot, 1f);
-                            //DotController.InflictDot(owner, owner, soulBurnSelfDot, 1f);
-                            /*var soul = body.GetComponent<RoR2.HealthComponent>();
-                            var burn_to_apply = soul.combinedHealth * (0.01 + 0.005 * (InventoryCount - 1));
-                            DamageInfo di = new DamageInfo
+                            var soulCtrl = body.GetComponent<BurningSoulController>();
+                            if (!soulCtrl) { soulCtrl = body.AddItemBehavior<BurningSoulController>(InventoryCount); }
+                            if (soulCtrl.getSelfBurn() > burnTimeOut)
                             {
-                                position = body.corePosition,
-                                attacker = owner,
-                                inflictor = BurningSoul.instance.SoulInflictor,
-                                crit = false,
-                                damage = (float)burn_to_apply,
-                                damageColorIndex = DamageColorIndex.Bleed,
-                                damageType = DamageType.NonLethal,
-                                force = Vector3.zero,
-                                procCoefficient = 0,
-                                procChainMask = default(ProcChainMask)
-                            };
-                            soul.TakeDamage(di);*/
+                                BSModLogger.LogInfo($"Melting Pot -Ranged- Applying DOT {soulBurnSelfDot}");
+                                soulCtrl.burnt = true;
+                            }
                         }
                     }
                 }
@@ -530,11 +562,11 @@ namespace MeltingPot.Items
             orig(self);
         }
 
-        [Command]
+        /*[Command]
         void CmdApplyDot(GameObject target, DotController.DotIndex burnDot, float burnDuration)
         {
             DotController.InflictDot(target, target, burnDot, burnDuration);
-        }
+        }*/
 
         private void FlamingSoul(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, RoR2.GlobalEventManager self, RoR2.DamageInfo damageInfo, GameObject victim)
             {
@@ -543,7 +575,6 @@ namespace MeltingPot.Items
                     orig(self, damageInfo, victim);
                     return;
                 }
-
                 var attacker = damageInfo.attacker;
                 if (attacker)
                 {

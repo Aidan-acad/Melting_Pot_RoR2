@@ -1,13 +1,9 @@
 using BepInEx.Configuration;
 using R2API;
 using RoR2;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using MeltingPot.Utils;
-using static R2API.RecalculateStatsAPI;
 using static MeltingPot.MeltingPotPlugin;
-using System.Linq;
 using UnityEngine.Networking;
 
 namespace MeltingPot.Items
@@ -17,9 +13,9 @@ namespace MeltingPot.Items
         public override string ItemName => "Reactive Armour Plating";
         public override string ItemLangTokenName => "REACTIVE_PLATE";
 
-        public override string ItemPickupDesc => $"After standing still for 1 second absorb <style=cStack>10% (+5% per stack)</style> of incoming damage. Using a skill whilst moving releases the nova.";
+        public override string ItemPickupDesc => $"After standing still for 1 second absorb <style=cStack>20% (+10% per stack)</style> of incoming damage. Using a skill whilst moving releases the nova.";
 
-        public override string ItemFullDescription => $"After standing still for 1 second absorb <style=cStack>10% (+5% per stack)</style> of incoming damage. Using a skill whilst moving releases a nova that deals <style=cIsDamage>10x the damage absorbed</style>.";
+        public override string ItemFullDescription => $"After standing still for 1 second absorb <style=cStack>20% (+10% per stack)</style> of incoming damage. Using a skill whilst moving releases a nova that deals <style=cIsDamage>10x the damage absorbed</style>.";
 
         public override string ItemLore => "[A sticker on the inside of the chestplate reads]\n\n" +
             "Do not wash, do not dry clean. When cleaning this product use only insulated cleaning utensils, and remain grounded at all times.\n\n" +
@@ -27,7 +23,7 @@ namespace MeltingPot.Items
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility};
-        public override ItemTier Tier => ItemTier.Tier3;
+        public override ItemTier Tier => ItemTier.Tier1;
 
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("ReactiveArmour.prefab");
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("Reactive_Armour_Icon.png");
@@ -38,34 +34,85 @@ namespace MeltingPot.Items
 
         public static RoR2.BuffDef NovaStationaryBuff;
         public static RoR2.BuffDef NovaChargeBuff;
+        public static RoR2.BuffDef NovaOffBuff;
+        public static RoR2.BuffDef NovaPreppedBuff;
         public static GameObject ReactiveArmourEffect;
         public static GameObject ReactiveArmourActiveEffect;
 
-        private class ArmourController : MonoBehaviour
+        private class ArmourController : CharacterBody.ItemBehavior
         {
-            private bool canDetonate = false;
             private float cdTimerForDet = 0.5f;
 
-            public bool getDet()
+            private bool RAActive = false;
+            private float activeStopwatch;
+
+            public void Awake()
             {
-                return canDetonate;
+                this.body = base.gameObject.GetComponent<CharacterBody>();
             }
 
-            public void setDet(bool Settings)
+            public void removeChargeStacks()
             {
-                canDetonate = Settings;
+                this.body.SetBuffCount(ReactiveArmour.NovaChargeBuff.buffIndex, 0);
+                this.body.RemoveBuff(ReactiveArmour.NovaChargeBuff);
+                this.body.statsDirty = true;
             }
 
-            public float getCD()
+            public void fireNova()
             {
-                return cdTimerForDet;
+                this.body.RemoveBuff(ReactiveArmour.NovaPreppedBuff);
+                this.body.AddBuff(ReactiveArmour.NovaOffBuff);
+                this.body.statsDirty = true;
             }
 
-            public void setCD(float Settings)
+            public void FixedUpdate()
             {
-                cdTimerForDet = Settings;
+                this.activeStopwatch -= Time.fixedDeltaTime;
+                bool flag = this.RAActive;
+                if (flag)
+                {
+                    this.activeStopwatch = cdTimerForDet;
+                }
+                bool flag2 = this.activeStopwatch <= 0f && !this.body.HasBuff(ReactiveArmour.NovaPreppedBuff) && !this.body.HasBuff(ReactiveArmour.NovaOffBuff);
+                if (flag2)
+                {
+                    if (this.body.HasBuff(ReactiveArmour.NovaChargeBuff))
+                    {
+                        this.body.AddBuff(ReactiveArmour.NovaPreppedBuff);
+                        this.body.statsDirty = true;
+                    }
+                    else
+                    {
+                        this.body.AddBuff(ReactiveArmour.NovaOffBuff);
+                        this.body.statsDirty = true;
+                    }
+                }
+                bool flag3 = this.body.notMovingStopwatch > 1.0f && !this.RAActive;
+                if (flag3)
+                {
+                    if (this.body.HasBuff(ReactiveArmour.NovaOffBuff)){
+                        this.body.RemoveBuff(ReactiveArmour.NovaOffBuff);
+                    }
+                    if (this.body.HasBuff(ReactiveArmour.NovaPreppedBuff))
+                    {
+                        this.body.RemoveBuff(ReactiveArmour.NovaPreppedBuff);
+                    }
+                    this.body.AddBuff(ReactiveArmour.NovaStationaryBuff);
+                    this.RAActive = true;
+                    this.activeStopwatch = cdTimerForDet;
+                    this.body.statsDirty = true;
+                }
+                else
+                {
+                    bool flag4 = this.body.notMovingStopwatch == 0f && this.RAActive;
+                    if (flag4)
+                    {
+                        this.RAActive = false;
+                        this.body.RemoveBuff(ReactiveArmour.NovaStationaryBuff);
+                        this.body.statsDirty = true;
+                    }
+                }
             }
-
 
         }
 
@@ -226,7 +273,7 @@ namespace MeltingPot.Items
 
         public override void Hooks()
         {
-            On.RoR2.CharacterBody.FixedUpdate += HandleMovementDifference;
+            On.RoR2.CharacterBody.OnInventoryChanged += HandleArmourCtrl;
             On.RoR2.GenericSkill.OnExecute += BlastNova;
             On.RoR2.HealthComponent.TakeDamage += TakeDamage;
             On.RoR2.CharacterModel.UpdateOverlays += CharacterModel_UpdateOverlays;
@@ -259,71 +306,10 @@ namespace MeltingPot.Items
             }
         }
 
-        [Command]
-        private void CmdStripBuff(RoR2.BuffDef buffToDel, RoR2.CharacterBody body)
+        private void HandleArmourCtrl(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, global::RoR2.CharacterBody self)
         {
-            body.RemoveBuff(buffToDel);
-        }
 
-        [Command]
-        private bool CmdCheckMoving(RoR2.CharacterBody body)
-        {
-            return body.GetNotMoving();
-        }
-
-        [Command]
-        private void CmdRemoveAllStacks(RoR2.BuffDef buffToDel, RoR2.CharacterBody body)
-        {
-            body.SetBuffCount(buffToDel.buffIndex, 0);
-        }
-
-        private void HandleMovementDifference(On.RoR2.CharacterBody.orig_FixedUpdate orig, RoR2.CharacterBody self)
-        {
-            if (self)
-            {
-                var InventoryCount = GetCount(self);
-                if (InventoryCount > 0)
-                {
-                    var armourCtrl = self.gameObject.GetComponent<ArmourController>();
-                    if (!armourCtrl) { armourCtrl = self.gameObject.AddComponent<ArmourController>(); }
-                    // Stationary, begin block
-                    if (CmdCheckMoving(self))
-                    {
-                        if (!self.HasBuff(NovaStationaryBuff))
-                        {
-                            self.AddBuff(NovaStationaryBuff);
-                        }
-                        armourCtrl.setCD(0.5f);
-
-                        armourCtrl.setDet(false);
-                    }
-                    // Moving, ready explosion
-                    else
-                    {
-                        if (self.HasBuff(NovaStationaryBuff))
-                        {
-                            if (armourCtrl.getCD() < 0)
-                            {
-                                CmdStripBuff(NovaStationaryBuff, self);
-                                armourCtrl.setDet(true);
-                            }
-                            else
-                            {
-                                armourCtrl.setCD(armourCtrl.getCD() - Time.fixedDeltaTime);
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    //var armourCtrl = self.gameObject.GetComponent<ArmourController>();
-                    //if (armourCtrl) { UnityEngine.Object.Destroy(armourCtrl); }
-                    if (self.HasBuff(NovaStationaryBuff))
-                    {
-                        CmdStripBuff(NovaStationaryBuff, self);
-                    }
-                }
-            }
+            self.AddItemBehavior<ArmourController>(base.GetCount(self));
             orig(self);
         }
 
@@ -337,6 +323,25 @@ namespace MeltingPot.Items
             NovaStationaryBuff.iconSprite = RAActiveIcon;
 
             BuffAPI.Add(new CustomBuff(NovaStationaryBuff));
+
+
+            NovaOffBuff = ScriptableObject.CreateInstance<RoR2.BuffDef>();
+            NovaOffBuff.name = "Melting Pot : Repulsor Plate Inactive";
+            NovaOffBuff.buffColor = Color.red;
+            NovaOffBuff.canStack = false;
+            NovaOffBuff.isDebuff = false;
+            NovaOffBuff.iconSprite = RAActiveIcon;
+
+            BuffAPI.Add(new CustomBuff(NovaOffBuff));
+
+            NovaPreppedBuff = ScriptableObject.CreateInstance<RoR2.BuffDef>();
+            NovaPreppedBuff.name = "Melting Pot : Repulsor Plate Primed";
+            NovaPreppedBuff.buffColor = Color.yellow;
+            NovaPreppedBuff.canStack = false;
+            NovaPreppedBuff.isDebuff = false;
+            NovaPreppedBuff.iconSprite = RAActiveIcon;
+
+            BuffAPI.Add(new CustomBuff(NovaPreppedBuff));
 
 
             NovaChargeBuff = ScriptableObject.CreateInstance<RoR2.BuffDef>();
@@ -372,44 +377,39 @@ namespace MeltingPot.Items
                 if (owner)
                 {
                     var body = owner;
-                    if (body)
+                    var InventoryCount = GetCount(body);
+                    if (InventoryCount > 0)
                     {
-                        var InventoryCount = GetCount(body);
-                        if (InventoryCount > 0)
+                        var armourCtrl = owner.GetComponent<ArmourController>();
+                        if (!armourCtrl) { orig(self); return; }
+                        if (body.HasBuff(NovaChargeBuff) && body.HasBuff(NovaPreppedBuff))
                         {
-                            var armourCtrl = owner.gameObject.GetComponent<ArmourController>();
-                            if (!armourCtrl) { armourCtrl = owner.gameObject.AddComponent<ArmourController>(); }
-                            //BSModLogger = ModLogger;
-                            //BSModLogger.LogInfo($"{armourCtrl.getDet()} : det firing status");
-                            if (body.HasBuff(NovaChargeBuff) && armourCtrl.getDet())
+                            // Do explosion
+                            BlastAttack blastAttack = new BlastAttack
                             {
-                                // Do explosion
-                                BlastAttack blastAttack = new BlastAttack
-                                {
-                                    attacker = owner.gameObject,
-                                    inflictor = owner.gameObject,
-                                    teamIndex = TeamComponent.GetObjectTeam(owner.gameObject),
-                                    position = owner.corePosition,
-                                    procCoefficient = 0f,
-                                    radius = 1f * body.GetBuffCount(NovaChargeBuff),
-                                    baseForce = 100f* body.GetBuffCount(NovaChargeBuff),
-                                    bonusForce = Vector3.up * 2000f,
-                                    baseDamage = 10*body.GetBuffCount(NovaChargeBuff),
-                                    falloffModel = BlastAttack.FalloffModel.SweetSpot,
-                                    crit = Util.CheckRoll(owner.crit, owner.master),
-                                    damageColorIndex = DamageColorIndex.Item,
-                                    attackerFiltering = AttackerFiltering.NeverHit
-                                };
-                                blastAttack.Fire();
-                                EffectData effectData = new EffectData
-                                {
-                                    origin = owner.corePosition,
-                                    scale = 1f * body.GetBuffCount(NovaChargeBuff),
-                                };
-                                EffectManager.SpawnEffect(Resources.Load<GameObject>("Prefabs/Effects/JellyfishNova"), effectData, true);
-                                armourCtrl.setDet(false);
-                                CmdRemoveAllStacks(NovaChargeBuff, body);
-                            }
+                                attacker = owner.gameObject,
+                                inflictor = owner.gameObject,
+                                teamIndex = TeamComponent.GetObjectTeam(owner.gameObject),
+                                position = owner.corePosition,
+                                procCoefficient = 0f,
+                                radius = 2f * body.GetBuffCount(NovaChargeBuff),
+                                baseForce = 100f* body.GetBuffCount(NovaChargeBuff),
+                                bonusForce = Vector3.up * 2000f,
+                                baseDamage = 10*body.GetBuffCount(NovaChargeBuff),
+                                falloffModel = BlastAttack.FalloffModel.SweetSpot,
+                                crit = Util.CheckRoll(owner.crit, owner.master),
+                                damageColorIndex = DamageColorIndex.Item,
+                                attackerFiltering = AttackerFiltering.NeverHit
+                            };
+                            blastAttack.Fire();
+                            EffectData effectData = new EffectData
+                            {
+                                origin = owner.corePosition,
+                                scale = 1f * body.GetBuffCount(NovaChargeBuff),
+                            };
+                            EffectManager.SpawnEffect(Resources.Load<GameObject>("Prefabs/Effects/JellyfishNova"), effectData, true);
+                            armourCtrl.fireNova();
+                            armourCtrl.removeChargeStacks();
                         }
                     }
                 }
@@ -417,14 +417,11 @@ namespace MeltingPot.Items
             }
             private void TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, RoR2.HealthComponent self, RoR2.DamageInfo damageInfo)
             {
-                orig(self, damageInfo);
                 if (!damageInfo.rejected || damageInfo == null)
                 {
                     var inventoryCount = GetCount(self.body);
-                    //var healthBefore = self.health; //debug
                     if (self.body.HasBuff(NovaStationaryBuff) && inventoryCount > 0)
                     {
-                        //Chat.AddMessage($"Damage Before: {damageInfo.damage}"); //debug
                         var percentage = 0.2f + (0.1f * (inventoryCount - 1));
                         var damage = damageInfo.damage * percentage;
                         damageInfo.damage -= damage;
@@ -440,6 +437,7 @@ namespace MeltingPot.Items
                         }
                     }
                 }
+                orig(self, damageInfo);
             }
         }
     }

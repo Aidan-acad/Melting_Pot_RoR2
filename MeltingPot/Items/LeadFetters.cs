@@ -2,12 +2,9 @@
 using R2API;
 using RoR2;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using MeltingPot.Utils;
-using static R2API.RecalculateStatsAPI;
 using static MeltingPot.MeltingPotPlugin;
-using System.Linq;
 
 namespace MeltingPot.Items
 {
@@ -205,10 +202,13 @@ namespace MeltingPot.Items
         private void ApplyWeightModification(On.RoR2.CharacterBody.orig_FixedUpdate orig, RoR2.CharacterBody self)
         {
             orig(self);
-            var InventoryCount = GetCount(self);
-            if (InventoryCount > 0 && Math.Abs(self.characterMotor.velocity.y) > 0.001f)
+            if (TeamComponent.GetObjectTeam(self.gameObject) == TeamIndex.Player)
             {
-                self.characterMotor.velocity.y += Time.fixedDeltaTime * Physics.gravity.y * Mathf.Clamp(1 - 1 / (1 + (0.001f * InventoryCount)), 0, 1);
+                var InventoryCount = GetCount(self);
+                if (InventoryCount > 0 && Math.Abs(self.characterMotor.velocity.y) > 0.001f)
+                {
+                    self.characterMotor.velocity.y += Time.fixedDeltaTime * Physics.gravity.y * Mathf.Clamp(1 - 1 / (1 + (0.001f * InventoryCount)), 0, 1);
+                }
             }
         }
     }
