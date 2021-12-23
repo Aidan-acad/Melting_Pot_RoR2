@@ -44,8 +44,9 @@ namespace MeltingPot.Items
 
         public override void Init(ConfigFile config)
         {
-            CreateLang();
+
             CreateItem();
+            CreateLang();
             CreateBuff();
             CreateEffect();
             Hooks();

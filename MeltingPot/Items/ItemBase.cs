@@ -24,7 +24,7 @@ namespace MeltingPot.Items
         }
     }
 
-    public abstract class ItemBase : NetworkBehaviour
+    public abstract class ItemBase
     {
         public abstract string ItemName { get; }
         public abstract string ItemLangTokenName { get; }

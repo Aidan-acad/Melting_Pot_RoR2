@@ -23,7 +23,7 @@ namespace MeltingPot.Items
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Utility};
-        public override ItemTier Tier => ItemTier.Tier1;
+        public override ItemTier Tier => ItemTier.Tier3;
 
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("ReactiveArmour.prefab");
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("Reactive_Armour_Icon.png");
@@ -120,13 +120,16 @@ namespace MeltingPot.Items
 
         public override void Init(ConfigFile config)
         {
-            CreateLang();
+            CreateConfig(config);
             CreateItem();
+            CreateLang();
             CreateBuff();
             CreateEffect();
             Hooks();
         }
 
+        private void CreateConfig(ConfigFile config) {
+        }
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {

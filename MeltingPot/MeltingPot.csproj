@@ -14,10 +14,12 @@
 
   <ItemGroup>
     <None Remove="Assets\meltingpotassets" />
+    <None Remove="Assets\MeltingPot_SoundBank.bnk" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\meltingpotassets" />
+    <EmbeddedResource Include="Assets\MeltingPot_SoundBank.bnk" />
   </ItemGroup>
 
   <ItemGroup>

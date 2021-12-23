@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using RoR2;
 
 namespace MeltingPot
 {
@@ -21,6 +22,10 @@ namespace MeltingPot
         public const string ModGuid = "com.Shasocais.MeltingPot";
         public const string ModName = "Melting Pot";
         public const string ModVer = "0.0.25";
+        private static string[] blList = {
+            "REACTIVE_PLATE"
+        };
+        private static List<string> aiBlist = new List<string>(blList);
 
         public static BepInEx.Logging.ManualLogSource ModLogger;
 
@@ -34,12 +39,12 @@ namespace MeltingPot
             {"fake ror/hopoo games/fx/hgdistortion", "shaders/fx/hgdistortion" },
             {"fake ror/hopoo games/deferred/hgsnow topped", "shaders/deferred/hgsnowtopped" }
         };
-        public List<ItemBase> Items = new List<ItemBase>();
+        //public List<ItemBase> Items = new List<ItemBase>();
+        public static List<ItemBase> Items = new List<ItemBase>();
         public static Dictionary<ItemBase, bool> ItemStatusDictionary = new Dictionary<ItemBase, bool>();
 
         private void Awake()
         {
-
             ModLogger = this.Logger;
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MeltingPot.Assets.meltingpotassets"))
             {
@@ -49,6 +54,13 @@ namespace MeltingPot
             ShaderConversion(MainAssets);
 
             AttachControllerFinderToObjects(MainAssets);
+
+            using (var bankStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("MeltingPot.Assets.MeltingPot_SoundBank.bnk")) 
+            {
+                var bytes = new byte[bankStream.Length];
+                bankStream.Read(bytes, 0, bytes.Length);
+                SoundAPI.SoundBanks.Add(bytes);
+			}
             //Item Initialization
             var ItemTypes = Assembly.GetExecutingAssembly().GetTypes().Where(type => !type.IsAbstract && type.IsSubclassOf(typeof(ItemBase)));
 
@@ -56,11 +68,11 @@ namespace MeltingPot
 
             foreach (var itemType in ItemTypes)
             {
-                ItemBase item = (ItemBase)System.Activator.CreateInstance(itemType);
-                if (ValidateItem(item, Items))
+                var item_to_ready = (ItemBase)System.Activator.CreateInstance(itemType);
+                if (ValidateItem(item_to_ready, Items))
                 {
-                    item.Init(Config);
-                    ModLogger.LogInfo("Item: " + item.ItemName + " Initialized!");
+                    item_to_ready.Init(Config);
+                    ModLogger.LogInfo("Item: " + item_to_ready.ItemName + " Initialized!");
                 }
             }
 
@@ -75,7 +87,12 @@ namespace MeltingPot
         public bool ValidateItem(ItemBase item, List<ItemBase> itemList)
         {
             var enabled = Config.Bind<bool>("Item: " + item.ItemName, "Enable Item?", true, "Should this item appear in runs?").Value;
-            var aiBlacklist = Config.Bind<bool>("Item: " + item.ItemName, "Blacklist Item from AI Use?", false, "Should the AI not be able to obtain this item?").Value;
+            var aiBlacklist = false;
+            if (aiBlist.Contains(item.ItemLangTokenName)) {
+                aiBlacklist = Config.Bind<bool>("Item: " + item.ItemName, "Blacklist Item from AI Use?", true, "Should the AI not be able to obtain this item?").Value;
+            } else {
+                aiBlacklist = Config.Bind<bool>("Item: " + item.ItemName, "Blacklist Item from AI Use?", false, "Should the AI not be able to obtain this item?").Value;
+            }
 
             ItemStatusDictionary.Add(item, enabled);
 

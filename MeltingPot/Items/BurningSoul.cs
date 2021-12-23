@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using MeltingPot.Utils;
-using R2API.Utils;
 using static R2API.RecalculateStatsAPI;
 using static MeltingPot.MeltingPotPlugin;
 using System.Linq;
@@ -13,7 +12,6 @@ using UnityEngine.Networking;
 
 namespace MeltingPot.Items
     {
-    [R2APISubmoduleDependency(nameof(SoundAPI))]
     public class BurningSoul : ItemBase<BurningSoul>
     {
         public static BuffDef soulBurnBuff { get; private set; }
@@ -22,7 +20,7 @@ namespace MeltingPot.Items
         public static DotController.DotIndex soulBurnDot { get; private set; }
         public static DotController.DotIndex soulBurnSelfDot { get; private set; }
 
-        private static int health_threshold = 100;
+        private static int health_threshold = 1000;
         private static float enemy_burn_percent = 0.04f;
         private static float enemy_burn_percent_growth = 0.015f;
         private static float self_burn_percent = 0.01f;
@@ -42,7 +40,7 @@ namespace MeltingPot.Items
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 
         public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.Damage };
-        public override ItemTier Tier => ItemTier.Tier1;
+        public override ItemTier Tier => ItemTier.Lunar;
 
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("BurningSoulRedux.prefab");
         public override Sprite ItemIcon => MainAssets.LoadAsset<Sprite>("BurningSoul_Icon.png");
@@ -121,9 +119,9 @@ namespace MeltingPot.Items
 
         public override void Init(ConfigFile config)
         {
+            CreateItem();
             CreateLang();
             CreateEffect();
-            CreateItem();
             CreateBuff();
             Hooks();
 
@@ -386,6 +384,7 @@ namespace MeltingPot.Items
                     //float damageMultiplier = dmgCoefficient + dmgStack * (GetCount(attackerBody) - 1);
                     float burnDamage = attackerBody.gameObject.GetComponent<BurningSoulController>().getInflictedDmg();
                     dotStack.damage = burnDamage;
+                    dotStack.damageType = DamageType.DoT;
                 }
             });
 
@@ -414,7 +413,7 @@ namespace MeltingPot.Items
                     float burnDamage = (float)Math.Ceiling(attackerBody.GetComponent<BurningSoulController>().getSelfDmg());
                     dotStack.damage = burnDamage;
                     //dotStack.damageType = DamageType.BypassArmor;
-                    dotStack.damageType = DamageType.NonLethal;
+                    dotStack.damageType = DamageType.NonLethal | DamageType.BypassArmor | DamageType.DoT | DamageType.Silent;
                 }
             });
         }
@@ -591,7 +590,7 @@ namespace MeltingPot.Items
                             {
                                 origin = victim.GetComponent<CharacterBody>().corePosition,
                                 genericFloat = 0.5f,
-                                scale = 1.5f,
+                                scale = 2f,
                             };
                             effectData.SetHurtBoxReference(victim.GetComponent<CharacterBody>().mainHurtBox);
                             GameObject effectPrefab = FireEffect;
