@@ -1,0 +1,32 @@
+{
+    "name": "MeltingPotDef",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Assembly-CSharp.dll",
+        "BepInEx.dll",
+        "Facepunch.Steamworks.dll",
+        "HGCSharpUtils.dll",
+        "HGUnityUtils.dll",
+        "KdTreeLib.dll",
+        "MMHOOK_Assembly-CSharp.dll",
+        "pb_Stl.dll",
+        "Poly2Tri.dll",
+        "ProBuilderCore.dll",
+        "ProBuilderMeshOps.dll",
+        "R2API.dll",
+        "Rewired_Core.dll",
+        "Rewired_CSharp.dll",
+        "Rewired_Windows_Lib.dll",
+        "SimpleJSON.dll",
+        "Unity.Postprocessing.Runtime.dll",
+        "Wwise.dll",
+        "Zio.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -281164913, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
+  m_Name: meltingpotcontentpack
+  m_EditorClassIdentifier: 
+  bodyPrefabs: []
+  masterPrefabs: []
+  projectilePrefabs: []
+  gameModePrefabs: []
+  networkedObjectPrefabs: []
+  skillDefs: []
+  skillFamilies: []
+  sceneDefs: []
+  itemDefs:
+  - {fileID: 11400000, guid: f2acd6e31ad9e294db0c20e879501294, type: 2}
+  - {fileID: 11400000, guid: 153d7fb28598ed446b9eb8ddbbc285ad, type: 2}
+  - {fileID: 11400000, guid: 5f4917d260f35e74f8f08eb0f6f9419a, type: 2}
+  - {fileID: 11400000, guid: d0d0c1c519e51ec40b46f82b6da74689, type: 2}
+  - {fileID: 11400000, guid: f659de0e52a934441b061b1c4eff12c5, type: 2}
+  - {fileID: 11400000, guid: e7acecc1063a1ae4884c06ef843e9f92, type: 2}
+  equipmentDefs: []
+  buffDefs:
+  - {fileID: 11400000, guid: a71cfcb95a101d04f8d928bc89d72148, type: 2}
+  - {fileID: 11400000, guid: 91b8d872f14779041918070328dadf6c, type: 2}
+  - {fileID: 11400000, guid: cf00f4a7340ccf44c8fd850ad64416a4, type: 2}
+  - {fileID: 11400000, guid: 50a48aea077daf245a1cbbbc6196f7b4, type: 2}
+  - {fileID: 11400000, guid: 995bd0bb58ce27b4abd0550ae1f9ac1a, type: 2}
+  - {fileID: 11400000, guid: e561a440e5b9f2a40a79cf09ac3afb5a, type: 2}
+  - {fileID: 11400000, guid: b24df87b0eaed64418edf5ff03c4034f, type: 2}
+  - {fileID: 11400000, guid: 1004ee12b08295643a4f6b4e3c9f1856, type: 2}
+  - {fileID: 11400000, guid: da027a0abe38e3648a9d28488847937f, type: 2}
+  - {fileID: 11400000, guid: f7d0a2836ec2352448c2406336b98e3c, type: 2}
+  eliteDefs: []
+  unlockableDefs: []
+  survivorDefs: []
+  artifactDefs: []
+  surfaceDefs: []
+  networkSoundEventDefs:
+  - {fileID: 11400000, guid: 6cf3e251dfcb30946a45d59a2e35ce31, type: 2}
+  - {fileID: 11400000, guid: 1d4f9fd3cbf7c234db41d0c7e4cc9681, type: 2}
+  - {fileID: 11400000, guid: dda806b95b601314da30769062d7a04e, type: 2}
+  - {fileID: 11400000, guid: 7286343d596bec246a0fce18df39af5f, type: 2}
+  musicTrackDefs: []
+  gameEndingDefs: []
+  entityStateConfigurations: []
+  entityStateTypes: []

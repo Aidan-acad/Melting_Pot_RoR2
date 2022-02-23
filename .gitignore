@@ -1,0 +1,12 @@
+/*.*
+!.gitignore
+!*MeltingPot*.*
+!Assets
+Thunderkit
+Packages
+Temp
+Library
+obj
+ProjectSettings
+Logs
+!RoRThunder.sln
