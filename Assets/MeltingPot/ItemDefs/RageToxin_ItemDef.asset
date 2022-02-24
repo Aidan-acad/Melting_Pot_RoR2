@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: -1284244208, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
   m_Name: RageToxin_ItemDef
   m_EditorClassIdentifier: 
-  tier: 0
+  tier: 2
   nameToken: Shasocais_ITEM_RAGETOXIN_NAME
   pickupToken: Shasocais_ITEM_RAGETOXIN_PICKUP
   descriptionToken: Shasocais_ITEM_RAGETOXIN_DESC

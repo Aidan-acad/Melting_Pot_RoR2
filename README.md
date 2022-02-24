@@ -35,7 +35,9 @@ A mixed bag.
 
 
 ## Changelog
-**0.0.39**
+**0.0.40**
+
+Reverted Debug values
 
 New Shield of Thorns icon curtosy of SOM. Fixed compat issue with MelT
 

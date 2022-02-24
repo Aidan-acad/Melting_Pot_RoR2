@@ -61,9 +61,6 @@ namespace MeltingPot
                     ModLogger.LogInfo("Item: " + item_to_ready.ItemName + " Initialized!");
                 }
             }
-            foreach (var item in Items) {
-                Debug.Log(item.ItemName);
-			}
             On.RoR2.ItemDisplayRuleSet.Init += ApplyAllItemRules;
             ModLogger.LogInfo("-----------------------------------------------");
             ModLogger.LogInfo("MELTINGPOT INITIALIZATIONS DONE");
