@@ -1,0 +1,191 @@
+ManifestFileVersion: 0
+CRC: 2301006061
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 72209240e3ca1a39d1883b4cbf4008d4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: d69ad11ffb6751c718fa6492f6017641
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+- Class: 114
+  Script: {fileID: -1783169300, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
+- Class: 114
+  Script: {fileID: -1284244208, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
+- Class: 114
+  Script: {fileID: -1479993534, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
+- Class: 114
+  Script: {fileID: 1931460509, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
+- Class: 114
+  Script: {fileID: -281164913, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 73398921
+  Script: {instanceID: 0}
+- Class: 2083052967
+  Script: {instanceID: 0}
+Assets:
+- Assets/MeltingPot/BuffDefs/MeltingPot_SoulBurnActive.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Materials/glass_mat_old.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Textures/Tube_tex.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Materials/cork_mat_old.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reactive_armour/ReactiveArmour.prefab
+- Assets/MeltingPot/EffectDefs/Melting_Pot_Coin_Sound.asset
+- Assets/MeltingPot/Import/MeltingPotEffects/RingMat.mat
+- Assets/MeltingPot/ItemDefs/LeadFetters_ItemDef.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Textures/framework_norm.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reverb_ring/Materials/ReverbRingShell.mat
+- Assets/MeltingPot/MPAssets/ItemIcons/midas_cosh_icon/MidasCoshIcon.PNG
+- Assets/MeltingPot/BuffDefs/MeltingPot_NovaOff.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/MidasCosh.prefab
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/RageToxin_deprecated.prefab
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Textures/Cosh_Body_Uc.png
+- Assets/MeltingPot/BuffDefs/MeltingPot_GoldStateFrozen.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/Materials/Hoop_mat.mat
+- Assets/MeltingPot/ItemDefs/RageToxin_ItemDef.asset
+- Assets/MeltingPot/ItemDefs/BurningSoul_ItemDef.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reactive_armour/DisplayReactiveArmour.prefab
+- Assets/MeltingPot/MPAssets/ItemIcons/burning_soul_icon/BurninSoul_SoulselfburnIcon.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/DisplayMidasCosh.prefab
+- Assets/MeltingPot/MPAssets/ItemIcons/reactive_armour_icon/RA_Charge_Icon.png
+- Assets/MeltingPot/BuffDefs/MeltingPot_NovaStationary.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reverb_ring/ReverbRing.prefab
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Textures/goop_tex.png
+- Assets/MeltingPot/Import/MeltingPotEffects/ring.png
+- Assets/MeltingPot/EffectDefs/Melting_Pot_Gold_Sound.asset
+- Assets/MeltingPot/ItemDefs/MidasCosh_ItemDef.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Textures/Cork_Text.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reactive_armour/Textures/plate_tex.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reactive_armour/Textures/strap_tex.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/DisplayRageToxin.prefab
+- Assets/MeltingPot/MPAssets/Effects/RingMat.mat
+- Assets/MeltingPot/Import/rage_toxin/materials/goop_mat.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reactive_armour/Materials/Armour_metal.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/lead_fetters/LeadFetters.prefab
+- Assets/TextMesh Pro/Fonts/LiberationSans.ttf
+- Assets/MeltingPot/MPAssets/Effects/flames_TGA.tga
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reverb_ring/ReverbRing.fbx
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Materials/cork_mat.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/Materials/Bowl_mat.mat
+- Assets/MeltingPot/MPAssets/Effects/FireMatAdd.mat
+- Assets/MeltingPot/ItemDefs/ReactiveArmour_ItemDef.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/Textures/ash_tex.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/lead_fetters/Materials/Chain.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reverb_ring/Materials/ReverbRingCore.mat
+- Assets/MeltingPot/Import/rage_toxin/materials/glass_mat.mat
+- Assets/MeltingPot/MPAssets/ItemIcons/lead_fetters_icon/LeadFetters_Icon.PNG
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/RageToxin.prefab
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Textures/ring_tex_map.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/lead_fetters/Materials/Base_metal.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/Textures/ash_map.png
+- Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat
+- Assets/MeltingPot/Import/rage_toxin/materials/frame_mat.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Textures/Cork_Uv_map.png
+- Assets/MeltingPot/MPAssets/ItemIcons/midas_cosh_icon/MidasCoshPrevent.png
+- Assets/MeltingPot/BuffDefs/MeltingPot_GoldStateImmunity.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reactive_armour/Materials/Leather.mat
+- Assets/stubbed_shaders/deferred/hgstandard.shader
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Textures/framework_tex.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Materials/frame_mat.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reactive_armour/Textures/plate_map.png
+- Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Textures/wood_map.jpg
+- Assets/MeltingPot/MPAssets/Effects/TextFont.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/Textures/hoop_map.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Materials/Tex_Map.mat
+- Assets/MeltingPot/MPAssets/ItemIcons/burning_soul_icon/BurninSoul_SoulburnactiveIcon.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Textures/cosh_met_map.png
+- Assets/MeltingPot/MPAssets/Effects/EchoRing.prefab
+- Assets/EffectTexturesAndPrefabs/Materials/FireParticle_A.mat
+- Assets/MeltingPot/MPAssets/ItemIcons/rage_toxin_icon/rageToxin_Icon.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/Materials/Ash_mat.mat
+- Assets/MeltingPot/MPAssets/Effects/FireMatAlpha.mat
+- Assets/MeltingPot/MPAssets/ItemIcons/burning_soul_icon/BurningSoul_Icon.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reactive_armour/ReactiveArmour.fbx
+- Assets/MeltingPot/EffectDefs/Melting_Pot_SoulBurn.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/BurningSoul.fbx
+- Assets/MeltingPot/BuffDefs/MeltingPot_Enraged.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/Textures/hoop_tex.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Textures/fab_bump_map.jpg
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/Textures/bowl_tex.png
+- Assets/MeltingPot/BuffDefs/MeltingPot_NovaPrepped.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reverb_ring/DisplayReverbRing.prefab
+- Assets/MeltingPot/Import/rage_toxin/materials/cork_mat.mat
+- Assets/MeltingPot/MPAssets/ItemIcons/reactive_armour_icon/RA_Active_Icon.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Textures/cosh_body_map.png
+- Assets/MeltingPot/MPAssets/Effects/Fumble_MSG.prefab
+- Assets/MeltingPot/BuffDefs/MeltingPot_SelfSoulburn.asset
+- Assets/MeltingPot/MPAssets/Effects/ring.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Materials/frame_mat_old.mat
+- Assets/MeltingPot/BuffDefs/MeltingPot_NovaCharge.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Materials/goop_mat.mat
+- Assets/MeltingPot/BuffDefs/MeltingPot_SoulBurn.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/rageToxin 1.fbx
+- Assets/MeltingPot/MPAssets/ItemPrefabs/lead_fetters/LeadFetters.fbx
+- Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+- Assets/MeltingPot/MPAssets/ItemIcons/reactive_armour_icon/Reactive_Armour_Icon.PNG
+- Assets/MeltingPot/Import/rage_toxin/rageToxin.fbx
+- Assets/MeltingPot/MPAssets/Effects/FireMatGlow.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/MidasCosh.fbx
+- Assets/MeltingPot/MPAssets/Effects/TextMat.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/lead_fetters/Materials/Brass.mat
+- Assets/MeltingPot/EffectDefs/Melting_Pot_Reactive.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Materials/goop_mat_old.mat
+- Assets/MeltingPot/MPAssets/meltingpotcontentpack.asset
+- Assets/MeltingPot/MPAssets/ItemIcons/burning_soul_icon/BurninSoul_SoulburnIcon.png
+- Assets/EffectTexturesAndPrefabs/Textures/particle_A.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/rageToxin.fbx
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reactive_armour/Textures/strap_map.png
+- Assets/MeltingPot/ItemDefs/ReverbRing_ItemDef.asset
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Textures/ring_textures.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/reverb_ring/Materials/ReverbRingOut.mat
+- Assets/TextMesh Pro/Resources/Shaders/TMP_SDF-Mobile.shader
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Materials/Tex_Map_2.mat
+- Assets/MeltingPot/MPAssets/ItemPrefabs/rage_toxin/Materials/Tube_Mat.mat
+- Assets/MeltingPot/MPAssets/ItemIcons/midas_cosh_icon/MidasCoshMoneyTime.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/lead_fetters/DisplayLeadFetters.prefab
+- Assets/MeltingPot/MPAssets/ItemIcons/reverb_ring_icon/reverbRing_ICON.png
+- Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Materials/Ring_Tex.mat
+- Assets/MeltingPot/MPAssets/ItemIcons/rage_toxin_icon/rageToxin_Aggro.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/midas_cosh/Textures/Cosh_Body_Met_UV.png
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/BurningSoul.prefab
+- Assets/MeltingPot/MPAssets/ItemPrefabs/burning_soul/DisplayBurningSoul.prefab
+Dependencies: []

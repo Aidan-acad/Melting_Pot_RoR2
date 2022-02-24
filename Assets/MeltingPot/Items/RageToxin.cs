@@ -59,9 +59,6 @@ namespace MeltingPot.Items
         }
         public override ItemDisplayRuleDict CreateItemDisplayRules() {
             ItemBodyModelPrefab = Assets.mainAssetBundle.LoadAsset<GameObject>("assets/meltingpot/mpassets/itemprefabs/rage_toxin/displayragetoxin.prefab");
-            ItemBodyModelPrefab.AddComponent<RoR2.ItemDisplay>();
-            ItemBodyModelPrefab.GetComponent<RoR2.ItemDisplay>().rendererInfos = ItemHelpers.ItemDisplaySetup(ItemBodyModelPrefab);
-
             Vector3 generalScale = new Vector3(1f, 1f, 1f);
             ItemDisplayRuleDict rules = new ItemDisplayRuleDict();
             rules.Add("mdlCommandoDualies", new RoR2.ItemDisplayRule[]
@@ -295,14 +292,16 @@ namespace MeltingPot.Items
         private void AggroApply(On.RoR2.CharacterAI.BaseAI.orig_FixedUpdate orig, global::RoR2.CharacterAI.BaseAI self) {
             orig(self);
             try {
-                var aggroTracker = self.gameObject.GetComponent<AggroTracker>();
-                if (self.body.HasBuff(RageBuff) && aggroTracker) {
-                    self.currentEnemy.gameObject = aggroTracker.getTarget();
-                    self.currentEnemy.bestHurtBox = RoR2.Util.FindBodyMainHurtBox(self.currentEnemy.gameObject.GetComponent<CharacterBody>());
-                    self.enemyAttention = 1f;
-                    self.body.damage = self.body.baseDamage / 4;
-                    self.body.attackSpeed = self.body.baseAttackSpeed * 2;
-                    self.body.armor = self.body.baseArmor - 40;
+                if (self.gameObject && self.body) {
+                    var aggroTracker = self.gameObject.GetComponent<AggroTracker>();
+                    if (self.body.HasBuff(RageBuff) && aggroTracker) {
+                        self.currentEnemy.gameObject = aggroTracker.getTarget();
+                        self.currentEnemy.bestHurtBox = RoR2.Util.FindBodyMainHurtBox(self.currentEnemy.gameObject.GetComponent<CharacterBody>());
+                        self.enemyAttention = 1f;
+                        self.body.damage = self.body.baseDamage / 4;
+                        self.body.attackSpeed = self.body.baseAttackSpeed * 2;
+                        self.body.armor = self.body.baseArmor - 40;
+                    }
                 }
 			}
 			catch {

@@ -128,10 +128,7 @@ namespace MeltingPot.Items
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
-            ItemBodyModelPrefab = ItemModel;
-            ItemBodyModelPrefab.AddComponent<RoR2.ItemDisplay>();
-            ItemBodyModelPrefab.GetComponent<RoR2.ItemDisplay>().rendererInfos = ItemHelpers.ItemDisplaySetup(ItemBodyModelPrefab);
-
+            ItemBodyModelPrefab = Assets.mainAssetBundle.LoadAsset<GameObject>("assets/meltingpot/mpassets/itemprefabs/reactive_armour/displayreactivearmour.prefab");
             Vector3 generalScale = new Vector3(1f, 1f, 1f);
             ItemDisplayRuleDict rules = new ItemDisplayRuleDict();
             rules.Add("mdlCommandoDualies", new RoR2.ItemDisplayRule[]
@@ -141,9 +138,9 @@ namespace MeltingPot.Items
                     ruleType = ItemDisplayRuleType.ParentedPrefab,
                     followerPrefab = ItemBodyModelPrefab,
                     childName = "Chest",
-                    localPos = new Vector3(0.00469F, -0.00422F, 0.02647F),
+                    localPos = new Vector3(0.00473F, -0.03606F, 0.02104F),
                     localAngles = new Vector3(0F, 90F, 0F),
-                    localScale = new Vector3(0.24514F, 0.20937F, 0.15943F)
+                    localScale = new Vector3(0.26753F, 0.22849F, 0.17399F)
                 }
             });
             rules.Add("mdlHuntress", new RoR2.ItemDisplayRule[]
@@ -369,7 +366,7 @@ namespace MeltingPot.Items
                                 teamIndex = TeamComponent.GetObjectTeam(owner.gameObject),
                                 position = owner.corePosition,
                                 procCoefficient = 0f,
-                                radius = 2f * body.GetBuffCount(NovaChargeBuff),
+                                radius = 0.5f * body.GetBuffCount(NovaChargeBuff),
                                 baseForce = 100f* body.GetBuffCount(NovaChargeBuff),
                                 bonusForce = Vector3.up * 2000f,
                                 baseDamage = 10*body.GetBuffCount(NovaChargeBuff),

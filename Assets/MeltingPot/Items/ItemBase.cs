@@ -1,7 +1,7 @@
 ﻿using BepInEx.Configuration;
 using R2API;
 using RoR2;
-using UnityEngine;
+using System.Collections.Generic;
 using MeltingPot.Utils;
 using System;
 
@@ -37,6 +37,8 @@ namespace MeltingPot.Items
 
         public ItemDisplayRuleDict ItemDisplayRules { get; set; }
 
+        public virtual bool AIBlacklisted { get; set; } = false;
+
         protected void CreateLang()
         {
             LanguageAPI.Add("Shasocais_ITEM_" + ItemLangTokenName + "_NAME", ItemName);
@@ -50,6 +52,9 @@ namespace MeltingPot.Items
         protected void CreateItem(string name)
         {
             ItemDef = ContentPackProvider.contentPack.itemDefs.Find(name);
+            if (AIBlacklisted) {
+                ItemDef.tags = new List<ItemTag>(ItemDef.tags) { ItemTag.AIBlacklist }.ToArray();
+            }
             ItemDisplayRules = CreateItemDisplayRules();      
         }
 

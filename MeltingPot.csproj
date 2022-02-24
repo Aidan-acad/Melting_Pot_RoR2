@@ -65,15 +65,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\MeltingPot\Items\BurningSoul.cs" />
+    <Compile Include="Assets\MeltingPot\Items\EchoBang.cs" />
     <Compile Include="Assets\MeltingPot\Items\ItemBase.cs" />
+    <Compile Include="Assets\MeltingPot\Items\LeadFetters.cs" />
     <Compile Include="Assets\MeltingPot\Items\MidasCosh.cs" />
     <Compile Include="Assets\MeltingPot\Items\RageToxin.cs" />
-    <Compile Include="Assets\MeltingPot\MeltingPotMain.cs" />
+    <Compile Include="Assets\MeltingPot\Items\ReactiveArmourPlating.cs" />
+    <Compile Include="Assets\MeltingPot\Items\ThornShield.cs" />
+    <Compile Include="Assets\MeltingPot\MeltingPotPlugin.cs" />
     <Compile Include="Assets\MeltingPot\Utils\AssetLoader.cs" />
     <Compile Include="Assets\MeltingPot\Utils\ItemHelpers.cs" />
     <Compile Include="Assets\MeltingPot\Utils\MaterialControllerComponents.cs" />
     <Compile Include="Assets\MeltingPot\Utils\OverlayTracker.cs" />
-    <None Include="Assets\MeltingPot\MeltingPotDef.asmdef" />
+    <None Include="Assets\MeltingPot\MeltingPot.asmdef" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>E:/unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>
@@ -308,17 +312,56 @@
     <Reference Include="BepInEx">
       <HintPath>E:/ror2_modding/RoRThunder/Packages/BepInExPack/BepInExPack/BepInEx/core/BepInEx.dll</HintPath>
     </Reference>
-    <Reference Include="BepInEx.MonoMod.HookGenPatcher">
-      <HintPath>E:/ror2_modding/RoRThunder/Packages/HookGenPatcher/BepInEx/patchers/Bepinex.MonoMod.HookGenPatcher/BepInEx.MonoMod.HookGenPatcher.dll</HintPath>
+    <Reference Include="Facepunch.Steamworks">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/Facepunch.Steamworks.dll</HintPath>
     </Reference>
-    <Reference Include="R2API">
-      <HintPath>E:/ror2_modding/RoRThunder/Packages/R2API/plugins/R2API/R2API.dll</HintPath>
+    <Reference Include="HGCSharpUtils">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/HGCSharpUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="HGUnityUtils">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/HGUnityUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="KdTreeLib">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/KdTreeLib.dll</HintPath>
     </Reference>
     <Reference Include="MMHOOK_Assembly-CSharp">
       <HintPath>E:/ror2_modding/RoRThunder/Assets/MMHOOK_Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="pb_Stl">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/pb_Stl.dll</HintPath>
+    </Reference>
+    <Reference Include="Poly2Tri">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/Poly2Tri.dll</HintPath>
+    </Reference>
+    <Reference Include="ProBuilderCore">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/ProBuilderCore.dll</HintPath>
+    </Reference>
+    <Reference Include="ProBuilderMeshOps">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/ProBuilderMeshOps.dll</HintPath>
+    </Reference>
+    <Reference Include="R2API">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/R2API/plugins/R2API/R2API.dll</HintPath>
+    </Reference>
+    <Reference Include="Rewired_Core">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/Rewired_Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Rewired_CSharp">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/Rewired_CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Rewired_Windows_Lib">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/Rewired_Windows_Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleJSON">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/SimpleJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Wwise">
       <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/Wwise.dll</HintPath>
+    </Reference>
+    <Reference Include="Zio">
+      <HintPath>E:/ror2_modding/RoRThunder/Packages/Risk of Rain 2/Zio.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>E:/unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

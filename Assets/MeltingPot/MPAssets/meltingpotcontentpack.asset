@@ -27,6 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d0d0c1c519e51ec40b46f82b6da74689, type: 2}
   - {fileID: 11400000, guid: f659de0e52a934441b061b1c4eff12c5, type: 2}
   - {fileID: 11400000, guid: e7acecc1063a1ae4884c06ef843e9f92, type: 2}
+  - {fileID: 11400000, guid: fb16ea860d637b040b46e7ee8306cf5b, type: 2}
   equipmentDefs: []
   buffDefs:
   - {fileID: 11400000, guid: a71cfcb95a101d04f8d928bc89d72148, type: 2}
@@ -39,6 +40,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1004ee12b08295643a4f6b4e3c9f1856, type: 2}
   - {fileID: 11400000, guid: da027a0abe38e3648a9d28488847937f, type: 2}
   - {fileID: 11400000, guid: f7d0a2836ec2352448c2406336b98e3c, type: 2}
+  - {fileID: 11400000, guid: f317f02bbc50db74cae9aa2859e000ca, type: 2}
   eliteDefs: []
   unlockableDefs: []
   survivorDefs: []

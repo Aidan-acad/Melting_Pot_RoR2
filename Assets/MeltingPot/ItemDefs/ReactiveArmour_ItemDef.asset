@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: -1284244208, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
   m_Name: ReactiveArmour_ItemDef
   m_EditorClassIdentifier: 
-  tier: 2
+  tier: 0
   nameToken: Shasocais_ITEM_REACTIVEARMOUR_NAME
   pickupToken: Shasocais_ITEM_REACTIVEARMOUR_PICKUP
   descriptionToken: Shasocais_ITEM_REACTIVEARMOUR_DESC
@@ -20,7 +20,7 @@ MonoBehaviour:
   unlockableDef: {fileID: 0}
   pickupModelPrefab: {fileID: 7427913559123653997, guid: 1dbbeef0185f0cd499787deb34655caa,
     type: 3}
-  pickupIconSprite: {fileID: 21300000, guid: 74bb553c7f4eb71469cae4883f25a4ee, type: 3}
+  pickupIconSprite: {fileID: 21300000, guid: 2db06bfda6ffaeb458a3a1a1e290b12e, type: 3}
   hidden: 0
   canRemove: 1
   tags: 080000000400000002000000

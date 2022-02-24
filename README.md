@@ -3,46 +3,53 @@
 A mixed bag.
 ## Included Items
 
-### --Tier 1--
+### **_Tier 1_**
 
---Lead Fetters--
+| Lead Fetters |
+| :- |
+|<img src="https://imgur.com/wZvnv9N.png" width="200" height="200" />|
+|*Increases __fall speed__ and __knockback resist__.*|
 
-Increases fall speed and knockback resist.
+### **_Tier 2_**
 
-### --Tier 2--
+| Echo Ring | Shield of Thorns|
+| :- | - |
+| <img src="https://imgur.com/AKdw21x.png" width="200" height="200" /> | <img src="https://imgur.com/xXXZDO8.png" width="200" height="200" /> |
+|*__Echoes attacks__ after a delay.*|*__Deal damage__ to enemies </br> attacking at __close range__*|
 
---Reverb Ring--
+### **_Tier 3_**
 
-Echoes attacks after a delay.
 
-### --Tier 3--
+| Midas Cosh | Reactive Armour | Rage Toxin|
+|:-:|:-:|:-:|
+| <img src="https://imgur.com/5XBDT4y.png" width="200" height="200" /> | <img src="https://imgur.com/9zozM0g.png" width="220" height="200" /> | <img src="https://imgur.com/dG6temm.png" width="200" height="200" /> |
+| *Chance to __stun__ enemies.<br> Enemies stunned by this effect<br> grant __gold on hit__.* | *__Absorb__ a portion of incoming damage <br>while stationary. Any skill cast while<br> moving returns absorbed damage as a __nova__.* | *Forces attacked enemies to __focus you__.<br> Enraged enemies __attack faster__ but deal<br>__less damage__, and have a chance to <br>__fumble attacks__ mini-stunning the enemy* |
 
---Midas Cosh--
 
-Chance to stun enemies. Enemies stunned by this effect grant gold on hit.
+### __*Lunar*__
 
---Reactive Armour--
+| Burning Soul |
+|:-:|
+| <img src="https://imgur.com/ChiC1QC.png" width="200" height="200" /> |
+| *__Burn enemies__ for own __max <br> health damage__, at the __cost<br> of current health__.* |
 
-Absorb a portion of incoming damage while stationary. Any skill cast while moving returns absorbed damage as a nova.
-
---Rage Toxin--
-
-Forces attacked enemies to focus you. Enraged enemies attack faster but deal less damage, and have a chance to fumble attacks mini-stunning the enemy
-### --Lunar--
-
---Burning Soul--
-
-Burn enemies for own max health damage, at the cost of current health.
 
 ## Changelog
-**0.0.32**
+**0.0.39**
 
-Brought LeadFetters weight mod to be more in line with how other mods do it, if any issues happen feel free to ping me on the modding discord. 
-Hopefully corrected issue with clients being turbo laggy
-Removed accidental debug values, added framework for next item ;)
-Ooops made a debuff invisible
+New Shield of Thorns icon curtosy of SOM. Fixed compat issue with MelT
 
---Burning Soul Lunar Item--
+Fixed item prefab sizes in game being too large
+
+New Readme.
+
+Ported to thunderkit
+Now using hopoo shaders
+New textures/Icons for items
+Thanks to SOM for helping with the icon colour outlines and formatting.
+
+
+--Burning Soul--
 
 	Model and change to lunar rarity performed.
 	Rewrote Lore and fixed positioning on REX and Engi
@@ -56,12 +63,22 @@ Ooops made a debuff invisible
 	Changed DoT on self to non-lethal damage, added a 0.01 second cd to self burn application to hopefully stop multi-abilities, looking at you Miner R, from one-shotting the player
 	Rewrote to hopefully sort MP desync
 	Remade Model and icon
+	Remade Model and icon again
 	
 --Lead Fetters--
 
 	Added tier 1 item lead fetters
 	Lowered fall speed and growth.
 	Fixed issue with enemies in void fields causing errors when checking for character motors.
+	
+--Echo Ring--
+	
+	Added tier 2 item echo ring
+	
+--Shield of Thorns--
+	
+	Added tier 2 item shield of thorns
+	Increased armour damage scaling -  was too weak before for the short range
 	
 --Midas Cosh--
 	

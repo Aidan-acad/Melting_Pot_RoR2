@@ -46,11 +46,7 @@ namespace MeltingPot.Items
 
         public override ItemDisplayRuleDict CreateItemDisplayRules()
         {
-
             ItemBodyModelPrefab = Assets.mainAssetBundle.LoadAsset<GameObject>("assets/meltingpot/mpassets/itemprefabs/midas_cosh/displaymidascosh.prefab");
-            ItemBodyModelPrefab.AddComponent<RoR2.ItemDisplay>();
-            ItemBodyModelPrefab.GetComponent<RoR2.ItemDisplay>().rendererInfos = ItemHelpers.ItemDisplaySetup(ItemBodyModelPrefab);
-
             Vector3 generalScale = new Vector3(1f, 1f, 1f);
             ItemDisplayRuleDict rules = new ItemDisplayRuleDict();
             rules.Add("mdlCommandoDualies", new RoR2.ItemDisplayRule[]
