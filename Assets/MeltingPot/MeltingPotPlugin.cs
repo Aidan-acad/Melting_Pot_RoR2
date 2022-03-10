@@ -19,14 +19,14 @@ namespace MeltingPot
     [BepInPlugin(ModGuid, ModName, ModVer)]
     [BepInDependency("com.bepis.r2api")]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
-    [R2APISubmoduleDependency(nameof(ItemAPI), nameof(BuffAPI), nameof(LanguageAPI), nameof(ResourcesAPI), nameof(PrefabAPI), nameof(SoundAPI), nameof(OrbAPI),
-        nameof(DotAPI), nameof(NetworkingAPI), nameof(EffectAPI), nameof(DirectorAPI), nameof(ProjectileAPI), nameof(ArtifactAPI), nameof(RecalculateStatsAPI), nameof(UnlockableAPI))]
+    [R2APISubmoduleDependency(nameof(ItemAPI), nameof(R2API.ContentAddition), nameof(LanguageAPI), nameof(PrefabAPI), nameof(SoundAPI), nameof(OrbAPI),
+        nameof(DotAPI), nameof(NetworkingAPI), nameof(DirectorAPI), nameof(RecalculateStatsAPI), nameof(UnlockableAPI))]
     public class MeltingPotPlugin : BaseUnityPlugin
     {
         public static PluginInfo pluginInfo;
         public const string ModGuid = "com.Shasocais.MeltingPot";
         public const string ModName = "Melting_Pot";
-        public const string ModVer = "0.0.39";
+        public const string ModVer = "0.0.42";
         private static string[] blList = {
         };
         private static List<string> aiBlist = new List<string>(blList);
@@ -93,7 +93,7 @@ namespace MeltingPot
             var materials = Assets.mainAssetBundle.LoadAllAssets<Material>();
             foreach (Material material in materials)
                 if (material.shader.name.StartsWith("StubbedShader"))
-                    material.shader = Resources.Load<Shader>("shaders" + material.shader.name.Substring(13));
+                    material.shader = LegacyResourcesAPI.Load<Shader>("shaders" + material.shader.name.Substring(13));
         }
 
         public static void AttachControllerFinderToObjects(AssetBundle assetbundle) {

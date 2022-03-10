@@ -142,7 +142,7 @@ Material:
     - _EnableCutout: 0
     - _FEON: 0
     - _Fade: 1
-    - _FadeBias: 0.672
+    - _FadeBias: 0.497
     - _FlowEmissionStrength: 1
     - _FlowHeightBias: 0
     - _FlowHeightPower: 1

@@ -1,6 +1,6 @@
 ﻿using RoR2.ContentManagement;
 using System.Collections;
-using System.Reflection;
+using System.IO;
 using UnityEngine;
 using Path = System.IO.Path;
 
@@ -23,14 +23,12 @@ namespace MeltingPot.Utils
 			ContentPackProvider.serializedContentPack = mainAssetBundle.LoadAsset<SerializableContentPack>(ContentPackProvider.contentPackName);
 		}
 
-		public static string soundBankDirectory => System.IO.Path.Combine(Assets.assemblyDir, "Soundbanks");
+		public static string soundBankDirectory => System.IO.Path.Combine(Assets.assemblyDir, "MeltingPot_SoundBank.bnk");
 
 		[RoR2.SystemInitializer] //look at putting it in FinalizeAsync
 		public static void InitializeSoundbanks() {
 			Debug.Log("Initialising Melting Pot : Soundbanks");
-			uint akBankID;  // Not used. These banks can be unloaded with their file name.
-			AkSoundEngine.AddBasePath(soundBankDirectory);
-			AkSoundEngine.LoadBank("MeltingPot_SoundBank.bnk", -1, out akBankID);
+			R2API.SoundAPI.SoundBanks.Add(File.ReadAllBytes(soundBankDirectory));
 		}
 	}
 

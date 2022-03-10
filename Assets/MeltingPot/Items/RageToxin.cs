@@ -363,7 +363,7 @@ namespace MeltingPot.Items
             Fumble_eff = LoadEffect("assets/meltingpot/mpassets/Effects/Fumble_MSG.prefab", "", false);
 
             if (Fumble_eff) { PrefabAPI.RegisterNetworkPrefab(Fumble_eff); }
-            EffectAPI.AddEffect(Fumble_eff);
+            ContentAddition.AddEffect(Fumble_eff);
         }
     }
 }

@@ -35,7 +35,11 @@ A mixed bag.
 
 
 ## Changelog
-**0.0.40**
+**0.0.42**
+
+Fixed file hierarchy bug
+
+Now updated for Sotv
 
 Reverted Debug values
 

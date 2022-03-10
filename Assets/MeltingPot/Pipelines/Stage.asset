@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Stage
   m_EditorClassIdentifier: 
   Data:
-  - {fileID: 114802739471847940}
   - {fileID: 114520525572577756}
+  - {fileID: 114802739471847940}
   - {fileID: 114643622350610336}
   - {fileID: 114537630434205182}
   - {fileID: 114366308522735304}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5584685a37048ab498f67d3893023932, type: 3}
+  m_Script: {fileID: 11500000, guid: 03e220475fc1391479f98e94335346e3, type: 3}
   m_Name: StageAssetBundlesAndSwapShaders
   m_EditorClassIdentifier: 
   Errored: 0

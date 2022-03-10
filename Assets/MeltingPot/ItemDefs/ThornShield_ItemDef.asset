@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1284244208, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
+  m_Script: {fileID: -1284244208, guid: 951ce57ad999ac1f040a4dceb5f8b763, type: 3}
   m_Name: ThornShield_ItemDef
   m_EditorClassIdentifier: 
+  _itemIndex: -1
   tier: 1
   nameToken: Shasocais_ITEM_THORNSHIELD_NAME
   pickupToken: Shasocais_ITEM_THORNSHIELD_PICKUP
@@ -23,4 +24,5 @@ MonoBehaviour:
   pickupIconSprite: {fileID: 21300000, guid: 102fdeb1f36080f4eb178c0a1427b0d9, type: 3}
   hidden: 0
   canRemove: 1
-  tags: 03000000
+  tags: 0200000001000000
+  requiredExpansion: {fileID: 0}

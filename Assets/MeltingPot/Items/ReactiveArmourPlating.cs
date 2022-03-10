@@ -33,7 +33,7 @@ namespace MeltingPot.Items
         public static GameObject ReactiveArmourEffect;
         public static GameObject ReactiveArmourActiveEffect;
 
-        private GameObject jellyNova => Resources.Load<GameObject>("Prefabs/Effects/JellyfishNova");
+        private GameObject jellyNova => LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/JellyfishNova");
 
         private class ArmourController : CharacterBody.ItemBehavior
         {
@@ -317,7 +317,7 @@ namespace MeltingPot.Items
                     overlay.alphaCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
                     overlay.animateShaderAlpha = true;
                     overlay.destroyComponentOnEnd = true;
-                    overlay.originalMaterial = Resources.Load<Material>("Materials/matLunarGolemShield");
+                    overlay.originalMaterial = LegacyResourcesAPI.Load<Material>("Materials/matLunarGolemShield");
                     overlay.AddToCharacerModel(self);
                     overlayController.Overlay = overlay;
                     overlayController.Buff = NovaStationaryBuff.buffIndex;
@@ -334,7 +334,7 @@ namespace MeltingPot.Items
 
         public void CreateEffect()
         {
-            ReactiveArmourEffect = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/Effects/ImpactEffects/LightningFlash"), "ReactiveArmourProc");
+            ReactiveArmourEffect = PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/ImpactEffects/LightningFlash"), "ReactiveArmourProc");
 
             var effectComponent = ReactiveArmourEffect.GetComponent<EffectComponent>();
             effectComponent.soundName = "Melting_Pot_Reactive";
@@ -342,7 +342,7 @@ namespace MeltingPot.Items
             ReactiveArmourEffect.AddComponent<NetworkIdentity>();
 
             if (ReactiveArmourEffect) { PrefabAPI.RegisterNetworkPrefab(ReactiveArmourEffect); }
-            EffectAPI.AddEffect(ReactiveArmourEffect);
+            ContentAddition.AddEffect(ReactiveArmourEffect);
         }
 
             private void BlastNova(On.RoR2.GenericSkill.orig_OnExecute orig, global::RoR2.GenericSkill self)
@@ -373,7 +373,7 @@ namespace MeltingPot.Items
                                 falloffModel = BlastAttack.FalloffModel.SweetSpot,
                                 crit = Util.CheckRoll(owner.crit, owner.master),
                                 damageColorIndex = DamageColorIndex.Item,
-                                attackerFiltering = AttackerFiltering.NeverHit
+                                attackerFiltering = AttackerFiltering.NeverHitSelf
                             };
                             blastAttack.Fire();
                             EffectData effectData = new EffectData

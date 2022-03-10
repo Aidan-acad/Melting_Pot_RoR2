@@ -226,7 +226,7 @@ namespace MeltingPot.Items
             ThornEffect = LoadEffect("", false);
 
             if (ThornEffect) { PrefabAPI.RegisterNetworkPrefab(ThornEffect); }
-            EffectAPI.AddEffect(ThornEffect);
+            ContentAddition.AddEffect(ThornEffect);
         }
         private void Thorns(On.RoR2.SetStateOnHurt.orig_OnTakeDamageServer orig, SetStateOnHurt self, DamageReport damageReport)
         {

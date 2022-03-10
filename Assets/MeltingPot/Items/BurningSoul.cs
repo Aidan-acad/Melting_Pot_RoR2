@@ -309,7 +309,7 @@ namespace MeltingPot.Items
 
         public void CreateEffect()
         {
-            FireEffect = R2API.PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosionSolarFlare"), "FireEffect");
+            FireEffect = R2API.PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/ImpactEffects/ExplosionSolarFlare"), "FireEffect");
 
             var fireEffectComponent = FireEffect.GetComponent<EffectComponent>();
             fireEffectComponent.soundName = "Melting_Pot_Flames";
@@ -317,7 +317,7 @@ namespace MeltingPot.Items
             FireEffect.AddComponent<NetworkIdentity>();
 
             if (FireEffect) { R2API.PrefabAPI.RegisterNetworkPrefab(FireEffect); }
-            EffectAPI.AddEffect(FireEffect);
+            ContentAddition.AddEffect(FireEffect);
         }
 
         private void GrantBaseRegen(CharacterBody sender, StatHookEventArgs args)

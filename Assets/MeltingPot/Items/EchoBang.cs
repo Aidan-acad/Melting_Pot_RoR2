@@ -66,7 +66,7 @@ namespace MeltingPot.Items
                             falloffModel = BlastAttack.FalloffModel.Linear,
                             crit = Util.CheckRoll(body.crit, body.master),
                             damageColorIndex = DamageColorIndex.Item,
-                            attackerFiltering = AttackerFiltering.NeverHit
+                            attackerFiltering = AttackerFiltering.NeverHitSelf
                         };
                         blastAttack.Fire();
                         AkSoundEngine.PostEvent(2600490428, body.gameObject);
@@ -400,7 +400,7 @@ namespace MeltingPot.Items
             EchoEffect = LoadEffect("", false);
 
             if (EchoEffect) { PrefabAPI.RegisterNetworkPrefab(EchoEffect); }
-            EffectAPI.AddEffect(EchoEffect);
+            ContentAddition.AddEffect(EchoEffect);
         }
     }
 }

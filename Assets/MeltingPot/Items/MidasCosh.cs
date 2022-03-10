@@ -34,7 +34,7 @@ namespace MeltingPot.Items
         public static BuffDef GoldImmunityBuff => ContentPackProvider.contentPack.buffDefs.Find("MeltingPot_GoldStateImmunity");
         public static BuffDef GoldFrozenBuff => ContentPackProvider.contentPack.buffDefs.Find("MeltingPot_GoldStateFrozen");
 
-        public static Material MidasFrozenOverlay => Resources.Load<Material>("Materials/matImmune");
+        public static Material MidasFrozenOverlay => LegacyResourcesAPI.Load<Material>("Materials/matImmune");
         public override void Init(ConfigFile config)
         {
 
@@ -244,7 +244,7 @@ namespace MeltingPot.Items
 
         public void CreateEffect()
         {
-            GoldCoinEffect = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/Effects/ImpactEffects/CoinImpact"), "GoldCoinEmitter");
+            GoldCoinEffect = PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/ImpactEffects/CoinImpact"), "GoldCoinEmitter");
 
             var effectComponent = GoldCoinEffect.GetComponent<EffectComponent>();
             effectComponent.soundName = "Melting_Pot_Coin";
@@ -252,9 +252,9 @@ namespace MeltingPot.Items
             GoldCoinEffect.AddComponent<NetworkIdentity>();
 
             if (GoldCoinEffect) { PrefabAPI.RegisterNetworkPrefab(GoldCoinEffect); }
-            EffectAPI.AddEffect(GoldCoinEffect);
+            ContentAddition.AddEffect(GoldCoinEffect);
 
-            GoldDetonationEffect = PrefabAPI.InstantiateClone(Resources.Load<GameObject>("Prefabs/Effects/GoldShoresArmorRemoval"), "GoldBodyObj");
+            GoldDetonationEffect = PrefabAPI.InstantiateClone(LegacyResourcesAPI.Load<GameObject>("Prefabs/Effects/GoldShoresArmorRemoval"), "GoldBodyObj");
 
             var goldeffectComponent = GoldDetonationEffect.GetComponent<EffectComponent>();
             goldeffectComponent.soundName = "Melting_Pot_Gold";
@@ -262,7 +262,7 @@ namespace MeltingPot.Items
             GoldDetonationEffect.AddComponent<NetworkIdentity>();
 
             if (GoldDetonationEffect) { PrefabAPI.RegisterNetworkPrefab(GoldDetonationEffect); }
-            EffectAPI.AddEffect(GoldDetonationEffect);
+            ContentAddition.AddEffect(GoldDetonationEffect);
         }
         private void Mugged(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, RoR2.GlobalEventManager self, RoR2.DamageInfo damageInfo, GameObject victim)
         {
@@ -291,7 +291,7 @@ namespace MeltingPot.Items
                     if (body.HasBuff(GoldFrozenBuff))
                     {
 
-                        BSModLogger.LogInfo($"Money time");
+                        //BSModLogger.LogInfo($"Money time");
                         var goldToGain = Run.instance.GetDifficultyScaledCost((int)(5f * damageInfo.procCoefficient));
                         attacker.master.GiveMoney((uint)goldToGain);
 
