@@ -13,7 +13,7 @@ A mixed bag.
 ### **_Tier 2_**
 
 | Echo Ring | Shield of Thorns | Mechanical Mosquito | Serrated Pellets |
-| :- | - | - | -: |
+| :- | - | - |:-:|
 | <img src="https://imgur.com/AKdw21x.png" width="200" height="200" /> | <img src="https://imgur.com/xXXZDO8.png" width="200" height="200" /> | <img src="https://i.imgur.com/iCLQrr4.png" width="250" height="200" /> | <img src="https://i.imgur.com/kwHqnTD.png" width="300" height="200" /> |
 |*__Echoes attacks__ after a delay.*|*__Deal damage__ to enemies </br> attacking at __close range__*| *Drones and Turrets gain __bleed__ on hit,<br> and __heal__ for a portion of bleed damage dealt *| *Hitting an enemy with enough stacks of bleed __Haemorrhages__ them*|
 
@@ -33,9 +33,15 @@ A mixed bag.
 | <img src="https://imgur.com/ChiC1QC.png" width="200" height="200" /> | <img src="https://imgur.com/5cowucP.png" width="200" height="200" /> |
 | *__Burn enemies__ for own __max <br> health damage__, at the __cost<br> of current health__.* | Slay mechanical enemies for *__Buffs__ <br> but all drones are __Hostile__.* |
 
+## Manual Installs ##
+
+No need to mess with the file structure anymore, just unzip into your bepinex/plugins folder
+
 
 ## Changelog
-**0.0.55**
+**0.0.56**
+
+Fixed NRE and issues with serrated Pellets not activating. Appropriate drop halos still a work in progress.
 Added four new items, item concepts courtesy of EnderGrimm.
 Added Item displays for new items, minus serrated pellets (Working on display model atm)
 

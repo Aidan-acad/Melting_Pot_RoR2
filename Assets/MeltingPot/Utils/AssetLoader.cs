@@ -26,7 +26,7 @@ namespace MeltingPot.Utils
 			ContentPackProvider.serializedContentPack = mainAssetBundle.LoadAsset<SerializableContentPack>(ContentPackProvider.contentPackName);
 		}
 
-		public static string soundBankDirectory => System.IO.File.Exists(System.IO.Path.Combine(Assets.assemblyDir, "MeltingPot_SoundBank.bnk")) ? System.IO.Path.Combine(Assets.assemblyDir, "MeltingPot_SoundBank.bnk") : System.IO.Path.Combine(Assets.assemblyDir, "Files/MeltingPot_SoundBank.bnk");
+		public static string soundBankDirectory => System.IO.File.Exists(System.IO.Path.Combine(Assets.assemblyDir, "MeltingPot_SoundBank.bnk")) ? System.IO.Path.Combine(Assets.assemblyDir, "MeltingPot_SoundBank.bnk") : System.IO.Path.Combine(Assets.assemblyDir, "Soundbanks/MeltingPot_SoundBank.bnk");
 
 		[RoR2.SystemInitializer] //look at putting it in FinalizeAsync
 		public static void InitializeSoundbanks() {

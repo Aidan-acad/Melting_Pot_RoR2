@@ -76,7 +76,7 @@ namespace MeltingPot.Items
                         //Util.PlaySound("EchoReverbPlay", body.gameObject);
                         EffectData effectData = new EffectData {
                             origin = body.corePosition,
-                            scale = baseRadius + (echo.Item3 * radiusGrowth) * 2,
+                            scale = 2*baseRadius + (echo.Item3 * radiusGrowth) * 2,
                         };
                         EffectManager.SpawnEffect(EchoEffect, effectData, true);
                     }
