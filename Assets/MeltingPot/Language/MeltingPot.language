@@ -1,0 +1,74 @@
+{
+	"strings": {
+		//[BUFFS]
+		"BUFF_MeltingPot_Enraged_NAME": "Enraged",
+		"BUFF_MeltingPot_Enraged_DESC": "Attack speed increased, damage decreased, chance to fumble",
+
+		"BUFF_MeltingPot_GoldStateFrozen_NAME": "Midas Curse",
+		"BUFF_MeltingPot_GoldStateFrozen_DESC": "Grants gold to attacker on hit",
+
+		"BUFF_MeltingPot_GoldStateImmunity_NAME": "Auric Survivor",
+		"BUFF_MeltingPot_GoldStateImmunity_DESC": "<color=#f08d30>Free from Midas' curse.</color>",
+
+		"BUFF_MeltingPot_NovaCharge_NAME": "Reactive Charge",
+		"BUFF_MeltingPot_NovaCharge_DESC": "Stored punishment",
+
+		"BUFF_MeltingPot_NovaOff_NAME": "Reactive Field Inactive",
+		"BUFF_MeltingPot_NovaOff_DESC": "Powered Down",
+
+		"BUFF_MeltingPot_NovaPrepped_NAME": "Reactive Charge Primed",
+		"BUFF_MeltingPot_NovaPrepped_DESC": "Ready to deliver punishment",
+
+		"BUFF_MeltingPot_NovaStationary_NAME": "Reactive Field Active",
+		"BUFF_MeltingPot_NovaStationary_DESC": "Absorbing a portion of incoming damage",
+
+		"BUFF_MeltingPot_SelfSoulBurn_NAME": "Soul-Drain",
+		"BUFF_MeltingPot_SelfSoulBurn_DESC": "The price of strength",
+
+		"BUFF_MeltingPot_SoulBurn_NAME": "Immolate",
+		"BUFF_MeltingPot_SoulBurn_DESC": "Take percent max-health damage per second",
+
+		"BUFF_MeltingPot_SoulBurnActive_NAME": "Inner Fire",
+		"BUFF_MeltingPot_SoulBurnActive_DESC": "Every attack burns enemies and self",
+
+		"BUFF_MeltingPot_ThornBuff_NAME": "Gift of Thorns",
+		"BUFF_MeltingPot_ThornBuff_DESC": "Regen health on being hit",
+
+		"BUFF_MeltingPot_VampArmour_NAME": "Scavenged Plating",
+		"BUFF_MeltingPot_VampArmour_DESC": "Armour stripped from the remains of mechanical foes",
+
+		"BUFF_MeltingPot_VampDamage_NAME": "Scavenged Armaments",
+		"BUFF_MeltingPot_VampDamage_DESC": "Weaponry stripped from the remains of mechanical foes",
+
+		"BUFF_MeltingPot_VampHealth_NAME": "Scavenged Supplements",
+		"BUFF_MeltingPot_VampHealth_DESC": "Reinforcing parts stripped from the remains of mechanical foes",
+
+		//[ITEMSTATS]
+		"ITEMSTATS_MeltingPot_SelfBurn": "Self Burn Damage: {0}",
+		"ITEMSTATS_MeltingPot_EnemyBurn": "Enemy Burn Damage: {0}",
+		"ITEMSTATS_MeltingPot_TotalDamage": "Total Damage: {0}",
+		"ITEMSTATS_MeltingPot_Radius": "Current Radius: {0}",
+		"ITEMSTATS_MeltingPot_Armour": "Armour: {0}",
+		"ITEMSTATS_MeltingPot_KnockBackReduction": "Percent Knockback Reduction: {0}",
+		"ITEMSTATS_MeltingPot_DebuffDuration": "Debuff Duration: {0}",
+		"ITEMSTATS_MeltingPot_MidasChance": "Chance to Goldify: {0}",
+		"ITEMSTATS_MeltingPot_FumbleChance": "Chance for enemy to fumble: {0}",
+		"ITEMSTATS_MeltingPot_Absorb": "Percentage of damage absorbed: {0}",
+		"ITEMSTATS_MeltingPot_DroneDamageGrowth": "Drone damage modifier: {0}",
+		"ITEMSTATS_MeltingPot_DroneHealthGrowth": "Drone health modifier: {0}",
+		"ITEMSTATS_MeltingPot_DroneASGrowth": "Drone attack speed modifier: {0}",
+		"ITEMSTATS_MeltingPot_ArmourPerStack": "Armour per stock: {0}",
+		"ITEMSTATS_MeltingPot_DamagePerStack": "Damage per stock: {0}",
+		"ITEMSTATS_MeltingPot_HealthPerStack": "Health per stock: {0}",
+		"ITEMSTATS_MeltingPot_Retaliation": "Retaliation damage: {0}",
+		"ITEMSTATS_MeltingPot_HealPercent": "Minion % bleed heal: {0}",
+		"ITEMSTATS_MeltingPot_BleedChance": "Minion bleed chance: {0}",
+		"ITEMSTATS_MeltingPot_PoisonChance": "Poison chance: {0}",
+		"ITEMSTATS_MeltingPot_BlightChance": "Blight chance: {0}",
+		"ITEMSTATS_MeltingPot_WeakenChance": "Weaken chance: {0}",
+		"ITEMSTATS_MeltingPot_BleedStacks": "Stacks of bleed needed: {0}",
+
+		"ITEMSTATS_MeltingPot_Meter_PF": "m",
+		"ITEMSTATS_MeltingPot_Seconds_PF": "s"
+	}
+}
