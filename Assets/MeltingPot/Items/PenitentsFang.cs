@@ -273,16 +273,19 @@ namespace MeltingPot.Items
         }
 
         private void applyPoison(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, global::RoR2.GlobalEventManager self, global::RoR2.DamageInfo damageInfo, GameObject victim) {
-            if (NetworkServer.active) {
-                if (damageInfo.attacker.GetComponent<CharacterBody>() && victim.GetComponent<CharacterBody>()) {
-                    var count = GetCount(damageInfo.attacker.GetComponent<CharacterBody>());
-                    if (count > 0) {
-                        if (Util.CheckRoll((1 - Mathf.Clamp(1 / (1 + (count * poisonChance)), 0, 1)) * 100f * damageInfo.procCoefficient)) {
-                            damageInfo.damageType |= DamageType.PoisonOnHit;
+			try { 
+                if (NetworkServer.active) {
+                    if (damageInfo.attacker.GetComponent<CharacterBody>() && victim.GetComponent<CharacterBody>()) {
+                        var count = GetCount(damageInfo.attacker.GetComponent<CharacterBody>());
+                        if (count > 0) {
+                            if (Util.CheckRoll((1 - Mathf.Clamp(1 / (1 + (count * poisonChance)), 0, 1)) * 100f * damageInfo.procCoefficient)) {
+                                damageInfo.damageType |= DamageType.PoisonOnHit;
+                            }
                         }
                     }
                 }
-			}
+            }
+            catch { }
             orig(self, damageInfo, victim);
         }
 

@@ -269,20 +269,23 @@ namespace MeltingPot.Items
         }
 
         private void applyblight(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, global::RoR2.GlobalEventManager self, global::RoR2.DamageInfo damageInfo, GameObject victim) {
-            if (NetworkServer.active && !damageInfo.rejected) {
-                if (damageInfo.attacker.GetComponent<CharacterBody>() && victim.GetComponent<CharacterBody>()) {
-                    var count = GetCount(damageInfo.attacker.GetComponent<CharacterBody>());
-                    if (count > 0) {
-                        var cumulativeChance = blightChance * count;
-                        for (int x = 0; x < blightChance * count; x++) {
-                            if (Util.CheckRoll((Mathf.Clamp(cumulativeChance, 0, 1)) * 100f * damageInfo.procCoefficient)) {
-                                DotController.InflictDot(victim, damageInfo.attacker, DotController.DotIndex.Blight, 5f);
+            try {
+                if (NetworkServer.active && !damageInfo.rejected) {
+                    if (damageInfo.attacker.GetComponent<CharacterBody>() && victim.GetComponent<CharacterBody>()) {
+                        var count = GetCount(damageInfo.attacker.GetComponent<CharacterBody>());
+                        if (count > 0) {
+                            var cumulativeChance = blightChance * count;
+                            for (int x = 0; x < blightChance * count; x++) {
+                                if (Util.CheckRoll((Mathf.Clamp(cumulativeChance, 0, 1)) * 100f * damageInfo.procCoefficient)) {
+                                    DotController.InflictDot(victim, damageInfo.attacker, DotController.DotIndex.Blight, 5f);
+                                }
+                                cumulativeChance -= 1;
                             }
-                            cumulativeChance -= 1;
                         }
                     }
                 }
-			}
+            }
+            catch { }
             orig(self, damageInfo, victim);
         }
 

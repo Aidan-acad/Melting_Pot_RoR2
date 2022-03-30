@@ -272,7 +272,7 @@ namespace MeltingPot.Items
         {
             var body = damageReport.attackerBody;
             var victimBody = damageReport.victimBody;
-            if (body && victimBody)
+            if (body && victimBody && body != victimBody)
             {
                 var InventoryCount = GetCount(victimBody);
                 if (InventoryCount > 0) {

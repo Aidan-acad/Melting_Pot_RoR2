@@ -39,7 +39,15 @@ No need to mess with the file structure anymore, just unzip into your bepinex/pl
 
 
 ## Changelog
-**0.0.56**
+**0.0.60**
+
+Serrated pellets now has a minimum bleed requirement of 1, and strips x stacks of bleed to apply haemorrhage, Essentially a base nerf, but should incentivize stacking even more
+
+Serrated Pellets model should now be a sensible size
+
+Hopefully caught the on-death feedback loop stuff
+
+Shield of thorns should no longer proc on self-damage, so no more one-shot repulsor jumps Railgunners :)
 
 Fixed NRE and issues with serrated Pellets not activating. Appropriate drop halos still a work in progress.
 Added four new items, item concepts courtesy of EnderGrimm.

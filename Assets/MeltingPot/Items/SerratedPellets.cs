@@ -16,7 +16,7 @@ namespace MeltingPot.Items
         public override string ItemName => "Serrated Pellets";
         public override string ItemLangTokenName => "SERRATEDPELLETS";
         public override string ItemPickupDesc => $"Apply <style=cDeath>Haemorrhage</style> to heavily bleeding enemies";
-        public override string ItemFullDescription => $"Apply <style=cDeath>Haemorrhage</style> to enemies with <style=cIsUtility>{bleedStackBase}</style> <style=cStack>(- {stackDegen} per stack)</style> bleed stacks";
+        public override string ItemFullDescription => $"Apply <style=cDeath>Haemorrhage</style> to enemies with <style=cIsUtility>{bleedStackBase}</style> <style=cStack>(- {stackDegen} per stack, min of 1)</style> bleed stacks";
         public override string ItemLore => "[On the evidence bag]\n\n" +
             "Evidence found on site at homicide #867. Modifed ammunition designed for maximum internal damage.\n\nThe ammunition bears marks of amateur tooling, believed custom made by Suspect #2, a.k.a 'Desperate Outlaw'.";
 
@@ -254,18 +254,31 @@ namespace MeltingPot.Items
             On.RoR2.GlobalEventManager.OnHitEnemy += applyHaemorrhage;
         }
         private void applyHaemorrhage(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, global::RoR2.GlobalEventManager self, global::RoR2.DamageInfo damageInfo, GameObject victim) {
-            if (NetworkServer.active) {
-                if (damageInfo.attacker && victim) {
-                    if (damageInfo.attacker.GetComponent<CharacterBody>() && victim.GetComponent<CharacterBody>()) {
-                        var count = GetCount(damageInfo.attacker.GetComponent<CharacterBody>());
-                        if (count > 0) {
-                            if (victim.GetComponent<CharacterBody>().GetBuffCount(BuffCatalog.FindBuffIndex("bdBleeding")) >= Mathf.Max((bleedStackBase - (count - 1) * stackDegen), 0)) {
-                                DotController.InflictDot(victim, damageInfo.attacker, DotController.DotIndex.SuperBleed, 15f);
+            try { 
+                if (NetworkServer.active) {
+                    if (damageInfo.attacker && victim) {
+                        if (damageInfo.attacker.GetComponent<CharacterBody>() && victim.GetComponent<CharacterBody>()) {
+                            var count = GetCount(damageInfo.attacker.GetComponent<CharacterBody>());
+                            if (count > 0) {
+                                if (victim.GetComponent<CharacterBody>().GetBuffCount(BuffCatalog.FindBuffIndex("bdBleeding")) >= Mathf.Max((bleedStackBase - (count - 1) * stackDegen), 1)) {
+                                    DotController.InflictDot(victim, damageInfo.attacker, DotController.DotIndex.SuperBleed, 15f);
+                                    try {
+                                        DotController dotController;
+                                        DotController.dotControllerLocator.TryGetValue(victim.GetInstanceID(), out dotController);
+                                        for (int x = 0; x < Mathf.Max((bleedStackBase - (count - 1) * stackDegen), 1); x++) {
+                                            dotController.RemoveDotStackAtServer(((int)DotController.DotIndex.Bleed));
+                                        }
+									}
+									catch {
+                                        // Failed probably due to not having bleed for some reason
+									}
+                                }
                             }
                         }
                     }
                 }
-			}
+            }
+            catch { }
             orig(self, damageInfo, victim);
         }
 

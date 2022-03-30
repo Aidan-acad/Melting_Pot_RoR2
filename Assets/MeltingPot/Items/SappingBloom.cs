@@ -228,16 +228,19 @@ namespace MeltingPot.Items
         }
 
         private void applyweaken(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, global::RoR2.GlobalEventManager self, global::RoR2.DamageInfo damageInfo, GameObject victim) {
-            if (NetworkServer.active) {
-                if (damageInfo.attacker.GetComponent<CharacterBody>() && victim.GetComponent<CharacterBody>()) {
-                    var count = GetCount(damageInfo.attacker.GetComponent<CharacterBody>());
-                    if (count > 0) {
-                        if (Util.CheckRoll((1 - Mathf.Clamp(1 / (1 + (count * weakenChance)), 0, 1)) * 100f * damageInfo.procCoefficient)) {
-                            damageInfo.damageType |= DamageType.WeakOnHit;
+			try { 
+                if (NetworkServer.active) {
+                    if (damageInfo.attacker.GetComponent<CharacterBody>() && victim.GetComponent<CharacterBody>()) {
+                        var count = GetCount(damageInfo.attacker.GetComponent<CharacterBody>());
+                        if (count > 0) {
+                            if (Util.CheckRoll((1 - Mathf.Clamp(1 / (1 + (count * weakenChance)), 0, 1)) * 100f * damageInfo.procCoefficient)) {
+                                damageInfo.damageType |= DamageType.WeakOnHit;
+                            }
                         }
                     }
                 }
-			}
+            }
+            catch { }
             orig(self, damageInfo, victim);
         }
 

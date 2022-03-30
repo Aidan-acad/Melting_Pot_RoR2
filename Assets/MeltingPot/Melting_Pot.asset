@@ -57,7 +57,7 @@ MonoBehaviour:
   Author: Shasocais
   Name: Melting_Pot
   Description: A W.I.P Mish-Mash
-  Version: 0.0.56
+  Version: 0.0.60
   Dependencies:
   - {fileID: 11400000, guid: 2d4d09ec817c24698d35dc9bf0704fdc, type: 2}
   - {fileID: 11400000, guid: bff73382628f698c89c1d9ae43c8f350, type: 2}

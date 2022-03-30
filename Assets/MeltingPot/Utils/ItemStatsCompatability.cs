@@ -215,7 +215,7 @@ namespace MeltingPot.Utils
 				ItemIndex itemIndex13 = ContentPackProvider.contentPack.itemDefs.Find("SerratedPellets_ItemDef").itemIndex;
 				ItemStatDef itemStatDef13 = new ItemStatDef();
 				List<ItemStat> list14 = new List<ItemStat>();
-				list14.Add(new ItemStat((float itemCount, StatContext ctx) => Math.Max(SerratedPellets.bleedStackBase - (itemCount - 1) * SerratedPellets.stackDegen, 0), (float value, StatContext ctx) => Language.GetStringFormatted("ITEMSTATS_MeltingPot_BleedStacks", new object[]
+				list14.Add(new ItemStat((float itemCount, StatContext ctx) => Math.Max(SerratedPellets.bleedStackBase - (itemCount - 1) * SerratedPellets.stackDegen, 1), (float value, StatContext ctx) => Language.GetStringFormatted("ITEMSTATS_MeltingPot_BleedStacks", new object[]
 			   {
 				Extensions.FormatInt(value, "", 0, true, "\"green\"")
 			   })));
