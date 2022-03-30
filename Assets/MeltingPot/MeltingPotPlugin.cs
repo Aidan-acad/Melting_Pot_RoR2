@@ -29,7 +29,7 @@ namespace MeltingPot
         public static PluginInfo pluginInfo;
         public const string ModGuid = "com.Shasocais.MeltingPot";
         public const string ModName = "Melting_Pot";
-        public const string ModVer = "0.0.60";
+        public const string ModVer = "0.0.61";
 
         public static ExpansionDef sotvRef;
         private static string[] blList = {

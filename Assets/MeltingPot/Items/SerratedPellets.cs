@@ -5,6 +5,7 @@ using UnityEngine;
 using MeltingPot.Utils;
 using UnityEngine.Networking;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace MeltingPot.Items
 {
@@ -13,10 +14,11 @@ namespace MeltingPot.Items
 
         public static float bleedStackBase = 15f;
         public static float stackDegen = 3f;
+        public static DotController.DotIndex eternalHaemoDot { get; private set; }
         public override string ItemName => "Serrated Pellets";
         public override string ItemLangTokenName => "SERRATEDPELLETS";
-        public override string ItemPickupDesc => $"Apply <style=cDeath>Haemorrhage</style> to heavily bleeding enemies";
-        public override string ItemFullDescription => $"Apply <style=cDeath>Haemorrhage</style> to enemies with <style=cIsUtility>{bleedStackBase}</style> <style=cStack>(- {stackDegen} per stack, min of 1)</style> bleed stacks";
+        public override string ItemPickupDesc => $"Apply <style=cDeath>Permanent Haemorrhage</style> to heavily bleeding enemies";
+        public override string ItemFullDescription => $"Apply <style=cDeath>Permanent Haemorrhage</style> to enemies with <style=cIsUtility>{bleedStackBase}</style> <style=cStack>(- {stackDegen} per stack, min of 1)</style> bleed stacks";
         public override string ItemLore => "[On the evidence bag]\n\n" +
             "Evidence found on site at homicide #867. Modifed ammunition designed for maximum internal damage.\n\nThe ammunition bears marks of amateur tooling, believed custom made by Suspect #2, a.k.a 'Desperate Outlaw'.";
 
@@ -34,6 +36,7 @@ namespace MeltingPot.Items
             if (enabled) {
                 CreateLang();
                 Hooks();
+                CreateDoTs();
             }
         }
         public override ItemDisplayRuleDict CreateItemDisplayRules() {
@@ -250,18 +253,33 @@ namespace MeltingPot.Items
             return rules;
         }
 
+        private void CreateDoTs() {
+            DotController.DotDef eternalHaemoDotDef = new DotController.DotDef {
+                interval = 0.25f,
+                damageCoefficient = 0.333f,
+                damageColorIndex = DamageColorIndex.SuperBleed,
+                associatedBuff = RoR2Content.Buffs.SuperBleed
+            };
+            eternalHaemoDot = DotAPI.RegisterDotDef(eternalHaemoDotDef);
+        }
+
         public override void Hooks() {
             On.RoR2.GlobalEventManager.OnHitEnemy += applyHaemorrhage;
         }
         private void applyHaemorrhage(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, global::RoR2.GlobalEventManager self, global::RoR2.DamageInfo damageInfo, GameObject victim) {
             try { 
                 if (NetworkServer.active) {
+                    if (DotController.GetDotDef(eternalHaemoDot).associatedBuff == null) {
+                        MeltingPotPlugin.ModLogger.LogInfo("Re-applying assoc buff");
+                        DotController.dotDefs[(int)eternalHaemoDot].associatedBuff = RoR2Content.Buffs.SuperBleed;
+					}
+                    //MeltingPotPlugin.ModLogger.LogInfo($"Buffname - {DotController.dotDefs[(int)eternalHaemoDot].associatedBuff.name}");
                     if (damageInfo.attacker && victim) {
                         if (damageInfo.attacker.GetComponent<CharacterBody>() && victim.GetComponent<CharacterBody>()) {
                             var count = GetCount(damageInfo.attacker.GetComponent<CharacterBody>());
                             if (count > 0) {
                                 if (victim.GetComponent<CharacterBody>().GetBuffCount(BuffCatalog.FindBuffIndex("bdBleeding")) >= Mathf.Max((bleedStackBase - (count - 1) * stackDegen), 1)) {
-                                    DotController.InflictDot(victim, damageInfo.attacker, DotController.DotIndex.SuperBleed, 15f);
+                                    DotController.InflictDot(victim, damageInfo.attacker, eternalHaemoDot, float.MaxValue);
                                     try {
                                         DotController dotController;
                                         DotController.dotControllerLocator.TryGetValue(victim.GetInstanceID(), out dotController);

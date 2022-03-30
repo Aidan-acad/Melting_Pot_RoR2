@@ -39,7 +39,10 @@ No need to mess with the file structure anymore, just unzip into your bepinex/pl
 
 
 ## Changelog
-**0.0.60**
+**0.0.61**
+
+Haemorrhage stacks from serrated pellets are now permanent, to offset the loss of immediate damage,
+For reference per tick each haemorrhage stack does about 1.5x the damage of a bleed stack per game tick.
 
 Serrated pellets now has a minimum bleed requirement of 1, and strips x stacks of bleed to apply haemorrhage, Essentially a base nerf, but should incentivize stacking even more
 
