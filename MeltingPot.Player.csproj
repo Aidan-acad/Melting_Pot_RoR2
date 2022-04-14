@@ -649,20 +649,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MeltingPot\Items\BurningSoul.cs" />
-    <Compile Include="Assets\MeltingPot\Items\EchoBang.cs" />
-    <Compile Include="Assets\MeltingPot\Items\FesteringFang.cs" />
     <Compile Include="Assets\MeltingPot\Items\ItemBase.cs" />
-    <Compile Include="Assets\MeltingPot\Items\LeadFetters.cs" />
-    <Compile Include="Assets\MeltingPot\Items\MechMosquito.cs" />
-    <Compile Include="Assets\MeltingPot\Items\MidasCosh.cs" />
-    <Compile Include="Assets\MeltingPot\Items\PenitentsFang.cs" />
-    <Compile Include="Assets\MeltingPot\Items\RageToxin.cs" />
-    <Compile Include="Assets\MeltingPot\Items\ReactiveArmourPlating.cs" />
-    <Compile Include="Assets\MeltingPot\Items\SappingBloom.cs" />
-    <Compile Include="Assets\MeltingPot\Items\ScrapVamp.cs" />
-    <Compile Include="Assets\MeltingPot\Items\SerratedPellets.cs" />
-    <Compile Include="Assets\MeltingPot\Items\ThornShield.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Lunar\BloodPrice.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Lunar\BurningSoul.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Lunar\ScrapVamp.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_1\GlassShield.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_1\JustBucket.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_1\LeadFetters.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_1\PenitentsFang.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_1\SappingBloom.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_2\EchoBang.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_2\MechMosquito.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_2\SerratedPellets.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_2\ThornShield.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_3\MidasCosh.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_3\RageToxin.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_3\ReactiveArmourPlating.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Void_Tier_1\FesteringFang.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Void_Tier_1\FluffyManacles.cs" />
     <Compile Include="Assets\MeltingPot\MeltingPotPlugin.cs" />
     <Compile Include="Assets\MeltingPot\Utils\AssetLoader.cs" />
     <Compile Include="Assets\MeltingPot\Utils\BetterUICompatability.cs" />

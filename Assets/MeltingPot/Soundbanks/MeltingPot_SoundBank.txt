@@ -1,4 +1,5 @@
 Event	ID	Name			Wwise Object Path	Notes
+	1701980705	ShieldBreakPlay			\Default Work Unit\ShieldBreakPlay	
 	2600490428	EchoReverbPlay			\Default Work Unit\EchoReverbPlay	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
@@ -6,5 +7,6 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 	3695994288	Volume_Master			\Default Work Unit\Volume_Master	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	605980368	shieldBreak	C:\Users\aidan\OneDrive\Documents\WwiseProjects\MeltingPot\.cache\Windows\SFX\shieldBreak_3F75BDB9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\ItemSounds\shieldBreak		12387
 	667089187	cyberDroplet	C:\Users\aidan\OneDrive\Documents\WwiseProjects\MeltingPot\.cache\Windows\SFX\cyberDroplet_0D5756A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Master Mixer\SFX Mixer\ItemSounds\cyberDroplet		53568
 

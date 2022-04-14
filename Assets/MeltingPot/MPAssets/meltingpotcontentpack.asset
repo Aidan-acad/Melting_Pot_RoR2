@@ -37,6 +37,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 79b8e977990850a47b63086e4bec163e, type: 2}
   - {fileID: 11400000, guid: f6553b2b9cd312b4881f4c2240824506, type: 2}
   - {fileID: 11400000, guid: a8d100a50ac03b24d9c9f88f3351ce01, type: 2}
+  - {fileID: 11400000, guid: 307b4279e0ca8354b8c543ed95957691, type: 2}
+  - {fileID: 11400000, guid: 7690832858731914498906236d4836a3, type: 2}
+  - {fileID: 11400000, guid: 5575ca141be6428419d0a7a9b36f1d61, type: 2}
+  - {fileID: 11400000, guid: 8d8b3e6b8cdebd446ac326ecf35e1ab1, type: 2}
+  - {fileID: 11400000, guid: 0c63f1aab3f3d744a93c028d9805a745, type: 2}
   equipmentDefs: []
   buffDefs:
   - {fileID: 11400000, guid: a71cfcb95a101d04f8d928bc89d72148, type: 2}
@@ -54,6 +59,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e32fa600a95cab4fa318c482a1c8fe0, type: 2}
   - {fileID: 11400000, guid: 2b3cea801ea0d9c4987bea05c28a3ee1, type: 2}
   - {fileID: 11400000, guid: 96ef2d6e34e3363468c41ded72964c9c, type: 2}
+  - {fileID: 11400000, guid: a5bc1ca4c47de9345946eff2b4805948, type: 2}
   eliteDefs: []
   unlockableDefs: []
   survivorDefs: []
@@ -65,6 +71,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1d4f9fd3cbf7c234db41d0c7e4cc9681, type: 2}
   - {fileID: 11400000, guid: 7286343d596bec246a0fce18df39af5f, type: 2}
   - {fileID: 11400000, guid: dda806b95b601314da30769062d7a04e, type: 2}
+  - {fileID: 11400000, guid: fd054993722f09641a38515402da9deb, type: 2}
   musicTrackDefs: []
   gameEndingDefs: []
   entityStateConfigurations: []

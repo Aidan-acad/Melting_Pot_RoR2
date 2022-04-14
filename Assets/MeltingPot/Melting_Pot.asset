@@ -57,7 +57,7 @@ MonoBehaviour:
   Author: Shasocais
   Name: Melting_Pot
   Description: A W.I.P Mish-Mash
-  Version: 0.0.61
+  Version: 0.0.64
   Dependencies:
   - {fileID: 11400000, guid: 2d4d09ec817c24698d35dc9bf0704fdc, type: 2}
   - {fileID: 11400000, guid: bff73382628f698c89c1d9ae43c8f350, type: 2}
@@ -83,19 +83,7 @@ MonoBehaviour:
   - assetBundleName: meltingpotassets
     assets:
     - {fileID: 102900000, guid: 7a7d1631601ed7f4190a5043d9596079, type: 3}
-    - {fileID: 102900000, guid: 44e885b9a0eed4c41b3d55887dc69580, type: 3}
-    - {fileID: 102900000, guid: 2777ae009763664499a9f1badb1d87d1, type: 3}
-    - {fileID: 102900000, guid: de6038b0a3d6354428fc7a99b1c9be23, type: 3}
-    - {fileID: 102900000, guid: 41c702b203637614a996eea4d7d564bc, type: 3}
-    - {fileID: 102900000, guid: a2cd61c7d4fb2cb419148e50163f1366, type: 3}
-    - {fileID: 102900000, guid: e843a51128476374f921a03f18a50eb0, type: 3}
-    - {fileID: 102900000, guid: 42d10cb72c6d8e943998dbb954c8d9ae, type: 3}
-    - {fileID: 102900000, guid: 714f5bdf66ac96f4ab02d9494e365da4, type: 3}
-    - {fileID: 102900000, guid: 046a2d4bfa4d82c489a017ecc908ac8e, type: 3}
-    - {fileID: 102900000, guid: c75579602bcdfa849aed7681b7d1d2bc, type: 3}
-    - {fileID: 102900000, guid: 8e4e03b5d40013d40ad86eb7e90b13c7, type: 3}
-    - {fileID: 102900000, guid: c1490ab3b446d3d4abf5eaf7fadb86f6, type: 3}
-    - {fileID: 102900000, guid: be44a7d53b09aa441a48d57c83af568b, type: 3}
+    - {fileID: 102900000, guid: d140583c6d746364cb2a7b8ff77a462e, type: 3}
 --- !u!114 &114857602633418124
 MonoBehaviour:
   m_ObjectHideFlags: 0

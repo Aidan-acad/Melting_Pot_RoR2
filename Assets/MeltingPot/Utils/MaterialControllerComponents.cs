@@ -1,18 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace MeltingPot.Utils
 {
     public class MaterialControllerComponents
     {
-        public static void SetShaderKeywordBasedOnBool(bool enabled, Material material, string keyword)
+        public static void SetShaderKeywordBasedOnBool(
+            bool enabled,
+            Material material,
+            string keyword
+        )
         {
             if (!material)
             {
-                MeltingPotPlugin.ModLogger.LogError($"Material field was null, cannot run shader keyword method.");
+                MeltingPotPlugin.ModLogger.LogError(
+                    $"Material field was null, cannot run shader keyword method."
+                );
                 return;
             }
 
@@ -36,12 +39,12 @@ namespace MeltingPot.Utils
         {
             if (material && meshRenderer)
             {
-                if(meshRenderer is SkinnedMeshRenderer skinnedMeshRenderer)
+                if (meshRenderer is SkinnedMeshRenderer skinnedMeshRenderer)
                 {
                     skinnedMeshRenderer.sharedMaterials = new Material[] { material };
                 }
 
-                if(meshRenderer is MeshRenderer meshRendererType)
+                if (meshRenderer is MeshRenderer meshRendererType)
                 {
                     meshRendererType.material = material;
                 }
@@ -60,32 +63,34 @@ namespace MeltingPot.Utils
             {
                 if (Renderer)
                 {
-                    if(Renderer is MeshRenderer meshRendererType)
+                    if (Renderer is MeshRenderer meshRendererType)
                     {
                         Material = meshRendererType.material;
                     }
-                    if(Renderer is SkinnedMeshRenderer skinnedMeshRenderer)
+                    if (Renderer is SkinnedMeshRenderer skinnedMeshRenderer)
                     {
                         Material = skinnedMeshRenderer.sharedMaterials[0];
                     }
 
                     if (Material)
                     {
-
                         switch (Material.shader.name)
                         {
                             case "Hopoo Games/Deferred/Standard":
-                                var standardController = gameObject.AddComponent<HGStandardController>();
+                                var standardController =
+                                    gameObject.AddComponent<HGStandardController>();
                                 standardController.Material = Material;
                                 standardController.Renderer = Renderer;
                                 break;
                             case "Hopoo Games/FX/Cloud Remap":
-                                var cloudController = gameObject.AddComponent<HGCloudRemapController>();
+                                var cloudController =
+                                    gameObject.AddComponent<HGCloudRemapController>();
                                 cloudController.Material = Material;
                                 cloudController.Renderer = Renderer;
                                 break;
                             case "Hopoo Games/FX/Cloud Intersection Remap":
-                                var intersectionController = gameObject.AddComponent<HGIntersectionController>();
+                                var intersectionController =
+                                    gameObject.AddComponent<HGIntersectionController>();
                                 intersectionController.Material = Material;
                                 intersectionController.Renderer = Renderer;
                                 break;
@@ -133,6 +138,7 @@ namespace MeltingPot.Utils
                 Subsurface = 4,
                 Grass = 5
             }
+
             public _RampInfoEnum _RampChoice;
 
             public enum _DecalLayerEnum
@@ -142,6 +148,7 @@ namespace MeltingPot.Utils
                 Character = 2,
                 Misc = 3
             }
+
             public _DecalLayerEnum _DecalLayer;
 
             [Range(0f, 1f)]
@@ -156,6 +163,7 @@ namespace MeltingPot.Utils
                 Front = 1,
                 Back = 2
             }
+
             public _CullEnum _Cull_Mode;
 
             public bool _EnableDither;
@@ -205,6 +213,7 @@ namespace MeltingPot.Utils
                 TopDown = 1,
                 BackToFront = 3
             }
+
             public _PrintDirectionEnum _PrintDirection;
 
             public Texture _PrintRamp;
@@ -282,6 +291,7 @@ namespace MeltingPot.Utils
             {
                 GrabMaterialValues();
             }
+
             public void GrabMaterialValues()
             {
                 if (Material)
@@ -322,7 +332,9 @@ namespace MeltingPot.Utils
                     _PrintColorBoost = Material.GetFloat("_PrintBoost");
                     _PrintAlphaBias = Material.GetFloat("_PrintBias");
                     _PrintEmissionToAlbedoLerp = Material.GetFloat("_PrintEmissionToAlbedoLerp");
-                    _PrintDirection = (_PrintDirectionEnum)(int)Material.GetFloat("_PrintDirection");
+                    _PrintDirection = (_PrintDirectionEnum)(int)Material.GetFloat(
+                        "_PrintDirection"
+                    );
                     _PrintRamp = Material.GetTexture("_PrintRamp");
                     _EliteBrightnessMin = Material.GetFloat("_EliteBrightnessMin");
                     _EliteBrightnessMax = Material.GetFloat("_EliteBrightnessMax");
@@ -413,7 +425,11 @@ namespace MeltingPot.Utils
                     Material.SetFloat("_EmPower", _EmPower);
                     Material.SetFloat("_Smoothness", _Smoothness);
 
-                    SetShaderKeywordBasedOnBool(_IgnoreDiffuseAlphaForSpeculars, Material, "FORCE_SPEC");
+                    SetShaderKeywordBasedOnBool(
+                        _IgnoreDiffuseAlphaForSpeculars,
+                        Material,
+                        "FORCE_SPEC"
+                    );
 
                     Material.SetFloat("_RampInfo", Convert.ToSingle(_RampChoice));
                     Material.SetFloat("_DecalLayer", Convert.ToSingle(_DecalLayer));
@@ -425,7 +441,11 @@ namespace MeltingPot.Utils
 
                     Material.SetFloat("_FadeBias", _FadeBias);
 
-                    SetShaderKeywordBasedOnBool(_EnableFresnelEmission, Material, "FRESNEL_EMISSION");
+                    SetShaderKeywordBasedOnBool(
+                        _EnableFresnelEmission,
+                        Material,
+                        "FRESNEL_EMISSION"
+                    );
 
                     if (_FresnelRamp)
                     {
@@ -484,7 +504,11 @@ namespace MeltingPot.Utils
                     Material.SetFloat("_EliteBrightnessMax", _EliteBrightnessMax);
 
                     SetShaderKeywordBasedOnBool(_EnableSplatmap, Material, "SPLATMAP");
-                    SetShaderKeywordBasedOnBool(_UseVertexColorsInstead, Material, "USE_VERTEX_COLORS");
+                    SetShaderKeywordBasedOnBool(
+                        _UseVertexColorsInstead,
+                        Material,
+                        "USE_VERTEX_COLORS"
+                    );
 
                     Material.SetFloat("_Depth", _BlendDepth);
 
@@ -587,7 +611,6 @@ namespace MeltingPot.Utils
                     SetShaderKeywordBasedOnBool(_EnableLimbRemoval, Material, "LIMBREMOVAL");
                 }
             }
-
         }
 
         /// <summary>
@@ -633,6 +656,7 @@ namespace MeltingPot.Utils
                 Front = 1,
                 Back = 2
             }
+
             public _CullEnum _Cull_Mode;
 
             public enum _ZTestEnum
@@ -647,6 +671,7 @@ namespace MeltingPot.Utils
                 GreaterEqual = 7,
                 Always = 8
             }
+
             public _ZTestEnum _ZTest_Mode;
 
             [Range(-10f, 10f)]
@@ -727,11 +752,8 @@ namespace MeltingPot.Utils
                 }
             }
 
-
-
             public void Update()
             {
-
                 if (Material)
                 {
                     if (Material.name != MaterialName && Renderer)
@@ -809,7 +831,11 @@ namespace MeltingPot.Utils
 
                     SetShaderKeywordBasedOnBool(_VertexColors, Material, "VERTEXCOLOR");
                     SetShaderKeywordBasedOnBool(_LuminanceForVertexAlpha, Material, "VERTEXALPHA");
-                    SetShaderKeywordBasedOnBool(_LuminanceForTextureAlpha, Material, "CALCTEXTUREALPHA");
+                    SetShaderKeywordBasedOnBool(
+                        _LuminanceForTextureAlpha,
+                        Material,
+                        "CALCTEXTUREALPHA"
+                    );
                     SetShaderKeywordBasedOnBool(_VertexOffset, Material, "VERTEXOFFSET");
                     SetShaderKeywordBasedOnBool(_FresnelFade, Material, "FRESNEL");
                     SetShaderKeywordBasedOnBool(_SkyboxOnly, Material, "SKYBOX_ONLY");
@@ -844,6 +870,7 @@ namespace MeltingPot.Utils
                 SrcAlphaSaturate = 9,
                 OneMinusSrcAlpha = 10
             }
+
             public enum _DstBlendFloatEnum
             {
                 Zero = 0,
@@ -858,6 +885,7 @@ namespace MeltingPot.Utils
                 SrcAlphaSaturate = 9,
                 OneMinusSrcAlpha = 10
             }
+
             public _SrcBlendFloatEnum _Source_Blend_Mode;
             public _DstBlendFloatEnum _Destination_Blend_Mode;
 
@@ -903,6 +931,7 @@ namespace MeltingPot.Utils
                 Front = 1,
                 Back = 2
             }
+
             public _CullEnum _Cull_Mode;
 
             public bool _FadeFromVertexColorsOn;
@@ -917,8 +946,12 @@ namespace MeltingPot.Utils
             {
                 if (Material)
                 {
-                    _Source_Blend_Mode = (_SrcBlendFloatEnum)(int)Material.GetFloat("_SrcBlendFloat");
-                    _Destination_Blend_Mode = (_DstBlendFloatEnum)(int)Material.GetFloat("_DstBlendFloat");
+                    _Source_Blend_Mode = (_SrcBlendFloatEnum)(int)Material.GetFloat(
+                        "_SrcBlendFloat"
+                    );
+                    _Destination_Blend_Mode = (_DstBlendFloatEnum)(int)Material.GetFloat(
+                        "_DstBlendFloat"
+                    );
                     _Tint = Material.GetColor("_TintColor");
                     _MainTex = Material.GetTexture("_MainTex");
                     _MainTexScale = Material.GetTextureScale("_MainTex");
@@ -949,7 +982,6 @@ namespace MeltingPot.Utils
 
             public void Update()
             {
-
                 if (Material)
                 {
                     if (Material.name != MaterialName && Renderer)
@@ -1014,8 +1046,16 @@ namespace MeltingPot.Utils
                     Material.SetFloat("_IntersectionStrength", _IntersectionStrength);
                     Material.SetFloat("_Cull", Convert.ToSingle(_Cull_Mode));
 
-                    SetShaderKeywordBasedOnBool(_FadeFromVertexColorsOn, Material, "FADE_FROM_VERTEX_COLORS");
-                    SetShaderKeywordBasedOnBool(_EnableTriplanarProjectionsForClouds, Material, "TRIPLANAR");
+                    SetShaderKeywordBasedOnBool(
+                        _FadeFromVertexColorsOn,
+                        Material,
+                        "FADE_FROM_VERTEX_COLORS"
+                    );
+                    SetShaderKeywordBasedOnBool(
+                        _EnableTriplanarProjectionsForClouds,
+                        Material,
+                        "TRIPLANAR"
+                    );
                 }
             }
         }

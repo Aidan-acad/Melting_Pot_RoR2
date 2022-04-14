@@ -67,6 +67,10 @@
 		"ITEMSTATS_MeltingPot_BlightChance": "Blight chance: {0}",
 		"ITEMSTATS_MeltingPot_WeakenChance": "Weaken chance: {0}",
 		"ITEMSTATS_MeltingPot_BleedStacks": "Stacks of bleed needed: {0}",
+		"ITEMSTATS_MeltingPot_Stacks": "Stacks remaining: {0}",
+		"ITEMSTATS_MeltingPot_EstimateArmourIncrease": "Armour Increase: {0}",
+		"ITEMSTATS_MeltingPot_GoldExpModifier": "Increase to gold exp amount: {0}",
+		"ITEMSTATS_MeltingPot_HealthCost": "Health percentage cost increase: {0}",
 
 		"ITEMSTATS_MeltingPot_Meter_PF": "m",
 		"ITEMSTATS_MeltingPot_Seconds_PF": "s"

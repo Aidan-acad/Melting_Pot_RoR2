@@ -1,82 +1,111 @@
-﻿using RoR2.ContentManagement;
+﻿using MeltingPot.Items;
+using RoR2;
+using RoR2.ContentManagement;
 using System.Collections;
-using System.IO;
-using UnityEngine;
 using System.Collections.Generic;
-using Path = System.IO.Path;
-using MeltingPot.Items;
+using System.IO;
 using System.Linq;
+using UnityEngine;
+using Path = System.IO.Path;
 
 namespace MeltingPot.Utils
 {
-	public static class Assets
-	{
-		public static AssetBundle mainAssetBundle = null;
-		//the filename of your assetbundle
-		internal static string assetBundleName = "meltingpotassets";
+    public static class Assets
+    {
+        public static AssetBundle mainAssetBundle = null;
 
-		internal static string assemblyDir {
-			get {
-				return Path.GetDirectoryName(MeltingPotPlugin.pluginInfo.Location);
-			}
-		}
+        //the filename of your assetbundle
+        internal static string assetBundleName = "meltingpotassets";
 
-		public static void PopulateAssets() {
-			mainAssetBundle = AssetBundle.LoadFromFile(Path.Combine(assemblyDir, assetBundleName));
-			ContentPackProvider.serializedContentPack = mainAssetBundle.LoadAsset<SerializableContentPack>(ContentPackProvider.contentPackName);
-		}
+        internal static string assemblyDir
+        {
+            get { return Path.GetDirectoryName(MeltingPotPlugin.pluginInfo.Location); }
+        }
 
-		public static string soundBankDirectory => System.IO.File.Exists(System.IO.Path.Combine(Assets.assemblyDir, "MeltingPot_SoundBank.bnk")) ? System.IO.Path.Combine(Assets.assemblyDir, "MeltingPot_SoundBank.bnk") : System.IO.Path.Combine(Assets.assemblyDir, "Soundbanks/MeltingPot_SoundBank.bnk");
+        public static void PopulateAssets()
+        {
+            mainAssetBundle = AssetBundle.LoadFromFile(Path.Combine(assemblyDir, assetBundleName));
+            ContentPackProvider.serializedContentPack =
+                mainAssetBundle.LoadAsset<SerializableContentPack>(
+                    ContentPackProvider.contentPackName
+                );
+        }
 
-		[RoR2.SystemInitializer] //look at putting it in FinalizeAsync
-		public static void InitializeSoundbanks() {
-			Debug.Log("Initialising Melting Pot : Soundbanks");
-			R2API.SoundAPI.SoundBanks.Add(File.ReadAllBytes(soundBankDirectory));
-		}
-	}
+        public static string soundBankDirectory =>
+            System.IO.File.Exists(
+                System.IO.Path.Combine(Assets.assemblyDir, "MeltingPot_SoundBank.bnk")
+            )
+              ? System.IO.Path.Combine(Assets.assemblyDir, "MeltingPot_SoundBank.bnk")
+              : System.IO.Path.Combine(Assets.assemblyDir, "Soundbanks/MeltingPot_SoundBank.bnk");
 
-	public class ContentPackProvider : IContentPackProvider {
-		public static BepInEx.Logging.ManualLogSource BSModLogger;
-		public static SerializableContentPack serializedContentPack;
-		public static ContentPack contentPack;
-		//Should be the same names as your SerializableContentPack in the asset bundle
-		public static string contentPackName = "meltingpotcontentpack";
+        [RoR2.SystemInitializer] //look at putting it in FinalizeAsync
+        public static void InitializeSoundbanks()
+        {
+            Debug.Log("Initialising Melting Pot : Soundbanks");
+            R2API.SoundAPI.SoundBanks.Add(File.ReadAllBytes(soundBankDirectory));
+        }
+    }
 
-		public string identifier {
-			get {
-				return "Melting Pot";
-			}
-		}
+    public class ContentPackProvider : IContentPackProvider
+    {
+        public static BepInEx.Logging.ManualLogSource BSModLogger;
+        public static SerializableContentPack serializedContentPack;
+        public static ContentPack contentPack;
 
-		internal static void Initialize() {
-			contentPack = serializedContentPack.CreateContentPack();
-		}
+        //Should be the same names as your SerializableContentPack in the asset bundle
+        public static string contentPackName = "meltingpotcontentpack";
 
-		internal static void Re_Initilize(List<ItemBase> Items) {
-			serializedContentPack.itemDefs = Items.Where(x => x.Enabled).Select(C => C.ItemDef).ToArray();
-			contentPack = serializedContentPack.CreateContentPack();
-			ContentManager.collectContentPackProviders += AddCustomContent;
-		}
+        public string identifier
+        {
+            get { return "Melting Pot"; }
+        }
 
-		private static void AddCustomContent(ContentManager.AddContentPackProviderDelegate addContentPackProvider) {
-			addContentPackProvider(new ContentPackProvider());
-		}
+        internal static void Initialize()
+        {
+            contentPack = serializedContentPack.CreateContentPack();
+        }
 
-		public IEnumerator LoadStaticContentAsync(LoadStaticContentAsyncArgs args) {
-			args.ReportProgress(1f);
-			yield break;
-		}
+        internal static void Re_Initilize(List<ItemBase> Items)
+        {
+            serializedContentPack.itemDefs = Items
+                .Where(x => x.Enabled)
+                .Select(C => C.ItemDef)
+                .ToArray()
+                .Concat(
+                    serializedContentPack.itemDefs
+                        .Where(x => x.tier.Equals(ItemTier.NoTier))
+                        .ToArray()
+                )
+                .ToArray();
+            contentPack = serializedContentPack.CreateContentPack();
+            ContentManager.collectContentPackProviders += AddCustomContent;
+        }
 
-		public IEnumerator GenerateContentPackAsync(GetContentPackAsyncArgs args) {
-			ContentPack.Copy(contentPack, args.output);
-			args.ReportProgress(1f);
-			yield break;
-		}
+        private static void AddCustomContent(
+            ContentManager.AddContentPackProviderDelegate addContentPackProvider
+        )
+        {
+            addContentPackProvider(new ContentPackProvider());
+        }
 
-		public IEnumerator FinalizeAsync(FinalizeAsyncArgs args) {
-			Assets.InitializeSoundbanks();
-			args.ReportProgress(1f);
-			yield break;
-		}
-	}
+        public IEnumerator LoadStaticContentAsync(LoadStaticContentAsyncArgs args)
+        {
+            args.ReportProgress(1f);
+            yield break;
+        }
+
+        public IEnumerator GenerateContentPackAsync(GetContentPackAsyncArgs args)
+        {
+            ContentPack.Copy(contentPack, args.output);
+            args.ReportProgress(1f);
+            yield break;
+        }
+
+        public IEnumerator FinalizeAsync(FinalizeAsyncArgs args)
+        {
+            Assets.InitializeSoundbanks();
+            args.ReportProgress(1f);
+            yield break;
+        }
+    }
 }

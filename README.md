@@ -1,19 +1,22 @@
 # Melting Pot
 
 A mixed bag.
+
+<img src="https://imgur.com/xPkV8mc.png" width="250" />
+
 ## Included Items
 
 ### **_Tier 1_**
 
-| Lead Fetters | Penitent's Fang | Festering Fang (Void) | Sapping Bloom |
-| :- | :-: | :-: | :-: |
-|<img src="https://imgur.com/wZvnv9N.png" width="200" height="200" />|<img src="https://i.imgur.com/n4ONzTP.png" width="150" height="200" /> | <img src="https://i.imgur.com/fPpF1Vm.png" width="150" height="200" /> | <img src="https://i.imgur.com/2fj510X.png" width="200" height="200" /> |
-|*Increases __armour__ and __knockback resist__.*| *Adds a chance to apply __poison__ on hit* | *__Corrupts all Penitent's Fangs__<br> Adds a chance to blight on hit,<br> Past 100% more than one stack can be applied* | *Chance to __Weaken__ on hit*|
+| Lead Fetters<br>`Fluffy Manacles` | Penitent's Fang<br>`Festering Fang` | Sapping Bloom | Glass Shield | Just A Bucket |
+| :- | :-: | :-: | :-: | :-: |
+|<img src="https://imgur.com/qO1Iirs.png" width="200" height="200" />|<img src="https://imgur.com/uBGBzRk.png" width="150" height="200" /> | <img src="https://i.imgur.com/2fj510X.png" width="200" height="200" /> | <img src="https://imgur.com/wycKtvR.png" width="200" height="200" /> | <img src="https://imgur.com/9Rd7an4.png" width="200" height="200" /> |
+|*Increases __armour__ and __knockback resist__.*<br>`Increases Armour and Move Speed`| *Adds a chance to apply __poison__ on hit*<br> `Adds a chance to blight on hit,`<br>`Past 100% more than one stack can be applied` | *Chance to __Weaken__ on hit*| *Blocks a __fatal__ hit, then is __consumed__* | *Increases __armour__ while standing still*
 
 ### **_Tier 2_**
 
 | Echo Ring | Shield of Thorns | Mechanical Mosquito | Serrated Pellets |
-| :- | - | - |:-:|
+| :- | :-: | :-: |:-:|
 | <img src="https://imgur.com/AKdw21x.png" width="200" height="200" /> | <img src="https://imgur.com/xXXZDO8.png" width="200" height="200" /> | <img src="https://i.imgur.com/iCLQrr4.png" width="250" height="200" /> | <img src="https://i.imgur.com/kwHqnTD.png" width="300" height="200" /> |
 |*__Echoes attacks__ after a delay.*|*__Deal damage__ to enemies </br> attacking at __close range__*| *Drones and Turrets gain __bleed__ on hit,<br> and __heal__ for a portion of bleed damage dealt *| *Hitting an enemy with enough stacks of bleed __Haemorrhages__ them*|
 
@@ -28,10 +31,10 @@ A mixed bag.
 
 ### __*Lunar*__
 
-| Burning Soul | Scrap Vamp |
-|:-:|:-:|
-| <img src="https://imgur.com/ChiC1QC.png" width="200" height="200" /> | <img src="https://imgur.com/5cowucP.png" width="200" height="200" /> |
-| *__Burn enemies__ for own __max <br> health damage__, at the __cost<br> of current health__.* | Slay mechanical enemies for *__Buffs__ <br> but all drones are __Hostile__.* |
+| Burning Soul | Mark of the Malevolent Machinist | Blood Price | 
+|:-:|:-:| :-: |
+| <img src="https://imgur.com/ChiC1QC.png" width="200" height="200" /> | <img src="https://imgur.com/5cowucP.png" width="200" height="200" /> | <img src="https://imgur.com/2vEiUmh.png" width="200" height="200" /> |
+| *__Burn enemies__ for own __max <br> health damage__, at the __cost<br> of current health__.* | Slay mechanical enemies for *__Buffs__ <br> but all drones are __Hostile__.* | *All __gold costs__ are replaced with __health costs__<br>Every 30 seconds __convert all gold into exp__* |
 
 ## Manual Installs ##
 
@@ -39,7 +42,13 @@ No need to mess with the file structure anymore, just unzip into your bepinex/pl
 
 
 ## Changelog
-**0.0.61**
+**0.0.64**
+
+Added Just a Bucket, Blood Price, Fluffy Manacles
+
+Fixed issue with thorn cycling damage, loss of scrap vamp perma tracking, added glass shield
+
+Fixed some logs stuck around, tweaked mech mosq bounciness, no updates for at least a week, Im not around.
 
 Haemorrhage stacks from serrated pellets are now permanent, to offset the loss of immediate damage,
 For reference per tick each haemorrhage stack does about 1.5x the damage of a bleed stack per game tick.
