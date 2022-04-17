@@ -42,7 +42,9 @@ No need to mess with the file structure anymore, just unzip into your bepinex/pl
 
 
 ## Changelog
-**0.0.64**
+**0.0.65**
+
+Fixed invisibile enemies bug, couldn't replicate the lead fetters NRE
 
 Added Just a Bucket, Blood Price, Fluffy Manacles
 

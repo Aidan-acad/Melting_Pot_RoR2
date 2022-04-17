@@ -372,23 +372,28 @@ namespace MeltingPot.Items
             {
                 return;
             }
-            int descaledCost = (int)(
-                (float)purchaseI.cost
-                / Mathf.Pow(Run.instance.compensatedDifficultyCoefficient, 1.25f)
-            );
-            int hCost = Math.Min(
-                MoneyToHealthConv(descaledCost)
-                    + (HealthCostGrowth * (GetCount(component.characterBody) - 1)),
-                93
-            );
-            GameObject HologramContentInstance = costHolo.hologramContentInstance;
-            CostHologramContent costComponent =
-                HologramContentInstance.GetComponent<CostHologramContent>();
-            if (costComponent)
-            {
-                costComponent.displayValue = hCost;
-                costComponent.costType = CostTypeIndex.PercentHealth;
+			try {
+
+                int descaledCost = (int)(
+                    (float)purchaseI.cost
+                    / Mathf.Pow(Run.instance.compensatedDifficultyCoefficient, 1.25f)
+                );
+                int hCost = Math.Min(
+                    MoneyToHealthConv(descaledCost)
+                        + (HealthCostGrowth * (GetCount(component.characterBody) - 1)),
+                    93
+                );
+                GameObject HologramContentInstance = costHolo.hologramContentInstance;
+                CostHologramContent costComponent =
+                    HologramContentInstance.GetComponent<CostHologramContent>();
+                if (costComponent) {
+                    costComponent.displayValue = hCost;
+                    costComponent.costType = CostTypeIndex.PercentHealth;
+                }
             }
+			catch {
+
+			}
         }
 
         private void UpdateUI(

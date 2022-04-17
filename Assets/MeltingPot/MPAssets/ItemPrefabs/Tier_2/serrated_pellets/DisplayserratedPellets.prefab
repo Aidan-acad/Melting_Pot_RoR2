@@ -213,19 +213,19 @@ MonoBehaviour:
     defaultMaterial: {fileID: 2100000, guid: ba32fc5221b179f45ba6be7d465401fc, type: 2}
     defaultShadowCastingMode: 0
     ignoreOverlays: 0
-  - renderer: {fileID: 0}
+  - renderer: {fileID: 9048217680280425648}
     defaultMaterial: {fileID: 2100000, guid: b0967e0d0683f654699609e601423e90, type: 2}
     defaultShadowCastingMode: 0
     ignoreOverlays: 0
-  - renderer: {fileID: 0}
+  - renderer: {fileID: 1029542617339748174}
     defaultMaterial: {fileID: 2100000, guid: b0967e0d0683f654699609e601423e90, type: 2}
     defaultShadowCastingMode: 0
     ignoreOverlays: 0
-  - renderer: {fileID: 0}
+  - renderer: {fileID: 5104218123518142758}
     defaultMaterial: {fileID: 2100000, guid: b0967e0d0683f654699609e601423e90, type: 2}
     defaultShadowCastingMode: 0
     ignoreOverlays: 0
-  - renderer: {fileID: 0}
+  - renderer: {fileID: 1859908474720969182}
     defaultMaterial: {fileID: 2100000, guid: b0967e0d0683f654699609e601423e90, type: 2}
     defaultShadowCastingMode: 0
     ignoreOverlays: 0
@@ -242,22 +242,6 @@ MonoBehaviour:
     defaultShadowCastingMode: 0
     ignoreOverlays: 0
   - renderer: {fileID: 3363184157820922045}
-    defaultMaterial: {fileID: 2100000, guid: b0967e0d0683f654699609e601423e90, type: 2}
-    defaultShadowCastingMode: 0
-    ignoreOverlays: 0
-  - renderer: {fileID: 9048217680280425648}
-    defaultMaterial: {fileID: 2100000, guid: b0967e0d0683f654699609e601423e90, type: 2}
-    defaultShadowCastingMode: 0
-    ignoreOverlays: 0
-  - renderer: {fileID: 1029542617339748174}
-    defaultMaterial: {fileID: 2100000, guid: b0967e0d0683f654699609e601423e90, type: 2}
-    defaultShadowCastingMode: 0
-    ignoreOverlays: 0
-  - renderer: {fileID: 5104218123518142758}
-    defaultMaterial: {fileID: 2100000, guid: b0967e0d0683f654699609e601423e90, type: 2}
-    defaultShadowCastingMode: 0
-    ignoreOverlays: 0
-  - renderer: {fileID: 1859908474720969182}
     defaultMaterial: {fileID: 2100000, guid: b0967e0d0683f654699609e601423e90, type: 2}
     defaultShadowCastingMode: 0
     ignoreOverlays: 0
