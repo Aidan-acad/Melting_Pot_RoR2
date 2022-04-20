@@ -42,7 +42,9 @@ No need to mess with the file structure anymore, just unzip into your bepinex/pl
 
 
 ## Changelog
-**0.0.65**
+**0.0.66**
+
+Updated to latest RoR2 Patch, added placeholder sprite for Just a Bucket buff
 
 Fixed invisibile enemies bug, couldn't replicate the lead fetters NRE
 

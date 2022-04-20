@@ -123,8 +123,6 @@ MonoBehaviour:
   StagingPath: <StagingRoot>
   ExcludedManifests:
   - {fileID: 11400000, guid: bff73382628f698c89c1d9ae43c8f350, type: 2}
-  - {fileID: 11400000, guid: 24c29bb06a62c4742fbb3b224b1af4de, type: 2}
-  - {fileID: 11400000, guid: b8cfe50e2ed7c75829e20afbf3753fcb, type: 2}
 --- !u!114 &114643622350610336
 MonoBehaviour:
   m_ObjectHideFlags: 1

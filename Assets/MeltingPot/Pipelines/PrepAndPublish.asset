@@ -88,7 +88,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7fb5b3d290bed6011ed7e8daf230df89, type: 2}
   - {fileID: 11400000, guid: bff73382628f698c89c1d9ae43c8f350, type: 2}
   - {fileID: 11400000, guid: 2d4d09ec817c24698d35dc9bf0704fdc, type: 2}
-  - {fileID: 0}
   Recursive: 1
   SourceRequired: 1
   EstablishDestination: 1
@@ -175,7 +174,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d4d09ec817c24698d35dc9bf0704fdc, type: 2}
   - {fileID: 11400000, guid: bff73382628f698c89c1d9ae43c8f350, type: 2}
   - {fileID: 11400000, guid: 7fb5b3d290bed6011ed7e8daf230df89, type: 2}
-  - {fileID: 0}
   Recursive: 0
   SourceRequired: 1
   EstablishDestination: 1
@@ -225,7 +223,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2d4d09ec817c24698d35dc9bf0704fdc, type: 2}
   - {fileID: 11400000, guid: bff73382628f698c89c1d9ae43c8f350, type: 2}
   - {fileID: 11400000, guid: 7fb5b3d290bed6011ed7e8daf230df89, type: 2}
-  - {fileID: 0}
   Recursive: 0
   SourceRequired: 1
   EstablishDestination: 1

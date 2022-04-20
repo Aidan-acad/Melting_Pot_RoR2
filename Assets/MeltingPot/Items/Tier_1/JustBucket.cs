@@ -20,7 +20,7 @@ namespace MeltingPot.Items
             $"Small flat armour increase, armour increased multiplicatively while standing still";
 
         public override string ItemFullDescription =>
-            $"Increase <style=cIsUtility>Armour</style> by <style=cIsUtility>{flatArmour}</style>. Increases <style=cIsUtility>Armour</style> by <style=cIsUtility>{armourMult * 200}%</style> <style=cStack>(+{armourMult * 100}% per stack)</style>";
+            $"Increase <style=cIsUtility>Armour</style> by <style=cIsUtility>{flatArmour}</style>. Increases <style=cIsUtility>Armour</style> by <style=cIsUtility>{armourMult * 200}%</style> <style=cStack>(+{armourMult * 100}% per stack)</style> when standing still";
 
         public override string ItemLore =>
             "[Left inside]\n\n"

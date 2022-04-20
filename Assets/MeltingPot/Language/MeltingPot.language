@@ -43,6 +43,9 @@
 		"BUFF_MeltingPot_VampHealth_NAME": "Scavenged Supplements",
 		"BUFF_MeltingPot_VampHealth_DESC": "Reinforcing parts stripped from the remains of mechanical foes",
 
+		"BUFF_MeltingPot_BucketOn_NAME": "Bucket Helm",
+		"BUFF_MeltingPot_BucketOn_DESC": "To heaume it may concern it seems the Middle Ages got something right",
+
 		//[ITEMSTATS]
 		"ITEMSTATS_MeltingPot_SelfBurn": "Self Burn Damage: {0}",
 		"ITEMSTATS_MeltingPot_EnemyBurn": "Enemy Burn Damage: {0}",

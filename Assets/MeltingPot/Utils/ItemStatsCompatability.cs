@@ -785,62 +785,62 @@ namespace MeltingPot.Utils
                 ItemStatsMod.AddCustomItemStatDef(itemIndex15, itemStatDef15);
             }
             catch { }
-            try {
-                ItemIndex itemIndex16 = ContentPackProvider.contentPack.itemDefs
-                    .Find("BloodPrice_ItemDef")
-                    .itemIndex;
-                ItemStatDef itemStatDef16 = new ItemStatDef();
-                List<ItemStat> list17 = new List<ItemStat>();
-                list17.Add(
-                    new ItemStat(
-                        (float itemCount, StatContext ctx) =>
-                            (
-                                BloodPrice.MoneyGrowth * (itemCount - 1)
-                            ),
-                        (float value, StatContext ctx) =>
-                            Language.GetStringFormatted(
-                                "ITEMSTATS_MeltingPot_GoldExpModifier",
-                                new object[]
-                                {
-                                    Extensions.FormatPercentage(
-                                        value,
-                                        0,
-                                        100f,
-                                        float.MaxValue,
-                                        true,
-                                        "\"yellow\""
-                                    )
-                                }
-                            )
-                    )
-                );
-                list17.Add(
-                    new ItemStat(
-                        (float itemCount, StatContext ctx) =>
-                            (
-                                BloodPrice.HealthCostGrowth * (itemCount - 1)
-                            ),
-                        (float value, StatContext ctx) =>
-                            Language.GetStringFormatted(
-                                "ITEMSTATS_MeltingPot_HealthCost",
-                                new object[]
-                                {
-                                    Extensions.FormatPercentage(
-                                        value,
-                                        0,
-                                        1f,
-                                        float.MaxValue,
-                                        true,
-                                        "\"red\""
-                                    )
-                                }
-                            )
-                    )
-                );
-                itemStatDef16.Stats = list17;
-                ItemStatsMod.AddCustomItemStatDef(itemIndex16, itemStatDef16);
-            }
-            catch { }
-        }
+			try {
+				ItemIndex itemIndex16 = ContentPackProvider.contentPack.itemDefs
+					.Find("BloodPrice_ItemDef")
+					.itemIndex;
+				ItemStatDef itemStatDef16 = new ItemStatDef();
+				List<ItemStat> list17 = new List<ItemStat>();
+				list17.Add(
+					new ItemStat(
+						(float itemCount, StatContext ctx) =>
+							(
+								BloodPrice.MoneyGrowth * (itemCount - 1)
+							),
+						(float value, StatContext ctx) =>
+							Language.GetStringFormatted(
+								"ITEMSTATS_MeltingPot_GoldExpModifier",
+								new object[]
+								{
+									Extensions.FormatPercentage(
+										value,
+										0,
+										100f,
+										float.MaxValue,
+										true,
+										"\"yellow\""
+									)
+								}
+							)
+					)
+				);
+				list17.Add(
+					new ItemStat(
+						(float itemCount, StatContext ctx) =>
+							(
+								BloodPrice.HealthCostGrowth * (itemCount - 1)
+							),
+						(float value, StatContext ctx) =>
+							Language.GetStringFormatted(
+								"ITEMSTATS_MeltingPot_HealthCost",
+								new object[]
+								{
+									Extensions.FormatPercentage(
+										value,
+										0,
+										1f,
+										float.MaxValue,
+										true,
+										"\"red\""
+									)
+								}
+							)
+					)
+				);
+				itemStatDef16.Stats = list17;
+				ItemStatsMod.AddCustomItemStatDef(itemIndex16, itemStatDef16);
+			}
+			catch { }
+		}
     }
 }
