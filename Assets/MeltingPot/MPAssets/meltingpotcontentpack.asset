@@ -42,6 +42,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5575ca141be6428419d0a7a9b36f1d61, type: 2}
   - {fileID: 11400000, guid: 8d8b3e6b8cdebd446ac326ecf35e1ab1, type: 2}
   - {fileID: 11400000, guid: 0c63f1aab3f3d744a93c028d9805a745, type: 2}
+  - {fileID: 11400000, guid: bc657bf070af4f946b05b49fc46ff072, type: 2}
+  - {fileID: 11400000, guid: 10b872246973d294da93d45e8cc5b1cf, type: 2}
+  - {fileID: 11400000, guid: 710689dae32ce5244b895ddd8c41dd8f, type: 2}
+  - {fileID: 11400000, guid: 9ec04457ad6199a4ba63812a7c0c579a, type: 2}
   equipmentDefs: []
   buffDefs:
   - {fileID: 11400000, guid: a71cfcb95a101d04f8d928bc89d72148, type: 2}

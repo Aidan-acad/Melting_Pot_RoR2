@@ -2,25 +2,23 @@
 using MeltingPot.Utils;
 using R2API;
 using RoR2;
-using System;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Networking;
-using static R2API.RecalculateStatsAPI;
 
 namespace MeltingPot.Items
 {
-    public class JustBucket : ItemBase<JustBucket>
+    public class UnstableCompound : ItemBase<UnstableCompound>
     {
-        public static float flatArmour = 3f;
-        public static float armourMult = 0.05f;
-        public override string ItemName => "Just a Bucket";
-        public override string ItemLangTokenName => "JUSTBUCKET";
+        public static float debuffChance = 0.025f;
+        public static float durationGrowth = 0.5f;
+        public override string ItemName => "Unstable Compound";
+        public override string ItemLangTokenName => "UNSTABLECOMPOUND";
 
         public override string ItemPickupDesc =>
-            $"Small flat armour increase, armour increased multiplicatively while standing still";
+            $"Chance on applying debuff to apply another random temporary debuff";
 
         public override string ItemFullDescription =>
-            $"Increase <style=cIsUtility>Armour</style> by <style=cIsUtility>{flatArmour}</style>. Increases <style=cIsUtility>Armour</style> by <style=cIsUtility>{armourMult * 200}%</style> <style=cStack>(+{armourMult * 100}% per stack)</style> when standing still";
+            $"On applying a debuff <style=cIsUtility>{debuffChance*100}%</style> <style=cStack>(+{debuffChance*100}% stacking hyperbolically)</style> chance to apply another <style=cEvent>randomly selected</style> debuff for <style=cIsUtility>{durationGrowth*2}</style> <style=cStack>(+ {durationGrowth} per stack)</style> seconds";
 
         public override string ItemLore =>
             "[Left inside]\n\n"
@@ -30,12 +28,12 @@ namespace MeltingPot.Items
         public GameObject ItemModel;
 
         public static GameObject ItemBodyModelPrefab;
-        public static BuffDef BucketActiveBuff =>
-            ContentPackProvider.contentPack.buffDefs.Find("MeltingPot_BucketOn");
+        public static BuffDef[] debuffCatalog;
+        private static System.Random idGen;
 
         public override void Init(ConfigFile config, bool enabled)
         {
-            CreateItem("JustBucket_ItemDef", enabled);
+            CreateItem("UnstableCompound_ItemDef", enabled);
             if (enabled)
             {
                 ItemModel = Assets.mainAssetBundle.LoadAsset<GameObject>(
@@ -43,38 +41,6 @@ namespace MeltingPot.Items
                 );
                 CreateLang();
                 Hooks();
-            }
-        }
-
-        private class BucketController : CharacterBody.ItemBehavior
-        {
-            public void Awake()
-            {
-                var body = this.gameObject.GetComponent<CharacterBody>();
-            }
-
-            public void FixedUpdate()
-            {
-                if (!NetworkServer.active)
-                {
-                    return;
-                }
-                bool flag3 =
-                    body.notMovingStopwatch > 0.2f && !(body.HasBuff(JustBucket.BucketActiveBuff));
-                if (flag3)
-                {
-                    body.AddBuff(JustBucket.BucketActiveBuff);
-                }
-                else
-                {
-                    bool flag4 =
-                        body.notMovingStopwatch == 0f
-                        && (body.HasBuff(JustBucket.BucketActiveBuff));
-                    if (flag4)
-                    {
-                        body.RemoveBuff(JustBucket.BucketActiveBuff);
-                    }
-                }
             }
         }
 
@@ -315,33 +281,90 @@ namespace MeltingPot.Items
 
         public override void Hooks()
         {
-            On.RoR2.CharacterBody.OnInventoryChanged += AttachBucketCtrl;
-            GetStatCoefficients += GrantArmour;
+            On.RoR2.CharacterBody.AddBuff_BuffIndex += CompoundDebuffs;
+            On.RoR2.GlobalEventManager.OnHitEnemy += TrackTarget;
+            On.RoR2.Run.Awake += PopulateDebuffCatalog;
         }
 
-        private void AttachBucketCtrl(
-            On.RoR2.CharacterBody.orig_OnInventoryChanged orig,
-            global::RoR2.CharacterBody self
-        )
-        {
-            self.AddItemBehavior<BucketController>(GetCount(self));
-            if (self.HasBuff(BucketActiveBuff) && GetCount(self) == 0) {
-                self.RemoveBuff(BucketActiveBuff);
+        private void PopulateDebuffCatalog(On.RoR2.Run.orig_Awake orig, global::RoR2.Run self) {
+			try {
+                debuffCatalog = RoR2.BuffCatalog.buffDefs.Where(buff => buff.isDebuff || DotController.dotDefs.Any(dDef => dDef.associatedBuff == buff) && !buff.isHidden && !buff.isCooldown).ToArray();
+                idGen = new System.Random();
 			}
+			catch {
+                MeltingPotPlugin.ModLogger.LogError("Couldn't populate DebuffCatalog!");
+			}
+            
             orig(self);
         }
 
-        private void GrantArmour(CharacterBody sender, StatHookEventArgs args)
+        private class TargetTracker : CharacterBody.ItemBehavior
         {
-            var count = GetCount(sender);
-            if (count > 0)
-            {
-                args.armorAdd +=
-                    flatArmour
-                    + (
-                        Convert.ToSingle(sender.HasBuff(BucketActiveBuff)) * sender.armor * 0.1f
-                        + (count - 1) * armourMult
-                    );
+            CharacterBody attacker;
+
+            public CharacterBody GetAttacker() {
+                return attacker;
+			}
+
+            public void SetAttacker(CharacterBody _attacker) {
+                attacker = _attacker;
+			}
+        }
+
+        private void TrackTarget(
+            On.RoR2.GlobalEventManager.orig_OnHitEnemy orig,
+            RoR2.GlobalEventManager self,
+            RoR2.DamageInfo damageInfo,
+            GameObject victim
+		) {
+            CharacterBody attackerBody = damageInfo.attacker.GetComponent<CharacterBody>();
+            if (attackerBody) {
+                int invenCount = GetCount(attackerBody);
+                if (invenCount > 0) {
+                    CharacterBody victimBody = victim.GetComponent<CharacterBody>();
+                    var victimTTracker = victimBody.GetComponent<TargetTracker>();
+                    if (!victimTTracker) {
+                        victimBody.AddItemBehavior<TargetTracker>(invenCount);
+                        victimTTracker = victimBody.GetComponent<TargetTracker>();
+                    }
+                    victimTTracker.SetAttacker(attackerBody);
+                    victimTTracker.stack = invenCount;
+                } 
+            }
+            orig(self, damageInfo, victim);
+        }
+
+        private void CompoundDebuffs(On.RoR2.CharacterBody.orig_AddBuff_BuffDef orig, global::RoR2.CharacterBody self, global::RoR2.BuffDef buffDef) {
+            orig(self, buffDef);
+            ApplyDebuffs(self, buffDef);
+		}
+
+        private void CompoundDebuffs(On.RoR2.CharacterBody.orig_AddBuff_BuffIndex orig, global::RoR2.CharacterBody self, global::RoR2.BuffIndex buffIndex) {
+            orig(self, buffIndex);
+            BuffDef tgtBuff = BuffCatalog.buffDefs[(int)buffIndex];
+            ApplyDebuffs(self, tgtBuff);
+        }
+
+        private void ApplyDebuffs(global::RoR2.CharacterBody self, global::RoR2.BuffDef buffDef) {
+            var selfTTracker = self.GetComponent<TargetTracker>();
+            if (selfTTracker && debuffCatalog.Contains(buffDef) && GetCount(selfTTracker.GetAttacker()) > 0) {
+
+                if (
+                    Util.CheckRoll(
+                        (1 - Mathf.Clamp(1 / (1 + (selfTTracker.stack * debuffChance)), 0, 1))
+                            * 100f
+                    )
+                ) {
+                    // Pick random debuff
+                    int id = idGen.Next(debuffCatalog.Length);
+                    BuffDef nextBuff = debuffCatalog[id];
+                    if (DotController.dotDefs.Any(dDef => dDef.associatedBuff == nextBuff)) {
+                        // Associated with a dot
+                        DotController.InflictDot(self.gameObject, selfTTracker.GetAttacker().gameObject, (DotController.DotIndex)DotController.dotDefs.ToList().FindIndex(dDef => dDef.associatedBuff == nextBuff), durationGrowth * (selfTTracker.stack + 1));
+                    } else {
+                        self.AddTimedBuff(nextBuff, durationGrowth * (selfTTracker.stack + 1));
+                    }
+                }
             }
         }
     }

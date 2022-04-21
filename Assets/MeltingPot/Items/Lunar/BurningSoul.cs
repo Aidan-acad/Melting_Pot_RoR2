@@ -502,7 +502,10 @@ namespace MeltingPot.Items
                             .getInflictedDmg();
                         dotStack.damage = burnDamage;
                         dotStack.damageType = DamageType.DoT;
-                    }
+					} else {
+						dotStack.damage = 10f;
+						dotStack.damageType = DamageType.DoT;
+					}
                 }
             );
             DotController.DotDef sbSelfDotDef = new DotController.DotDef
@@ -524,6 +527,14 @@ namespace MeltingPot.Items
                             attackerBody.GetComponent<BurningSoulController>().getSelfDmg()
                         );
                         dotStack.damage = burnDamage;
+                        //dotStack.damageType = DamageType.BypassArmor;
+                        dotStack.damageType =
+                            DamageType.NonLethal
+                            | DamageType.BypassArmor
+                            | DamageType.DoT
+                            | DamageType.Silent;
+					} else {
+                        dotStack.damage = 10f;
                         //dotStack.damageType = DamageType.BypassArmor;
                         dotStack.damageType =
                             DamageType.NonLethal

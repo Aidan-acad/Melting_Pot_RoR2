@@ -2,25 +2,22 @@
 using MeltingPot.Utils;
 using R2API;
 using RoR2;
-using System;
 using UnityEngine;
 using UnityEngine.Networking;
-using static R2API.RecalculateStatsAPI;
 
 namespace MeltingPot.Items
 {
-    public class JustBucket : ItemBase<JustBucket>
+    public class GildedLighter : ItemBase<GildedLighter>
     {
-        public static float flatArmour = 3f;
-        public static float armourMult = 0.05f;
-        public override string ItemName => "Just a Bucket";
-        public override string ItemLangTokenName => "JUSTBUCKET";
+        public static float igniteChance = 0.1f;
+        public override string ItemName => "Gilded Lighter";
+        public override string ItemLangTokenName => "GILDEDLIGHTER";
 
         public override string ItemPickupDesc =>
-            $"Small flat armour increase, armour increased multiplicatively while standing still";
+            $"Grants a chance to ignite on hit";
 
         public override string ItemFullDescription =>
-            $"Increase <style=cIsUtility>Armour</style> by <style=cIsUtility>{flatArmour}</style>. Increases <style=cIsUtility>Armour</style> by <style=cIsUtility>{armourMult * 200}%</style> <style=cStack>(+{armourMult * 100}% per stack)</style> when standing still";
+            $"Grants a <style=cIsDamage>{igniteChance*100}%</style> <style=cStack>(+ {igniteChance*100}% per stack)</style> chance to <style=cIsDamage>ignite</style> on hit";
 
         public override string ItemLore =>
             "[Left inside]\n\n"
@@ -30,12 +27,10 @@ namespace MeltingPot.Items
         public GameObject ItemModel;
 
         public static GameObject ItemBodyModelPrefab;
-        public static BuffDef BucketActiveBuff =>
-            ContentPackProvider.contentPack.buffDefs.Find("MeltingPot_BucketOn");
 
         public override void Init(ConfigFile config, bool enabled)
         {
-            CreateItem("JustBucket_ItemDef", enabled);
+            CreateItem("GildedLighter_ItemDef", enabled);
             if (enabled)
             {
                 ItemModel = Assets.mainAssetBundle.LoadAsset<GameObject>(
@@ -43,38 +38,6 @@ namespace MeltingPot.Items
                 );
                 CreateLang();
                 Hooks();
-            }
-        }
-
-        private class BucketController : CharacterBody.ItemBehavior
-        {
-            public void Awake()
-            {
-                var body = this.gameObject.GetComponent<CharacterBody>();
-            }
-
-            public void FixedUpdate()
-            {
-                if (!NetworkServer.active)
-                {
-                    return;
-                }
-                bool flag3 =
-                    body.notMovingStopwatch > 0.2f && !(body.HasBuff(JustBucket.BucketActiveBuff));
-                if (flag3)
-                {
-                    body.AddBuff(JustBucket.BucketActiveBuff);
-                }
-                else
-                {
-                    bool flag4 =
-                        body.notMovingStopwatch == 0f
-                        && (body.HasBuff(JustBucket.BucketActiveBuff));
-                    if (flag4)
-                    {
-                        body.RemoveBuff(JustBucket.BucketActiveBuff);
-                    }
-                }
             }
         }
 
@@ -313,36 +276,39 @@ namespace MeltingPot.Items
             return rules;
         }
 
-        public override void Hooks()
-        {
-            On.RoR2.CharacterBody.OnInventoryChanged += AttachBucketCtrl;
-            GetStatCoefficients += GrantArmour;
-        }
-
-        private void AttachBucketCtrl(
-            On.RoR2.CharacterBody.orig_OnInventoryChanged orig,
-            global::RoR2.CharacterBody self
-        )
-        {
-            self.AddItemBehavior<BucketController>(GetCount(self));
-            if (self.HasBuff(BucketActiveBuff) && GetCount(self) == 0) {
-                self.RemoveBuff(BucketActiveBuff);
-			}
-            orig(self);
-        }
-
-        private void GrantArmour(CharacterBody sender, StatHookEventArgs args)
-        {
-            var count = GetCount(sender);
-            if (count > 0)
+        public override void Hooks() 
             {
-                args.armorAdd +=
-                    flatArmour
-                    + (
-                        Convert.ToSingle(sender.HasBuff(BucketActiveBuff)) * sender.armor * 0.1f
-                        + (count - 1) * armourMult
-                    );
+            On.RoR2.GlobalEventManager.OnHitEnemy += applyIgnite;
+        }
+        private void applyIgnite(
+            On.RoR2.GlobalEventManager.orig_OnHitEnemy orig,
+            global::RoR2.GlobalEventManager self,
+            global::RoR2.DamageInfo damageInfo,
+            GameObject victim
+        ) {
+            try {
+                if (NetworkServer.active) {
+                    if (
+                        damageInfo.attacker.GetComponent<CharacterBody>()
+                        && victim.GetComponent<CharacterBody>()
+                    ) {
+                        var count = GetCount(damageInfo.attacker.GetComponent<CharacterBody>());
+                        if (count > 0) {
+                            if (
+                                Util.CheckRoll(
+                                    ((count * igniteChance))
+                                        * 100f
+                                        * damageInfo.procCoefficient
+                                )
+                            ) {
+                                damageInfo.damageType |= DamageType.IgniteOnHit;
+                            }
+                        }
+                    }
+                }
             }
+            catch { }
+            orig(self, damageInfo, victim);
         }
     }
 }

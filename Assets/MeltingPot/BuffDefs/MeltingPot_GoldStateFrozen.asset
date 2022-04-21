@@ -18,7 +18,7 @@ MonoBehaviour:
   buffColor: {r: 0.9245283, g: 0.7265257, b: 0, a: 1}
   canStack: 0
   eliteDef: {fileID: 0}
-  isDebuff: 1
+  isDebuff: 0
   isCooldown: 0
   isHidden: 0
   startSfx: {fileID: 11400000, guid: 1d4f9fd3cbf7c234db41d0c7e4cc9681, type: 2}

@@ -2,25 +2,24 @@
 using MeltingPot.Utils;
 using R2API;
 using RoR2;
-using System;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Networking;
-using static R2API.RecalculateStatsAPI;
 
 namespace MeltingPot.Items
 {
-    public class JustBucket : ItemBase<JustBucket>
+    public class AcidicBubbleWand : ItemBase<AcidicBubbleWand>
     {
-        public static float flatArmour = 3f;
-        public static float armourMult = 0.05f;
-        public override string ItemName => "Just a Bucket";
-        public override string ItemLangTokenName => "JUSTBUCKET";
+        public static float debuffChance = 0.025f;
+        public static float durationGrowth = 0.5f;
+        public static float damageMult = 0.05f;
+        public override string ItemName => "Acidic Bubble Wand";
+        public override string ItemLangTokenName => "ACIDICBUBBLEWAND";
 
         public override string ItemPickupDesc =>
-            $"Small flat armour increase, armour increased multiplicatively while standing still";
+            $"Increase the damage of all DoTs";
 
         public override string ItemFullDescription =>
-            $"Increase <style=cIsUtility>Armour</style> by <style=cIsUtility>{flatArmour}</style>. Increases <style=cIsUtility>Armour</style> by <style=cIsUtility>{armourMult * 200}%</style> <style=cStack>(+{armourMult * 100}% per stack)</style> when standing still";
+            $"Increase the <style=cIsDamage>damage</style> of all <style=cIsHealing>DoTs</style> by {damageMult*100}% <style=cStack>(+ {damageMult*100}% per stack)<style>";
 
         public override string ItemLore =>
             "[Left inside]\n\n"
@@ -30,12 +29,10 @@ namespace MeltingPot.Items
         public GameObject ItemModel;
 
         public static GameObject ItemBodyModelPrefab;
-        public static BuffDef BucketActiveBuff =>
-            ContentPackProvider.contentPack.buffDefs.Find("MeltingPot_BucketOn");
 
         public override void Init(ConfigFile config, bool enabled)
         {
-            CreateItem("JustBucket_ItemDef", enabled);
+            CreateItem("AcidicBubbleWand_ItemDef", enabled);
             if (enabled)
             {
                 ItemModel = Assets.mainAssetBundle.LoadAsset<GameObject>(
@@ -43,38 +40,6 @@ namespace MeltingPot.Items
                 );
                 CreateLang();
                 Hooks();
-            }
-        }
-
-        private class BucketController : CharacterBody.ItemBehavior
-        {
-            public void Awake()
-            {
-                var body = this.gameObject.GetComponent<CharacterBody>();
-            }
-
-            public void FixedUpdate()
-            {
-                if (!NetworkServer.active)
-                {
-                    return;
-                }
-                bool flag3 =
-                    body.notMovingStopwatch > 0.2f && !(body.HasBuff(JustBucket.BucketActiveBuff));
-                if (flag3)
-                {
-                    body.AddBuff(JustBucket.BucketActiveBuff);
-                }
-                else
-                {
-                    bool flag4 =
-                        body.notMovingStopwatch == 0f
-                        && (body.HasBuff(JustBucket.BucketActiveBuff));
-                    if (flag4)
-                    {
-                        body.RemoveBuff(JustBucket.BucketActiveBuff);
-                    }
-                }
             }
         }
 
@@ -315,34 +280,17 @@ namespace MeltingPot.Items
 
         public override void Hooks()
         {
-            On.RoR2.CharacterBody.OnInventoryChanged += AttachBucketCtrl;
-            GetStatCoefficients += GrantArmour;
+            On.RoR2.DotController.InflictDot_refInflictDotInfo += AugmentDot;
         }
 
-        private void AttachBucketCtrl(
-            On.RoR2.CharacterBody.orig_OnInventoryChanged orig,
-            global::RoR2.CharacterBody self
-        )
-        {
-            self.AddItemBehavior<BucketController>(GetCount(self));
-            if (self.HasBuff(BucketActiveBuff) && GetCount(self) == 0) {
-                self.RemoveBuff(BucketActiveBuff);
+        private void AugmentDot(On.RoR2.DotController.orig_InflictDot_refInflictDotInfo orig, ref InflictDotInfo inflictDotInfo){
+            if (inflictDotInfo.attackerObject) {
+                CharacterBody attackerBody = inflictDotInfo.attackerObject.GetComponent<CharacterBody>();
+                if (attackerBody && GetCount(attackerBody) > 0) {
+                    inflictDotInfo.damageMultiplier += damageMult * GetCount(attackerBody);
+				}
 			}
-            orig(self);
-        }
-
-        private void GrantArmour(CharacterBody sender, StatHookEventArgs args)
-        {
-            var count = GetCount(sender);
-            if (count > 0)
-            {
-                args.armorAdd +=
-                    flatArmour
-                    + (
-                        Convert.ToSingle(sender.HasBuff(BucketActiveBuff)) * sender.armor * 0.1f
-                        + (count - 1) * armourMult
-                    );
-            }
+            orig(ref inflictDotInfo);
         }
     }
 }
