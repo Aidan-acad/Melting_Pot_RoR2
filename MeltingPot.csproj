@@ -73,6 +73,7 @@
     <Compile Include="Assets\MeltingPot\Items\Tier_1\GlassShield.cs" />
     <Compile Include="Assets\MeltingPot\Items\Tier_1\JustBucket.cs" />
     <Compile Include="Assets\MeltingPot\Items\Tier_1\LeadFetters.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_1\OmegaGummyVitamin.cs" />
     <Compile Include="Assets\MeltingPot\Items\Tier_1\PenitentsFang.cs" />
     <Compile Include="Assets\MeltingPot\Items\Tier_1\SappingBloom.cs" />
     <Compile Include="Assets\MeltingPot\Items\Tier_1\SwirlingPotion.cs" />

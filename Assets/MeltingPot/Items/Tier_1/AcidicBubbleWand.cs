@@ -36,7 +36,7 @@ namespace MeltingPot.Items
             if (enabled)
             {
                 ItemModel = Assets.mainAssetBundle.LoadAsset<GameObject>(
-                    $"{ModelPath}/just_bucket/justbucket.prefab"
+                    $"{ModelPath}/acidic_bubble_wand/acidicbubblewand.prefab"
                 );
                 CreateLang();
                 Hooks();
@@ -50,6 +50,7 @@ namespace MeltingPot.Items
             );
             Vector3 generalScale = new Vector3(1f, 1f, 1f);
             ItemDisplayRuleDict rules = new ItemDisplayRuleDict();
+            return rules;
             rules.Add(
                 "mdlCommandoDualies",
                 new RoR2.ItemDisplayRule[]
