@@ -659,6 +659,7 @@
     <Compile Include="Assets\MeltingPot\Items\Tier_1\SappingBloom.cs" />
     <Compile Include="Assets\MeltingPot\Items\Tier_1\SwirlingPotion.cs" />
     <Compile Include="Assets\MeltingPot\Items\Tier_1\UnstableCompound.cs" />
+    <Compile Include="Assets\MeltingPot\Items\Tier_1\VialCrickets.cs" />
     <Compile Include="Assets\MeltingPot\Items\Tier_2\EchoBang.cs" />
     <Compile Include="Assets\MeltingPot\Items\Tier_2\MechMosquito.cs" />
     <Compile Include="Assets\MeltingPot\Items\Tier_2\SerratedPellets.cs" />
