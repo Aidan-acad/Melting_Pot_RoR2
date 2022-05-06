@@ -19,12 +19,11 @@ namespace MeltingPot.Items
         public override string ItemName => "Blood Price";
         public override string ItemLangTokenName => "BLOODPRICE";
         public override string ItemPickupDesc =>
-            $"You convert all gold into <style=cIsUtility>exp</style> every 30 seconds <style=cDeath>BUT all gold prices cost a percentage of your health</style>";
+            $"You convert all gold into <style=cIsUtility>EXP</style> every 30 seconds, <style=cDeath>but costs are paid in blood</style>.";
         public override string ItemFullDescription =>
-            $"You convert <style=cShrine>100% (+{MoneyGrowth * 100}% per stack) of gold</style> into <style=cIsUtility>exp</style> every 30 seconds <style=cDeath>BUT</style> all gold prices cost (25/30/50/75)% (+{HealthCostGrowth}% per stack - Max 93%) of your health scaling with interactable value";
+            $"You convert <style=cShrine>100%</style> <style=cStack>(+{MoneyGrowth * 100}% per stack)</style> <style=cShrine>of gold</style> into <style=cIsUtility>EXP</style> every 30 seconds. <style=cDeath>All gold prices cost (25/30/50/75)%</style> <style=cStack>(+{HealthCostGrowth}% per stack - Max 93%)</style> <style=cDeath>of your health, scaling with interactable value.</style>";
         public override string ItemLore =>
-            "[Haemo Global brand credit card]\n\n"
-            + "Skip the middle man, don't waste your blood, sweat and tears working!\n\nHaemo Global is a subsidiary of Sanguisuge Consortium Ltd.";
+            "Skip the middle man! Don't waste your blood, sweat and tears working!\n\nHaemo Global is a subsidiary of Sanguisuge Consortium Ltd.";
 
         public override string VoidCounterpart => null;
         public static BepInEx.Logging.ManualLogSource BSModLogger;
