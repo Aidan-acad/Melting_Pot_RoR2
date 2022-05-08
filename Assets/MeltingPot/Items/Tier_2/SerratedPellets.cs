@@ -15,12 +15,11 @@ namespace MeltingPot.Items
         public override string ItemName => "Serrated Pellets";
         public override string ItemLangTokenName => "SERRATEDPELLETS";
         public override string ItemPickupDesc =>
-            $"Apply <style=cDeath>Permanent Haemorrhage</style> to heavily bleeding enemies";
+            $"Heavily bleeding enemies <style=cDeath>permanently hemorrhage</style>.";
         public override string ItemFullDescription =>
-            $"Apply <style=cDeath>Permanent Haemorrhage</style> to enemies with <style=cIsUtility>{bleedStackBase}</style> <style=cStack>(- {stackDegen} per stack, min of 1)</style> bleed stacks";
+            $"<style=cDeath>Permanently hemorrhage</style> enemies with <style=cIsUtility>{bleedStackBase}</style> <style=cStack>(-{stackDegen} per stack, min of 1)</style> bleed stacks.";
         public override string ItemLore =>
-            "[On the evidence bag]\n\n"
-            + "Evidence found on site at homicide #867. Modifed ammunition designed for maximum internal damage.\n\nThe ammunition bears marks of amateur tooling, believed custom made by Suspect #2, a.k.a 'Desperate Outlaw'.";
+            "Evidence found on site at homicide #867. Modifed ammunition designed for maximum internal damage.\n\nThe ammunition bears marks of amateur tooling, believed custom made by Suspect #2, a.k.a 'Desperate Outlaw'.";
 
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 

@@ -18,15 +18,14 @@ namespace MeltingPot.Items
         public override string ItemLangTokenName => "MECHMOSQUITO";
 
         public override string ItemPickupDesc =>
-            $"Drones and turrets gain a chance to bleed, and heal for a portion of bleed damage dealt";
+            $"Drones and turrets gain a chance to bleed, and heal for a portion of bleed damage dealt.";
 
         public override string ItemFullDescription =>
-            $"Mechanical Minions gain <style=cDeath>{bleedChance * 200}%</style> <style=cStack>(+{bleedChance * 100}% per stack)</style> bleed chance, and heal for <style=cIsHealing>{drainGrowth * 100}%</style> <style=cStack>(per stack)</style> of bleed damage dealt";
+            $"Mechanical minions gain <style=cDeath>{bleedChance * 200}%</style> <style=cStack>(+{bleedChance * 100}% per stack)</style> bleed chance, and heal for <style=cIsHealing>{drainGrowth * 100}%</style> <style=cStack>(+{drainGrowth * 100}% per stack)</style> of bleed damage dealt.";
 
         public override string VoidCounterpart => null;
         public override string ItemLore =>
-            "[Stamped onto the base]\n\n"
-            + "Official EnderGrimm™ Brand - Mechanical Mosquito:\n\n A sharper shot for a healthier bot";
+            "Official EnderGrimm™ Brand Mechanical Mosquito:\n\n A sharper shot for a healthier bot!";
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 
         public GameObject ItemModel;

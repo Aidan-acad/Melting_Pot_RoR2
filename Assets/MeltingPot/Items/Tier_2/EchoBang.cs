@@ -20,10 +20,10 @@ namespace MeltingPot.Items
         public override string ItemLangTokenName => "REVERBRING";
 
         public override string ItemPickupDesc =>
-            $"Discharges a blast {fireDelay}s after an attack for <style=cStack>{scaling * 100}% (+{scaling * 100}% per stack)</style> of the damage in a <style=cStack>{baseRadius}m (+{radiusGrowth}m per stack)</style> radius";
+            $"<style=cisDamage>Echoes attacks</style> after a delay.";
 
         public override string ItemFullDescription =>
-            $"Discharges a blast {fireDelay}s after an attack for <style=cStack>{scaling * 100}% (+{scaling * 100}% per stack)</style> of the damage in a <style=cStack>{baseRadius}m (+{radiusGrowth}m per stack)</style> radius";
+            $"Discharges a blast {fireDelay}s after an attack for <style=cIsDamage>{scaling * 100}%</style> <style=cStack>(+{scaling * 100}% per stack)</style> of the damage in a {baseRadius}m <style=cStack>(+{radiusGrowth}m per stack)</style> radius.";
 
         public override string ItemLore =>
             "[A faint reverb can be heard emenating from the core of the ring.]\n\n"

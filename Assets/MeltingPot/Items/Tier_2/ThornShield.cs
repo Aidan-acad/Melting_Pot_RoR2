@@ -17,12 +17,11 @@ namespace MeltingPot.Items
         public override string ItemName => "Shield of Thorns";
         public override string ItemLangTokenName => "THORNSHIELD";
         public override string ItemPickupDesc =>
-            $"Reflect melee range damage equal to a portion of armour";
+            $"Reflect melee range damage equal to a portion of armor.";
         public override string ItemFullDescription =>
-            $"Grants {flatArmour} armour per stack. When <style=cIsDamage>hit</style> in melee range, return <style=cStack>{flatDamage} + ({flatStack} per stack)</style> plus <style=cStack>{armourGrowth * 100}% + ({armourGrowth * 100}% per stack)</style> of your <style=cIsHealing>armour</style> value as damage";
+            $"Gain <style=cIsHealing>{flatArmour} armor</style> <style=cStack>(+{flatArmour} per stack)</style>. Taking damage in melee range returns <style=cIsDamage>{flatDamage}</style> <style=cStack>(+{flatStack} per stack)</style> plus <style=cIsDamage>{armourGrowth * 100}%</style> <style=cStack>(+{armourGrowth * 100}% per stack)</style> of your <style=cIsHealing>armor</style> as damage.";
         public override string ItemLore =>
-            "[Carved into the inner rim of the shield]\n\n"
-            + "Forgive me. Forgive my friends. We burned the druids in anger, and it has come back to haunt us. The ground rages, they're near";
+            "Forgive me. Forgive my friends. We burned the druids in anger, and it has come back to haunt us. The ground rages. They are near.";
 
         public override string VoidCounterpart => null;
         public static BepInEx.Logging.ManualLogSource BSModLogger;
