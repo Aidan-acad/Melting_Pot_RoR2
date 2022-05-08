@@ -17,9 +17,9 @@ namespace MeltingPot.Items
         public override string ItemName => "Midas Cosh";
         public override string ItemLangTokenName => "MIDASCOSH";
         public override string ItemPickupDesc =>
-            $"Chance to <style=cIsUtility>stun enemies</style>. Stunned enemies can be <style=cShrine>mugged</style>.";
+            $"Chance on hit to <style=cIsUtility>stun enemies</style>. Stunned enemies <style=cShrine>get mugged</style>.";
         public override string ItemFullDescription =>
-            $"{baseProcChance * 100}% <style=cStack>(+{baseProcChance * 100}% per stack)</style> chance to <style=cIsUtility>stun</style> enemies for {GoldDuration} <style=cStack>(+{GoldDurationGrowth} per stack)</style> seconds. Enemies stunned by this effect give their attacker <style=cShrine>scaling gold</style>.";
+            $"{baseProcChance * 100}% <style=cStack>(+{baseProcChance * 100}% per stack)</style> chance on hit to <style=cIsUtility>stun</style> enemies for {GoldDuration} seconds <style=cStack>(+{GoldDurationGrowth}s per stack)</style>. Enemies stunned by this effect give their attacker <style=cShrine>scaling gold</style>.";
         public override string ItemLore =>
             "This was me favourite club, could bash the noggin' of any beastie, gave me plenty of time to reach their pockets.\n\n"
             + "I've made me fortune an' it's time for me to retire, so you best put it to good use.";

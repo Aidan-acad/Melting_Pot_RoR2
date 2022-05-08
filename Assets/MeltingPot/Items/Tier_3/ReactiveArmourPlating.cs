@@ -22,7 +22,7 @@ namespace MeltingPot.Items
             $"<style=cIsHealing>Absorb damage</style> while standing still. Use a skill while moving to <style=cIsDamage>explode</style>.";
 
         public override string ItemFullDescription =>
-            $"After standing still for {timeout} seconds, <style=cIsHealing>absorb {2 * absorbGrowth}%</style> <style=cStack>(+{absorbGrowth}% per stack)</style> of incoming damage. Using a skill while moving releases a nova that deals <style=cIsDamage>{damageMult}x</style> the damage absorbed, in a {rangeMult}*damage radius.";
+            $"After standing still for {timeout} second, <style=cIsHealing>absorb {2 * absorbGrowth}%</style> <style=cStack>(+{absorbGrowth}% per stack)</style> of incoming damage. Using a skill while moving releases a nova that deals <style=cIsDamage>{damageMult} times</style> the damage absorbed, in a {rangeMult}*(damage)m radius.";
 
         public override string ItemLore =>
             "Do not wash, do not dry clean. When cleaning this product, use only insulated cleaning utensils, and remain grounded at all times.\n\n"

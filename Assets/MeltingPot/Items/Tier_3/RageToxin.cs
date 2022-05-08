@@ -20,7 +20,7 @@ namespace MeltingPot.Items
         public override string ItemPickupDesc => $"Hit enemies to <style=cIsUtility>taunt them</style> into attacking you.";
 
         public override string ItemFullDescription =>
-            $"Hitting enemies forces them to target you for {baseDuration}s <style=cStack>(+{durationGrowth}s per stack)</style>. Enraged enemies <style=cIsDamage>attack faster</style>, but <style=cIsDamage>deal reduced damage</style> and have a chance to <style=cIsUtility>fumble attacks</style>.";
+            $"Hitting enemies forces them to target you for {baseDuration} seconds <style=cStack>(+{durationGrowth}s per stack)</style>. Enraged enemies <style=cIsDamage>attack faster</style>, but <style=cIsDamage>deal reduced damage</style> and have a {fumbleChance * 100}% <style=cStack>(+{fumbleGrowth * 100}% per stack)</style> chance to <style=cIsUtility>fumble attacks</style>.";
 
         public override string ItemLore =>
             "Take care with application of ShasCo. Rage Toxin. Keep out of reach of children.\n\n"
