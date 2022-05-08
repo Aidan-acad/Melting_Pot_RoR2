@@ -20,7 +20,7 @@ namespace MeltingPot.Items
             $"<style=cIsHealing>Increases armor</style> while standing still.";
 
         public override string ItemFullDescription =>
-            $"Increase <style=cIsHealing>armor</style> by <style=cIsHealing>{flatArmour}</style>. Increases <style=cIsHealing>armor</style> by <style=cIsHealing>{armourMult * 200}%</style> <style=cStack>(+{armourMult * 100}% per stack)</style> when standing still.";
+            $"Increase <style=cIsHealing>armor</style> by <style=cIsHealing>{flatArmour}</style>. Further increase <style=cIsHealing>armor</style> by <style=cIsHealing>{armourMult * 200}%</style> <style=cStack>(+{armourMult * 100}% per stack)</style> when standing still.";
 
         public override string ItemLore =>
             "The inside is stained lightly from extensive use. Probably mostly water, but who really knows?\n\nIt's just a bucket.";

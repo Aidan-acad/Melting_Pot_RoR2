@@ -41,15 +41,15 @@ namespace MeltingPot.Items
             );
             LanguageAPI.Add(
                 "MeltingPot_ITEM_CONSUMED" + ItemLangTokenName + "_PICKUP",
-                "A life saved"
+                "A life saved."
             );
             LanguageAPI.Add(
                 "MeltingPot_ITEM_CONSUMED" + ItemLangTokenName + "_DESC",
-                "Shattered, and unusable"
+                "Shattered and unusable."
             );
             LanguageAPI.Add(
                 "MeltingPot_ITEM_CONSUMED" + ItemLangTokenName + "_LORE",
-                "Better get sweeping"
+                "Better get sweeping!"
             );
         }
 

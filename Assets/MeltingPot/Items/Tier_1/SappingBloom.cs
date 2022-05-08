@@ -15,7 +15,7 @@ namespace MeltingPot.Items
         public override string ItemPickupDesc =>
             $"Chance on hit to apply <style=cIsHealing>Weaken</style>.";
         public override string ItemFullDescription =>
-            $"<style=cIsHealing>{weakenChance * 100}%</style> <style=cStack>(+{weakenChance * 100} per stack, hyperbolically)</style> chance on hit of applying <style=cIsHealing>Weaken</style>.";
+            $"<style=cIsHealing>{weakenChance * 100}%</style> <style=cStack>(+{weakenChance * 100}% per stack, hyperbolically)</style> chance on hit of applying <style=cIsHealing>Weaken</style>.";
         public override string ItemLore =>
             + "OBJECT: Organic Clipping\nORIGIN: Subject \'REX\'\n\nRESEARCHER'S NOTES: A strange fusion of organic and mechanical parts, Subject REX is capable of weakening those who come in contact with its pollen.\n\n We have successfully obtained a cutting of REX's floral growths, though Technician #68 has yet to awaken after the operation.";
 
