@@ -14,9 +14,9 @@ namespace MeltingPot.Items
         public override string ItemName => "Fluffy Manacles";
         public override string ItemLangTokenName => "FLUFFYMANACLES";
         public override string ItemPickupDesc =>
-            $"Increases <style=cIsUtility>armor</style> and <style=cIsUtility>movement speed</style>.";
+            $"Increases <style=cIsUtility>armor</style> and <style=cIsUtility>movement speed</style>. <style=cIsVoid>Corrupts all Lead Fetters</style>.";
         public override string ItemFullDescription =>
-            $"Increase <style=cIsUtility>armor</style> by <style=cIsUtility>{armourGrowth}</style> <style=cStack>(+{armourGrowth} per stack)</style>. Increases <style=cIsUtility>movement speed</style> by <style=cIsUtility>{moveGrowth * 100}%</style> <style=cStack>(+{moveGrowth * 100}% per stack)</style>.";
+            $"Increase <style=cIsUtility>armor</style> by <style=cIsUtility>{armourGrowth}</style> <style=cStack>(+{armourGrowth} per stack)</style> and  <style=cIsUtility>movement speed</style> by <style=cIsUtility>{moveGrowth * 100}%</style> <style=cStack>(+{moveGrowth * 100}% per stack)</style>. <style=cIsVoid>Corrupts all Lead Fetters</style>.";
         public override string ItemLore =>
             "Comfortable and stylish, your **VOiD TM** solution for the combatant on the go ;)";
         public override string VoidCounterpart => "LeadFetters_ItemDef";
