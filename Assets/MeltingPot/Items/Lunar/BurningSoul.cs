@@ -39,7 +39,7 @@ namespace MeltingPot.Items
             $"Doubles <style=cIsHealing>health regeneration/style>. Attacks <style=cIsDamage>burn enemies</style> <style=cDeath>at the cost of your own health.</style>";
 
         public override string ItemFullDescription =>
-            $"Increases <style=cIsHealing>health regeneration by 100%</style>. Once over <style=cIsHealth>{health_threshold} health</style>, burn enemies for <style=cIsDamage>{enemy_burn_percent * 100}%</style><style=cStack>(+{enemy_burn_percent_growth * 100} per stack)</style> of your <style=cIsHealth>maximum health</style> over <style=cStack>4 seconds</style>. <style=cDeath>All attacks cost</style> <style=cIsHealth>{self_burn_percent * 100}%</style><style=cStack>(+{self_burn_percent_growth * 100}% per stack)</style> <style=cDeath>of your current health</style>.";
+            $"Increases <style=cIsHealing>health regeneration by 100%</style>. Once over <style=cIsHealth>{health_threshold} health</style>, burn enemies for <style=cIsDamage>{enemy_burn_percent * 100}%</style> <style=cStack>(+{enemy_burn_percent_growth * 100} per stack)</style> of your <style=cIsHealth>maximum health</style> over 4 seconds. <style=cDeath>All attacks cost</style> <style=cIsHealth>{self_burn_percent * 100}%</style> <style=cStack>(+{self_burn_percent_growth * 100}% per stack)</style> <style=cDeath>of your current health</style>.";
 
         public override string ItemLore =>
             "A whispering scream emanates from the bowl.\n\n"

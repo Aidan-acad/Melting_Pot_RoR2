@@ -21,7 +21,7 @@ namespace MeltingPot.Items
         public override string ItemPickupDesc =>
             $"<style=cIsUtility>Convert all gold</style> into <style=cIsUtility>EXP</style> every 30 seconds, <style=cDeath>but costs are paid in blood</style>.";
         public override string ItemFullDescription =>
-            $"You convert <style=cShrine>100%</style> <style=cStack>(+{MoneyGrowth * 100}% per stack)</style> <style=cShrine>of gold</style> into <style=cIsUtility>EXP</style> every 30 seconds. <style=cDeath>All gold prices cost (25/30/50/75)%</style> <style=cStack>(+{HealthCostGrowth}% per stack - Max 93%)</style> <style=cDeath>of your health, scaling with interactable value.</style>";
+            $"You convert <style=cShrine>100%</style> <style=cStack>(+{MoneyGrowth * 100}% per stack)</style> <style=cShrine>of gold</style> into <style=cIsUtility>EXP</style> every 30 seconds. <style=cDeath>All gold prices cost (25/30/50/75)%</style> <style=cStack>(+{HealthCostGrowth}% per stack - max 93%)</style> <style=cDeath>of your health, scaling with interactable value</style>.";
         public override string ItemLore =>
             "Skip the middle man! Don't waste your blood, sweat and tears working!\n\nHaemo Global is a subsidiary of Sanguisuge Consortium Ltd.";
 

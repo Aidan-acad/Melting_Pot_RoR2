@@ -24,12 +24,12 @@ namespace MeltingPot.Items
         public static float asGrowth = 0.1f;
         public static float healthGrowth = 0.2f;
         public static float baseRadius = 30f;
-        public override string ItemName => "Mark of the Malicious Machinist";
+        public override string ItemName => "Mark of the Malevolent Machinist";
         public override string ItemLangTokenName => "SCRAPVAMP";
         public override string ItemPickupDesc =>
-            $"Defeating mechanical enemies permanently boosts your stats. Repairs drones automatically, <style=cDeath>but they are hostile</style>.";
+            $"Defeating mechanical enemies permanently boosts your stats. Repair drones automatically, <style=cDeath>but they are hostile</style>.";
         public override string ItemFullDescription =>
-            $"Defeating mechanical enemies permanently increases damage by <style=cIsDamage>{damagePerStack}</style>, max HP by <style=cIsHealing>{healthPerStack}</style>, and armor by <style=cIsUtility>{armourPerStack}</style> <style=cStack>(per stack)</style>. Drones repair automatically within <style=cIsUtility>{baseRadius}m</style> <style=cStack>(per stack)</style>, but are always hostile. Drones gain buffs above 1 stack.";
+            $"Defeating mechanical enemies permanently increases damage by <style=cIsDamage>{damagePerStack}</style>, max HP by <style=cIsHealing>{healthPerStack}</style>, and armor by <style=cIsUtility>{armourPerStack}</style> <style=cStack>(per stack)</style>. Drones repair automatically within <style=cIsUtility>{baseRadius}m</style> <style=cStack>(+{baseRadius}m per stack)</style>, but are always hostile. Drones gain buffs above 1 stack.";
         public override string ItemLore =>
             "As you stare into its eyes, you hear a voice whisper:\n\n"
             + "More! Bring me more of the cowardly automatons! Feed me, and I will lend you my strength.";
