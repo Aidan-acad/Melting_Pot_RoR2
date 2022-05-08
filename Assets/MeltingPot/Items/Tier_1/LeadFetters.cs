@@ -18,7 +18,7 @@ namespace MeltingPot.Items
             $"Increase <style=cIsHealing>armor</style> and <style=cIsUtility>knockback reduction</style>.";
 
         public override string ItemFullDescription =>
-            $"Increase <style=cIsHealing>armor</style> by <style=cIsHealing>{armourGrowth}</style> <style=cStack>(+{armourGrowth} per stack)</style>. Increases <style=cIsUtility>knockback reduction</style> by <style=cIsUtility>{knockbackGrowth * 100}%</style> <style=cStack>(+{knockbackGrowth}, hyperbolically)</style>.";
+            $"Increase <style=cIsHealing>armor</style> by <style=cIsHealing>{armourGrowth}</style> <style=cStack>(+{armourGrowth} per stack)</style>. Increases <style=cIsUtility>knockback reduction</style> by <style=cIsUtility>{knockbackGrowth * 100}%</style> <style=cStack>(+{knockbackGrowth}%, hyperbolically)</style>.";
 
         public override string ItemLore =>
             "[Etched onto the left cuff:]\n\n"
