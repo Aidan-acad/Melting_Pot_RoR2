@@ -17,7 +17,7 @@ namespace MeltingPot.Items
         public override string ItemName => "Shield of Thorns";
         public override string ItemLangTokenName => "THORNSHIELD";
         public override string ItemPickupDesc =>
-            $"Reflect melee range damage equal to a portion of armor.";
+            $"<style=cIsHealing>Reflect</style> melee damage equal to a <style=cIsHealing>portion of armor</style>.";
         public override string ItemFullDescription =>
             $"Gain <style=cIsHealing>{flatArmour} armor</style> <style=cStack>(+{flatArmour} per stack)</style>. Taking damage in melee range returns <style=cIsDamage>{flatDamage}</style> <style=cStack>(+{flatStack} per stack)</style> plus <style=cIsDamage>{armourGrowth * 100}%</style> <style=cStack>(+{armourGrowth * 100}% per stack)</style> of your <style=cIsHealing>armor</style> as damage.";
         public override string ItemLore =>
