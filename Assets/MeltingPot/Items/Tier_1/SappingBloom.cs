@@ -13,12 +13,11 @@ namespace MeltingPot.Items
         public override string ItemName => "Sapping Bloom";
         public override string ItemLangTokenName => "SAPPINGBLOOM";
         public override string ItemPickupDesc =>
-            $"Chance to apply <style=cIsHealing>Weaken</style> on hit";
+            $"Chance on hit to apply <style=cIsHealing>Weaken</style>.";
         public override string ItemFullDescription =>
-            $"<style=cIsHealing>{weakenChance * 100}%</style> <style=cStack>(+{weakenChance * 100}</style> per stack, stacking hyperbolically) of applying <style=cIsHealing>weaken</style> on hit";
+            $"<style=cIsHealing>{weakenChance * 100}%</style> <style=cStack>(+{weakenChance * 100} per stack, hyperbolically)</style> chance on hit of applying <style=cIsHealing>Weaken</style>.";
         public override string ItemLore =>
-            "[A small note attached to the bundle]\n\n"
-            + "OBJECT: Organic Clipping, ORIGIN: Subject `REX` \n\nRESEARCHERS NOTE: A strange fusion of organic and mechanical parts, Subject REX is capable of weakening all who come in contact with it's pollen. \n\n We have successfully obtained a cutting of REX's floral growths, though Technician #68 has yet to awaken after the operation.";
+            + "OBJECT: Organic Clipping\nORIGIN: Subject \'REX\'\n\nRESEARCHER'S NOTES: A strange fusion of organic and mechanical parts, Subject REX is capable of weakening those who come in contact with its pollen.\n\n We have successfully obtained a cutting of REX's floral growths, though Technician #68 has yet to awaken after the operation.";
 
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 

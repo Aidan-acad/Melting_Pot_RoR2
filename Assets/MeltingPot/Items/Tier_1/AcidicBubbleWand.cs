@@ -16,14 +16,13 @@ namespace MeltingPot.Items
         public override string ItemLangTokenName => "ACIDICBUBBLEWAND";
 
         public override string ItemPickupDesc =>
-            $"Increase the damage of all DoTs";
+            $"Increase the potency of <style=cIsDamage>damage over time effects</style>.";
 
         public override string ItemFullDescription =>
-            $"Increase the <style=cIsDamage>damage</style> of all <style=cIsHealing>DoTs</style> by {damageMult*100}% <style=cStack>(+ {damageMult*100}% per stack)<style>";
+            $"Increase the damage of all <style=cIsDamage>damage over time effects</style> by <style=cIsDamage>{damageMult*100}%</style> <style=cStack>(+ {damageMult*100}% per stack)</style>.";
 
         public override string ItemLore =>
-            "[Left inside]\n\n"
-            + "The inside is stained lightly from extensive use, mostly water, but who really knows?\n\nIt's a bucket";
+            "The inside is stained lightly from extensive use, mostly water, but who really knows?\n\nIt's a bucket.";
 
         public override string VoidCounterpart => null;
         public GameObject ItemModel;

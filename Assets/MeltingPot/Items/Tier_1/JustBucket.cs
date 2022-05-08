@@ -17,14 +17,13 @@ namespace MeltingPot.Items
         public override string ItemLangTokenName => "JUSTBUCKET";
 
         public override string ItemPickupDesc =>
-            $"Small flat armour increase, armour increased multiplicatively while standing still";
+            $"<style=cIsHealing>Increases armor</style> while standing still.";
 
         public override string ItemFullDescription =>
-            $"Increase <style=cIsUtility>Armour</style> by <style=cIsUtility>{flatArmour}</style>. Increases <style=cIsUtility>Armour</style> by <style=cIsUtility>{armourMult * 200}%</style> <style=cStack>(+{armourMult * 100}% per stack)</style> when standing still";
+            $"Increase <style=cIsHealing>armor</style> by <style=cIsHealing>{flatArmour}</style>. Increases <style=cIsHealing>armor</style> by <style=cIsHealing>{armourMult * 200}%</style> <style=cStack>(+{armourMult * 100}% per stack)</style> when standing still.";
 
         public override string ItemLore =>
-            "[Left inside]\n\n"
-            + "The inside is stained lightly from extensive use, mostly water, but who really knows?\n\nIt's a bucket";
+            "The inside is stained lightly from extensive use. Probably mostly water, but who really knows?\n\nIt's just a bucket.";
 
         public override string VoidCounterpart => null;
         public GameObject ItemModel;

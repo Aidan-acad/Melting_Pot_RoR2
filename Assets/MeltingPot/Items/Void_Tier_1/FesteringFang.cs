@@ -13,12 +13,11 @@ namespace MeltingPot.Items
         public override string ItemName => "Festering Fang";
         public override string ItemLangTokenName => "FESTERFANG";
         public override string ItemPickupDesc =>
-            $"Chance to apply <style=cArtifact>blight</style> on hit";
+            $"Chance on hit to apply <style=cArtifact>Blight</style>. <style=cIsVoid>Corrupts all Penitent's Fangs</style>.";
         public override string ItemFullDescription =>
-            $"<style=cArtifact>{blightChance * 100}%</style> <style=cStack>(+{blightChance * 100}</style> per stack) of applying <style=cArtifact>blight</style> on hit, Past 100% chance gain a chance to apply multiple stacks.";
+            $"<style=cArtifact>{blightChance * 100}%</style> <style=cStack>(+{blightChance * 100} per stack)</style> chance on hit of applying <style=cArtifact>Blight</style>. Past 100%, <style=cIsUtility>gain a chance to apply multiple stacks</style>. <style=cIsVoid>Corrupts all Penitent's Fangs</style>.";
         public override string ItemLore =>
-            "[A small note tagged to the Fang]\n\n"
-            + "OBJECT: Canine Fang, ORIGIN: Subject `ACRID` \n\nRESEARCHERS NOTE: With the subject freed the Fang has undergone a most interesting mutation, the poison it secretes has become fouler, more viscous, capable of melting through whatever it touches. \n\nI fear the Fang cannot last much longer like this, the poison appearss to be dissolving it from the inside.";
+             "OBJECT: Canine Fang\nORIGIN: Subject \'ACRID\'\n\nRESEARCHER'S NOTES: With the subject freed, the fang has undergone a most interesting mutation. The poison it secretes has become fouler, more viscous, capable of melting through whatever it touches.\n\nI fear the fang cannot last much longer like this. The poison appears to be dissolving it from the inside.";
         public override string VoidCounterpart => "PenitFang_ItemDef";
 
         public static BepInEx.Logging.ManualLogSource BSModLogger;

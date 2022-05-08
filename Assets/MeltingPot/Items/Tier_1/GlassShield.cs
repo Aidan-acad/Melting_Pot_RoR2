@@ -15,14 +15,14 @@ namespace MeltingPot.Items
         public override string ItemName => "Glass Shield";
         public override string ItemLangTokenName => "GLASSSHIELD";
 
-        public override string ItemPickupDesc => $"Blocks the next fatal hit, then shatters";
+        public override string ItemPickupDesc => $"<style=cIsHealing>Blocks</style> the next lethal hit, then <style=cUtility>shatters</style>.";
 
         public override string ItemFullDescription =>
-            $"Blocks the next lethal hit, then is consumed";
+            $"<style=cIsHealing>Blocks</style> the next lethal hit, then <style=cUtility>shatters</style>.";
 
         public override string ItemLore =>
-            "[Printed on the underside]\n\n"
-            + "Sustainable Eco-Friendly Armour for those in need of Ablation.\n\nJust sweep away when done.";
+            "Something is printed on the underside.\n\n"
+            + "\"Sustainable, eco-friendly armor, for those in need of ablation.\n\nJust sweep away when done.\"";
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 
         public override string VoidCounterpart => null;

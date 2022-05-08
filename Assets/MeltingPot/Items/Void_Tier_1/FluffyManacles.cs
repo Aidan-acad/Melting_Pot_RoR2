@@ -14,12 +14,11 @@ namespace MeltingPot.Items
         public override string ItemName => "Fluffy Manacles";
         public override string ItemLangTokenName => "FLUFFYMANACLES";
         public override string ItemPickupDesc =>
-            $"Increases <style=cIsUtility>Armour</style>. Increases <style=cIsUtility>Speed</style>";
+            $"Increases <style=cIsUtility>armor</style> and <style=cIsUtility>movement speed</style>.";
         public override string ItemFullDescription =>
-            $"Increase <style=cIsUtility>Armour</style> by <style=cIsUtility>{armourGrowth}</style> <style=cStack>(+{armourGrowth} per stack)</style>. Increases <style=cIsUtility>Movespeed</style> by <style=cIsUtility>{moveGrowth * 100}%</style> <style=cStack>(+{moveGrowth * 100}% per stack)</style>";
+            $"Increase <style=cIsUtility>armor</style> by <style=cIsUtility>{armourGrowth}</style> <style=cStack>(+{armourGrowth} per stack)</style>. Increases <style=cIsUtility>movement speed</style> by <style=cIsUtility>{moveGrowth * 100}%</style> <style=cStack>(+{moveGrowth * 100}% per stack)</style>.";
         public override string ItemLore =>
-            "[On the included instruction manual]\n\n"
-            + "Comfortable and stylish, your **VOiD TM** solution for the combatant on the go ;)";
+            "Comfortable and stylish, your **VOiD TM** solution for the combatant on the go ;)";
         public override string VoidCounterpart => "LeadFetters_ItemDef";
 
         public static GameObject ItemModel;

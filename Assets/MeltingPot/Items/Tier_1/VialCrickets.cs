@@ -34,6 +34,7 @@ namespace MeltingPot.Items
 
         public override void Init(ConfigFile config, bool enabled)
         {
+            enabled = false
             CreateItem("VialCrickets_ItemDef", enabled);
             if (enabled)
             {

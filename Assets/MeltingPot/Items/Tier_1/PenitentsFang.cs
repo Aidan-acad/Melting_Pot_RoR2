@@ -13,12 +13,11 @@ namespace MeltingPot.Items
         public override string ItemName => "Penitent's Fang";
         public override string ItemLangTokenName => "PENITFANG";
         public override string ItemPickupDesc =>
-            $"Chance to apply <style=cIsHealing>poison</style> on hit";
+            $"Chance on hit to apply <style=cIsHealing>Poison</style>.";
         public override string ItemFullDescription =>
-            $"<style=cIsHealing>{poisonChance * 100}%</style> <style=cStack>(+{poisonChance * 100}</style> per stack, stacking hyperbolically) of applying <style=cIsHealing>poison</style> on hit";
+            $"<style=cIsHealing>{poisonChance * 100}%</style> <style=cStack>(+{poisonChance * 100} per stack, hyperbolically)</style> chance on hit of applying <style=cIsHealing>Poison</style>.";
         public override string ItemLore =>
-            "[A small note tagged to the Fang]\n\n"
-            + "OBJECT: Canine Fang, ORIGIN: Subject `ACRID` \n\nRESEARCHERS NOTE: Despite being removed from the subject days ago, the Fang still secretes the poison he is known for.\n\nA number of practical applications have come to mind, but require further testing.";
+             "OBJECT: Canine Fang\nORIGIN: Subject \'ACRID\'\n\nRESEARCHER'S NOTES: Despite being removed from the subject days ago, the fang still secretes the subject's poison.\n\nA number of practical applications have come to mind, but require further testing.";
 
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 
