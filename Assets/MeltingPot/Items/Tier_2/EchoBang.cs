@@ -20,7 +20,7 @@ namespace MeltingPot.Items
         public override string ItemLangTokenName => "REVERBRING";
 
         public override string ItemPickupDesc =>
-            $"<style=cisDamage>Echoes attacks</style> after a delay.";
+            $"<style=cisDamage>Attacks reverberate</style>.";
 
         public override string ItemFullDescription =>
             $"Discharges a blast {fireDelay}s after an attack for <style=cIsDamage>{scaling * 100}%</style> <style=cStack>(+{scaling * 100}% per stack)</style> of the damage in a {baseRadius}m <style=cStack>(+{radiusGrowth}m per stack)</style> radius.";
