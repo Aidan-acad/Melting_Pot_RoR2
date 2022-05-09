@@ -15,14 +15,14 @@ namespace MeltingPot.Items
         public override string ItemLangTokenName => "LEADFETTERS";
 
         public override string ItemPickupDesc =>
-            $"Increase <style=cIsUtility>Armour</style> by <style=cIsUtility>{armourGrowth}</style> <style=cStack>(+{armourGrowth} per stack)</style>. Increases <style=cIsUtility>Knockback Reduction</style> by <style=cIsUtility>{knockbackGrowth * 100}%</style> <style=cStack>(stacking hyperbolically)</style>";
+            $"Increase <style=cIsHealing>armor</style> and <style=cIsUtility>knockback reduction</style>.";
 
         public override string ItemFullDescription =>
-            $"Increase <style=cIsUtility>Armour</style> by <style=cIsUtility>{armourGrowth}</style> <style=cStack>(+{armourGrowth} per stack)</style>. Increases <style=cIsUtility>Knockback Reduction</style> by <style=cIsUtility>{knockbackGrowth * 100}%</style> <style=cStack>(stacking hyperbolically)</style>";
+            $"Increase <style=cIsHealing>armor</style> by <style=cIsHealing>{armourGrowth}</style> <style=cStack>(+{armourGrowth} per stack)</style>. Increase <style=cIsUtility>knockback reduction</style> by <style=cIsUtility>{knockbackGrowth * 100}%</style> <style=cStack>(+{knockbackGrowth}%, hyperbolically)</style>.";
 
         public override string ItemLore =>
-            "[Etched onto the left cuff]\n\n"
-            + "Mile after long mile, legs grow weary and numb, Loop following loop, ";
+            "[Etched onto the left cuff:]\n\n"
+            + "Mile after long mile, legs grow weary and numb, loop following loop, ";
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 
         public override string VoidCounterpart => null;

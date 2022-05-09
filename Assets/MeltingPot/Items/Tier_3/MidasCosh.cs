@@ -17,13 +17,12 @@ namespace MeltingPot.Items
         public override string ItemName => "Midas Cosh";
         public override string ItemLangTokenName => "MIDASCOSH";
         public override string ItemPickupDesc =>
-            $"Chance to stun enemies. Stunned enemies can be mugged.";
+            $"Chance on hit to <style=cIsUtility>stun enemies</style>. Stunned enemies <style=cShrine>get mugged</style>.";
         public override string ItemFullDescription =>
-            $"<style=cStack>{baseProcChance * 100}% + ({baseProcChance * 100}% per stack)</style>chance to <style=cIsUtility>Stun</style> enemies for <style=cStack>{GoldDuration} + ({GoldDurationGrowth} per additional stack) seconds</style>. Enemies stunned by this effect give their attacker <style=cShrine>Scaling Gold</style>";
+            $"{baseProcChance * 100}% <style=cStack>(+{baseProcChance * 100}% per stack)</style> chance on hit to <style=cIsUtility>stun</style> enemies for {GoldDuration} seconds <style=cStack>(+{GoldDurationGrowth}s per stack)</style>. Enemies stunned by this effect give their attacker <style=cShrine>scaling gold</style>.";
         public override string ItemLore =>
-            "[A sticky note attached to the handle]\n\n"
-            + "This was me favourite club, could bash the noggin' of any beastie, gave me plenty of time to reach their pockets.\n\n"
-            + "Ive made me fortune an' it's time for me to retire, so you best put it to good use.";
+            "This was me favourite club, could bash the noggin' of any beastie, gave me plenty of time to reach their pockets.\n\n"
+            + "I've made me fortune an' it's time for me to retire, so you best put it to good use.";
 
         public override string VoidCounterpart => null;
         public static BepInEx.Logging.ManualLogSource BSModLogger;

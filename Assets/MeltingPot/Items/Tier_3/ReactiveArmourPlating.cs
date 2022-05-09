@@ -15,18 +15,17 @@ namespace MeltingPot.Items
         public static float absorbGrowth = 0.1f;
         private int damageMult = 10;
         private float rangeMult = 0.5f;
-        public override string ItemName => "Reactive Armour Plating";
+        public override string ItemName => "Reactive Armor Plating";
         public override string ItemLangTokenName => "REACTIVEARMOUR";
 
         public override string ItemPickupDesc =>
-            $"After standing still for {timeout} second absorb <style=cStack>{2 * absorbGrowth}% (+{absorbGrowth}% per stack)</style> of incoming damage. Using a skill whilst moving releases a nova.";
+            $"<style=cIsHealing>Absorb damage</style> while standing still. Use a skill while moving to <style=cIsDamage>explode</style>.";
 
         public override string ItemFullDescription =>
-            $"After standing still for {timeout} second absorb <style=cStack>{2 * absorbGrowth}% (+{absorbGrowth}% per stack)</style> of incoming damage. Using a skill whilst moving releases a nova that deals <style=cIsDamage>{damageMult}x</style> the damage absorbed, in a {rangeMult}xdamage radius.";
+            $"After standing still for {timeout} second, <style=cIsHealing>absorb {2 * absorbGrowth}%</style> <style=cStack>(+{absorbGrowth}% per stack)</style> of incoming damage. Using a skill while moving releases a nova that deals <style=cIsDamage>{damageMult} times</style> the damage absorbed, in a {rangeMult}*(damage)m radius.";
 
         public override string ItemLore =>
-            "[A sticker on the inside of the chestplate reads]\n\n"
-            + "Do not wash, do not dry clean. When cleaning this product use only insulated cleaning utensils, and remain grounded at all times.\n\n"
+            "Do not wash, do not dry clean. When cleaning this product, use only insulated cleaning utensils, and remain grounded at all times.\n\n"
             + "Exposure to detergents may cause unpredictable electrocution.";
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 

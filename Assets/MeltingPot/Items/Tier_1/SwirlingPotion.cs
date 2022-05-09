@@ -15,7 +15,7 @@ namespace MeltingPot.Items
         public override string ItemLangTokenName => "SWIRLINGPOTION";
 
         public override string ItemPickupDesc =>
-            $"Chance on receiving buff to receive another random temporary buff";
+            $"Chance on receiving buff to receive another random temporary buff.";
 
         public override string ItemFullDescription =>
             $"On receiving a buff <style=cIsUtility>{buffChance*100}%</style> <style=cStack>(+{buffChance*100}% stacking hyperbolically)</style> chance to receive another <style=cEvent>randomly selected</style> buff for <style=cIsUtility>{durationGrowth*2}</style> <style=cStack>(+ {durationGrowth} per stack)</style> seconds";

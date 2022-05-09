@@ -24,15 +24,15 @@ namespace MeltingPot.Items
         public static float asGrowth = 0.1f;
         public static float healthGrowth = 0.2f;
         public static float baseRadius = 30f;
-        public override string ItemName => "Mark of the Malicious Machinist";
+        public override string ItemName => "Mark of the Malevolent Machinist";
         public override string ItemLangTokenName => "SCRAPVAMP";
         public override string ItemPickupDesc =>
-            $"Defeating mechanical enemies rewards bonuses <style=cDeath>BUT all drones are hostile and spawn on sight</style>";
+            $"Defeating mechanical enemies permanently boosts your stats. Repair drones automatically, <style=cDeath>but they are hostile</style>.";
         public override string ItemFullDescription =>
-            $"Defeating types of mechanical enemies rewards permanent <style=cIsDamage>{damagePerStack}</style>/<style=cIsHealing>{healthPerStack}</style>/<style=cIsUtility>{armourPerStack}</style> <style=cStack>(per stack)</style>. All non-equipment drones spawn when within <style=cIsUtility>{baseRadius}m</style> <style=cStack>per stack</style>. All drones receive buffs at more than 1 stack.";
+            $"Defeating mechanical enemies permanently increases damage by <style=cIsDamage>{damagePerStack}</style>, max HP by <style=cIsHealing>{healthPerStack}</style>, and armor by <style=cIsUtility>{armourPerStack}</style> <style=cStack>(per stack)</style>. Drones repair automatically within <style=cIsUtility>{baseRadius}m</style> <style=cStack>(+{baseRadius}m per stack)</style>, but are always hostile. Drones gain buffs above 1 stack.";
         public override string ItemLore =>
-            "[As you stare into it's eyes you hear a voice whisper]\n\n"
-            + "More! Bring me more of the cowardly automatons! Feed me and I will lend you my strength.";
+            "As you stare into its eyes, you hear a voice whisper:\n\n"
+            + "More! Bring me more of the cowardly automatons! Feed me, and I will lend you my strength.";
 
         public override string VoidCounterpart => null;
         public static BepInEx.Logging.ManualLogSource BSModLogger;

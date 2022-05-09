@@ -14,10 +14,10 @@ namespace MeltingPot.Items
         public override string ItemLangTokenName => "GILDEDLIGHTER";
 
         public override string ItemPickupDesc =>
-            $"Grants a chance to ignite on hit";
+            $"<style=cIsDamage>Chance on hit</style> to <style=cIsDamage>ignite enemies</style>.";
 
         public override string ItemFullDescription =>
-            $"Grants a <style=cIsDamage>{igniteChance*100}%</style> <style=cStack>(+ {igniteChance*100}% per stack)</style> chance to <style=cIsDamage>ignite</style> on hit";
+            $"<style=cIsDamage>{igniteChance*100}%</style> <style=cStack>(+ {igniteChance*100}% per stack)</style> chance on hit to <style=cIsDamage>ignite enemies</style>.";
 
         public override string ItemLore =>
             "[Left inside]\n\n"

@@ -36,14 +36,14 @@ namespace MeltingPot.Items
         public override string ItemLangTokenName => "BURNINGSOUL";
 
         public override string ItemPickupDesc =>
-            $"Doubles <style=cIsHealing>Health Regen</style>. Attacks <style=cIsDamage>burn</style> enemies for max health damage at the cost of your own";
+            $"Doubles <style=cIsHealing>health regeneration/style>. Attacks <style=cIsDamage>burn enemies</style> <style=cDeath>at the cost of your own health.</style>";
 
         public override string ItemFullDescription =>
-            $"Increases <style=cIsHealing>health regen by 100%</style>. Once over <style=cIsHealth>{health_threshold} health</style>, burn enemies for <style=cIsDamage>{enemy_burn_percent * 100}%</style><style=cStack>(+{enemy_burn_percent_growth * 100} per stack)</style> of your <style=cIsHealth>Maximum Health</style> over <style=cStack>4 seconds</style> <style=cDeath>BUT</style> all attacks cost <style=cIsHealth>{self_burn_percent * 100}%</style><style=cStack>(+{self_burn_percent_growth * 100}% per stack)</style> of your current health.";
+            $"Increases <style=cIsHealing>health regeneration by 100%</style>. Once over <style=cIsHealth>{health_threshold} health</style>, burn enemies for <style=cIsDamage>{enemy_burn_percent * 100}%</style> <style=cStack>(+{enemy_burn_percent_growth * 100} per stack)</style> of your <style=cIsHealth>maximum health</style> over 4 seconds. <style=cDeath>All attacks cost</style> <style=cIsHealth>{self_burn_percent * 100}%</style> <style=cStack>(+{self_burn_percent_growth * 100}% per stack)</style> <style=cDeath>of your current health</style>.";
 
         public override string ItemLore =>
-            "[A whispering scream emanates from the bowl]\n\n"
-            + "Best not to peer too closely into the fire, lest its tongues choose to taste blood";
+            "A whispering scream emanates from the bowl.\n\n"
+            + "Best not to peer too closely into the fire, lest its tongues choose to taste blood.";
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 
         public static GameObject ItemModel;

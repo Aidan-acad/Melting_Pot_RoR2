@@ -17,16 +17,15 @@ namespace MeltingPot.Items
         public static float durationGrowth = 1.0f;
         public static float fumbleChance = 0.2f;
         public static float fumbleGrowth = 0.1f;
-        public override string ItemPickupDesc => $"Hit enemies to taunt them into attacking you";
+        public override string ItemPickupDesc => $"Hit enemies to <style=cIsUtility>taunt them</style> into attacking you.";
 
         public override string ItemFullDescription =>
-            $"Hitting enemies forces them to target you for <style=cStack>{baseDuration}s + ({durationGrowth}s per stack)</style>. Enraged enemies attack faster, but deal reduced damage and have a chance to fumble attacks";
+            $"Hitting enemies forces them to target you for {baseDuration} seconds <style=cStack>(+{durationGrowth}s per stack)</style>. Enraged enemies <style=cIsDamage>attack faster</style>, but <style=cIsDamage>deal reduced damage</style> and have a {fumbleChance * 100}% <style=cStack>(+{fumbleGrowth * 100}% per stack)</style> chance to <style=cIsUtility>fumble attacks</style>.";
 
         public override string ItemLore =>
-            "[A warning label on the side of the tube]\n\n"
-            + "Take care with application of ShasCo. Rage Toxin. Keep out of reach of children.\n\n"
+            "Take care with application of ShasCo. Rage Toxin. Keep out of reach of children.\n\n"
             + "Symptoms in users under 5 years of age can often be mistaken for demonic possession.\n\n"
-            + "If ingested be careful not to make eye contact with any essential persons.";
+            + "If ingested, be careful not to make eye contact with any essential persons.";
         public static BepInEx.Logging.ManualLogSource BSModLogger;
 
         public override string VoidCounterpart => null;
